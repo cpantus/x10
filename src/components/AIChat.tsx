@@ -1,10 +1,11 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
 */
 
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, Bot, Terminal } from 'lucide-react';
+import { X, Send, Bot, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { sendMessageToGemini } from '../services/geminiService';
 import type { ChatMessage } from '../types';
@@ -148,3 +149,4 @@ const AIChat: React.FC = () => {
 };
 
 export default AIChat;
+
