@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Artist } from '../types';
+import type { Artist } from '../types';
 import { ArrowUpRight } from 'lucide-react';
 
 interface ArtistCardProps {

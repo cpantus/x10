@@ -4,8 +4,9 @@
 */
 
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
-import { ArrowRight, Play, Bot, Zap, Network, Shield, ChevronDown, Quote, CheckCircle, FileText, Search, Users, ShieldCheck, BarChart3, Target, Check, Scale, Eye, Calculator, Lock, FileKey, MousePointerClick, Sliders, Download, AlertCircle, X, Server, Cpu, CheckSquare, ShieldAlert, Settings, Edit2, Send, RefreshCw, Trash2, Save } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Play, Bot, Zap, Network, Shield, ChevronDown, Quote, FileText, Search, Users, ShieldCheck, BarChart3, Target, Check, Scale, Eye, Calculator, Lock, FileKey, Download, X, Server, Cpu, CheckSquare, ShieldAlert, Settings, Edit2, Save } from 'lucide-react';
+import AIChat from './components/AIChat';
 
 // --- Design Tokens & Assets ---
 
@@ -570,7 +571,7 @@ const ComparisonSection = () => {
 
 // --- Network Graph Components ---
 
-const AgentNode = ({ x, y, icon: Icon, label, isCenter, color = "red" }: any) => (
+const AgentNode = ({ x, y, icon: Icon, label, isCenter }: any) => (
     <div
         className={`absolute w-16 h-16 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex flex-col items-center justify-center z-20 -translate-x-1/2 -translate-y-1/2
             ${isCenter ? 'bg-[#1a1a1a] border-2 border-red-500' : 'bg-black border border-white/20'}`}
@@ -1534,6 +1535,7 @@ const App: React.FC = () => {
         <Footer />
       </div>
 
+      <AIChat />
     </div>
   );
 }

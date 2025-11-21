@@ -19,10 +19,12 @@ export interface ChatMessage {
   isError?: boolean;
 }
 
-export enum Section {
-  HERO = 'hero',
-  LINEUP = 'lineup',
-  EXPERIENCE = 'experience',
-  TICKETS = 'tickets',
-}
+// Replaced Enum with const object + type union for compatibility
+export const Section = {
+  HERO: 'hero',
+  LINEUP: 'lineup',
+  EXPERIENCE: 'experience',
+  TICKETS: 'tickets',
+} as const;
 
+export type Section = typeof Section[keyof typeof Section];
