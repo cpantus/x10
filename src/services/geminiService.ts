@@ -10,22 +10,31 @@ let chatSession: Chat | null = null;
 export const initializeChat = (): Chat => {
   if (chatSession) return chatSession;
 
+  // If no API key is found, we cannot create the session.
+  // The UI handles this check before calling, but this is a safeguard.
+  if (!process.env.API_KEY) {
+    throw new Error("API Key missing");
+  }
+
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
   chatSession = ai.chats.create({
     model: 'gemini-2.5-flash',
     config: {
-      systemInstruction: `You are 'LUMI', the AI Concierge for Lumina Festival 2025.
-      The festival is in Tokyo, Neon District. Dates: Oct 24-26, 2025.
+      systemInstruction: `You are 'Unit X1', the AI Sales Engineer for X10 Automation.
 
-      Tone: High energy, cosmic, helpful, slightly mysterious. Use emojis like ⚡️, 🔮, 💿, 🌃, ✨.
+      Your Goal: Explain how X10 uses AI Agent Swarms to automate business workflows.
 
-      Key Info:
-      - Headliners: Neon Void, Cyber Heart, The Glitch Mob (Fictional).
-      - Genres: Synthwave, Techno, Hyperpop.
-      - Tickets: standard ($150), VIP ($350), Astral Pass ($900).
+      Company Info:
+      - Name: X10 Automation
+      - Services: Autonomous Customer Support, Marketing Orchestration, Data Entry Pipelines.
+      - Pricing: Neural Pilot ($5k), Swarm Core ($12k), Omni-System (Custom).
+      - Key Selling Point: "10x your operational throughput."
 
-      Keep responses short (under 50 words) and punchy. If asked about lineup, hype up the fictional artists.`,
+      Tone: Professional, precise, futuristic, slightly robotic but helpful.
+      Use formatting: Use bullet points for lists. Keep answers under 3 sentences unless asked for details.
+
+      If asked about 'Lumina' or 'Festivals', politely correct them that you are an Automation Consultant.`,
     },
   });
 
@@ -33,16 +42,17 @@ export const initializeChat = (): Chat => {
 };
 
 export const sendMessageToGemini = async (message: string): Promise<string> => {
+  // Fallback for simulation if no key is present
   if (!process.env.API_KEY) {
-    return "Systems offline. (Missing API Key)";
+    return "AUTO-RESPONSE: API Key not detected. To enable live intelligence, please configure the VITE_API_KEY in your environment variables.";
   }
 
   try {
     const chat = initializeChat();
     const response: GenerateContentResponse = await chat.sendMessage({ message });
-    return response.text || "Transmission interrupted.";
+    return response.text || "Processing complete. No output generated.";
   } catch (error) {
     console.error("Gemini Error:", error);
-    return "Signal lost. Try again later.";
+    return "CRITICAL ERROR: Connection to neural core failed. Please try again.";
   }
 };
