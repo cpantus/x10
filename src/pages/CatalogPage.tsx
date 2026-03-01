@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Search, FileText, Bell, Edit2, Target, Eye, BarChart3, type LucideIcon } from 'lucide-react';
 import SEOMeta from '../components/SEOMeta';
@@ -117,6 +117,20 @@ const totalDeliverables = categories.reduce((sum, c) => sum + c.deliverables.len
 
 const CatalogPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const filterRef = useRef<HTMLDivElement>(null);
+
+  const handleCategoryClick = useCallback((category: string) => {
+    setActiveCategory(category);
+    // Scroll the clicked pill into view
+    requestAnimationFrame(() => {
+      const container = filterRef.current;
+      if (!container) return;
+      const activeBtn = container.querySelector(`[data-category="${category}"]`) as HTMLElement;
+      if (activeBtn) {
+        activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    });
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'midnight-gold');
@@ -226,14 +240,22 @@ const CatalogPage: React.FC = () => {
       </section>
 
       {/* Category Filter */}
-      <section className="px-6 pb-12 sticky top-16 z-40 bg-[#030303]/90 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+      <section className="pb-12 sticky top-16 z-40 bg-[#030303]/90 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto relative">
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
+          <div
+            ref={filterRef}
+            className="flex gap-2 overflow-x-auto pb-2 px-6"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             <FilterButton
               label="All"
               count={totalDeliverables}
               active={activeCategory === 'All'}
-              onClick={() => setActiveCategory('All')}
+              onClick={() => handleCategoryClick('All')}
+              data-category="All"
             />
             {categories.map((cat) => {
               const Icon = iconMap[cat.icon] || Search;
@@ -243,8 +265,9 @@ const CatalogPage: React.FC = () => {
                   label={cat.name}
                   count={cat.deliverables.length}
                   active={activeCategory === cat.name}
-                  onClick={() => setActiveCategory(cat.name)}
+                  onClick={() => handleCategoryClick(cat.name)}
                   icon={<Icon className="w-3.5 h-3.5" />}
+                  data-category={cat.name}
                 />
               );
             })}
@@ -311,11 +334,13 @@ interface FilterButtonProps {
   active: boolean;
   onClick: () => void;
   icon?: React.ReactNode;
+  'data-category'?: string;
 }
 
-const FilterButton: React.FC<FilterButtonProps> = ({ label, count, active, onClick, icon }) => (
+const FilterButton: React.FC<FilterButtonProps> = ({ label, count, active, onClick, icon, ...rest }) => (
   <button
     onClick={onClick}
+    {...rest}
     className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all duration-200 border ${
       active
         ? 'border-accent-400 bg-accent-400/10 text-white'
