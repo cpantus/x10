@@ -989,7 +989,7 @@ const ROICalculatorSection = () => {
                         <div className="absolute inset-0 bg-gradient-to-r from-accent-400/5 to-transparent" />
                         <div className="relative z-10">
                             <div className="text-accent-400 text-xs uppercase tracking-widest mb-2 font-mono">x10 Total</div>
-                            <div className="text-2xl font-bold text-white" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>90 days · €3-6.5K/mo</div>
+                            <div className="text-2xl font-bold text-white" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>90 days · €3-6.5K/mo + setup fee</div>
                         </div>
                     </div>
                 </div>
@@ -1187,7 +1187,7 @@ const AboutSection = () => (
                     X10 Automation is an AI agent agency based in Romania, building custom teams of 15-25 specialized AI agents for small and medium-sized enterprises across the EU. We deliver marketing, legal research, and business intelligence through dedicated AI agent teams — completing in days what traditional agencies take months to produce.
                 </p>
                 <p>
-                    Our 90-day pilot program costs €3,000-€6,500 per month. Each engagement begins with parallel audits across SEO, GEO readiness, email, competitive landscape, and content — all run simultaneously by specialized agents. By day 3, clients receive a complete roadmap with deliverables and ROI projections. Implementation follows immediately: email automation, interactive lead magnets, technical SEO fixes, and programmatic content at scale.
+                    Our 90-day pilot program costs €3,000-€6,500 per month plus a one-time implementation fee. Each engagement begins with parallel audits across SEO, GEO readiness, email, competitive landscape, and content — all run simultaneously by specialized agents. By day 3, clients receive a complete roadmap with deliverables and ROI projections. Implementation follows immediately: email automation, interactive lead magnets, technical SEO fixes, and programmatic content at scale.
                 </p>
 
                 <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>What Makes X10 Different from Traditional Agencies</h3>
@@ -1272,10 +1272,10 @@ const App: React.FC = () => {
     <div className="relative w-full min-h-screen bg-[#030303] text-white selection:bg-accent-400 selection:text-white font-sans">
       <SEOMeta
         title="X10 Automation | AI Agent Teams for SMEs — 10x Output in 90 Days"
-        description="Custom AI agent teams (15-25 specialists) for SMEs. 90-day pilots delivering SEO, GEO optimization, email automation, and lead magnets in days — not months. From €3K/mo. Romania & EU."
+        description="Custom AI agent teams (15-25 specialists) for SMEs. 90-day pilots delivering SEO, GEO optimization, email automation, and lead magnets in days — not months. From €3K/mo + implementation fee. Romania & EU."
         canonical="https://x10.ro/"
         ogTitle="X10 Automation | Dedicated AI Teams for Business"
-        ogDescription="We build custom AI agent teams that deliver months of work in days. 15-25 specialists per team. 90-day pilot from €3K/mo."
+        ogDescription="We build custom AI agent teams that deliver months of work in days. 15-25 specialists per team. 90-day pilot from €3K/mo + implementation fee."
         schemas={homepageSchemas}
       />
       <NoiseOverlay />

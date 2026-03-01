@@ -1,9 +1,9 @@
 # X10 Automation
 
-> X10 Automation builds custom AI agent teams for SMEs. We deploy 15-25 specialized AI agents that deliver marketing, legal research, and business intelligence in days instead of months. 90-day pilot programs from €3,000-6,500/month. Based in Romania, serving the EU.
+> X10 Automation builds custom AI agent teams for SMEs. We deploy 15-25 specialized AI agents that deliver marketing, legal research, and business intelligence in days instead of months. 90-day pilot programs from €3,000-6,500/month + one-time implementation fee. Based in Romania, serving the EU.
 
 ## Core Offering
-90-day pilot program, €3,000-6,500/month. Each client gets a dedicated team of 15-25 specialized AI agents custom-built for their industry, data, and workflows.
+90-day pilot program, €3,000-6,500/month + one-time implementation fee. Each client gets a dedicated team of 15-25 specialized AI agents custom-built for their industry, data, and workflows.
 
 Engagement phases:
 - Days 1-2: Parallel audits (SEO, GEO readiness, email, competitive, content)
@@ -17,7 +17,7 @@ Engagement phases:
 15-25 agents: SEO, GEO, content, email automation, competitive intelligence, lead magnets.
 - 30 lead magnet specs, 22 automation pipelines, 27 programmatic content specs
 - 17 chatbot specs, 18 data scrapers, 12 audit tools
-- Traditional agency: 6+ months, €26-40K. X10: 90 days, €3-6.5K/mo.
+- Traditional agency: 6+ months, €26-40K. X10: 90 days, €3-6.5K/mo + implementation fee.
 
 ### Praetor Legal AI
 8 legal agents searching 35M Romanian court decisions. 92.7% accuracy. Contract analysis, case research, compliance verification. Days reduced to minutes.

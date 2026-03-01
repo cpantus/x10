@@ -960,7 +960,7 @@ const SolutionsPage: React.FC = () => {
       "name": "AI Marketing Team",
       "provider": { "@type": "Organization", "name": "X10 Automation", "url": "https://x10.ro" },
       "description": "15-25 specialized AI agents delivering SEO, GEO optimization, content creation, email automation, competitive intelligence, and lead magnets for SMEs.",
-      "offers": { "@type": "Offer", "priceSpecification": { "@type": "PriceSpecification", "price": "3000-6500", "priceCurrency": "EUR", "unitText": "per month" } },
+      "offers": { "@type": "Offer", "priceSpecification": { "@type": "PriceSpecification", "price": "3000-6500", "priceCurrency": "EUR", "unitText": "per month" }, "description": "Plus one-time implementation fee" },
     },
     {
       "@context": "https://schema.org",
@@ -983,7 +983,7 @@ const SolutionsPage: React.FC = () => {
     <div className="relative w-full min-h-screen bg-[#030303] text-white selection:bg-accent-400 selection:text-white font-sans">
       <SEOMeta
         title="AI Marketing & Legal Agent Teams | X10 Automation Solutions"
-        description="Explore X10 Automation's AI agent teams: 15-25 marketing specialists delivering SEO, GEO, email automation, and lead magnets, plus Praetor Legal AI searching 35M court decisions. 90-day pilot from €3K/mo."
+        description="Explore X10 Automation's AI agent teams: 15-25 marketing specialists delivering SEO, GEO, email automation, and lead magnets, plus Praetor Legal AI searching 35M court decisions. 90-day pilot from €3K/mo + implementation fee."
         canonical="https://x10.ro/solutions"
         schemas={solutionsSchemas}
       />
