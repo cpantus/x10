@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Bot, Zap, Network, Shield, FileText, Search, ShieldCheck, BarChart3, Target, Check, Eye, Calculator, Cpu, Settings, Edit2, Scale, BookOpen, Bell, ArrowLeft } from 'lucide-react';
 import SEOMeta from '../components/SEOMeta';
+import LogoIcon from '../components/logos/LogoIcon';
 
 // --- Design Tokens ---
 
@@ -913,8 +914,9 @@ const EcommerceCaseStudySection = () => {
 const SolutionsNavbar = () => (
   <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 max-w-[1920px] mx-auto backdrop-blur-xl bg-black/60 border-b border-white/5">
     <a href="/" className="flex items-center gap-3 group cursor-pointer">
-      <div className="flex flex-col">
-        <span className="text-xl font-bold tracking-tight text-white leading-none" style={{ fontFamily: fonts.heading }}>X10</span>
+      <LogoIcon variant="gears" />
+      <div className="flex flex-col items-center">
+        <span className="text-xl font-bold tracking-tight text-white leading-none" style={{ fontFamily: fonts.heading }}>x10</span>
         <span className="text-[10px] tracking-[0.2em] uppercase font-bold leading-tight" style={{ color: 'var(--color-accent-primary)' }}>Automation</span>
       </div>
     </a>

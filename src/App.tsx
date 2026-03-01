@@ -839,7 +839,7 @@ const ImplementationsSection = () => {
                     Ready-to-Deploy Solutions
                 </h2>
              </div>
-             <a href="/catalog" target="_blank" rel="noopener noreferrer" className="hidden md:flex items-center gap-2 text-white/70 hover:text-white transition-colors mt-6 md:mt-0">
+             <a href="/catalog" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/70 hover:text-white transition-colors mt-6 md:mt-0">
                 View Full Catalog <ArrowRight className="w-4 h-4" />
              </a>
          </div>
