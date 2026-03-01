@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Bot, Zap, Network, Shield, FileText, Search, ShieldCheck, BarChart3, Target, Check, Eye, Calculator, Cpu, Settings, Edit2, Scale, BookOpen, Bell, ArrowLeft } from 'lucide-react';
+import SEOMeta from '../components/SEOMeta';
 
 // --- Design Tokens ---
 
@@ -952,12 +953,40 @@ const SolutionsPage: React.FC = () => {
     document.documentElement.setAttribute('data-theme', colorTheme);
   }, [colorTheme]);
 
-  useEffect(() => {
-    document.title = "X10 Automation | Solutions";
-  }, []);
+  const solutionsSchemas = useMemo(() => [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "AI Marketing Team",
+      "provider": { "@type": "Organization", "name": "X10 Automation", "url": "https://x10.ro" },
+      "description": "15-25 specialized AI agents delivering SEO, GEO optimization, content creation, email automation, competitive intelligence, and lead magnets for SMEs.",
+      "offers": { "@type": "Offer", "priceSpecification": { "@type": "PriceSpecification", "price": "3000-6500", "priceCurrency": "EUR", "unitText": "per month" } },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Praetor Legal AI",
+      "provider": { "@type": "Organization", "name": "X10 Automation", "url": "https://x10.ro" },
+      "description": "8 specialized legal AI agents searching 35M Romanian court decisions with 92.7% accuracy. Contract analysis, case research, and compliance verification.",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://x10.ro/" },
+        { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://x10.ro/solutions" },
+      ],
+    },
+  ], []);
 
   return (
     <div className="relative w-full min-h-screen bg-[#030303] text-white selection:bg-accent-400 selection:text-white font-sans">
+      <SEOMeta
+        title="AI Marketing & Legal Agent Teams | X10 Automation Solutions"
+        description="Explore X10 Automation's AI agent teams: 15-25 marketing specialists delivering SEO, GEO, email automation, and lead magnets, plus Praetor Legal AI searching 35M court decisions. 90-day pilot from €3K/mo."
+        canonical="https://x10.ro/solutions"
+        schemas={solutionsSchemas}
+      />
       <SolutionsNavbar />
 
       {/* Hero */}

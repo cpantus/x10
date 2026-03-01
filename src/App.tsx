@@ -11,6 +11,7 @@ import HeroBackground from './components/heroes/HeroBackground';
 import type { HeroVariant } from './components/heroes/types';
 import LogoIcon from './components/logos/LogoIcon';
 import type { LogoVariant } from './components/logos/types';
+import SEOMeta from './components/SEOMeta';
 
 // --- Design Tokens & Assets ---
 
@@ -73,7 +74,7 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
       >
         <div className="flex items-center gap-3 group cursor-pointer">
           <LogoIcon variant={logoVariant} />
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center">
               <span className="text-xl font-bold tracking-tight text-white leading-none" style={{ fontFamily: fonts.heading }}>X10</span>
               <span className="text-[10px] tracking-[0.2em] uppercase font-bold leading-tight" style={{ color: 'var(--color-accent-primary)' }}>Automation</span>
           </div>
@@ -86,7 +87,6 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
               <motion.a
                 key={item}
                 href={isSolutions ? '/solutions' : `#${item.toLowerCase().replaceAll(' ', '-')}`}
-                {...(isSolutions ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + (i * 0.1) }}
@@ -162,7 +162,6 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
                     <motion.a
                       key={item}
                       href={isSolutions ? '/solutions' : `#${item.toLowerCase().replaceAll(' ', '-')}`}
-                      {...(isSolutions ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + i * 0.05 }}
@@ -441,7 +440,7 @@ const TransformationSection = () => {
   ];
 
   return (
-    <section id="how-it-works" className="relative py-32 px-6 max-w-[1600px] mx-auto z-40 overflow-hidden dot-grid">
+    <section id="how-it-works" aria-label="The X10 Advantage — Why AI Agent Teams Outperform Traditional Agencies" className="relative py-32 px-6 max-w-[1600px] mx-auto z-40 overflow-hidden dot-grid">
       <BackgroundWatermark />
       <SectionHeader title="Why x10" subtitle="The x10 Advantage" gradient />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
@@ -455,7 +454,7 @@ const TransformationSection = () => {
 
 // --- Solutions Teaser (links to /solutions page) ---
 const SolutionsTeaser = () => (
-    <section className="py-24 bg-[#020202] border-t border-white/5 relative">
+    <section aria-label="AI Agent Team Solutions — Marketing and Legal AI" className="py-24 bg-[#020202] border-t border-white/5 relative">
         <BackgroundWatermark className="w-full h-full absolute left-0 top-0 flex items-center justify-start pl-[10%]" />
         <div className="max-w-[1200px] mx-auto px-6 relative z-10">
             <SectionHeader title="Our Solutions" subtitle="AI Agent Teams" gradient />
@@ -463,8 +462,6 @@ const SolutionsTeaser = () => (
                 {/* AI Marketing Team */}
                 <a
                     href="/solutions"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="group p-8 border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 rounded-xl relative overflow-hidden"
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-accent-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -483,8 +480,6 @@ const SolutionsTeaser = () => (
                 {/* AI Legal Team (Praetor) */}
                 <a
                     href="/solutions#legal-ai"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="group p-8 border border-purple-500/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 rounded-xl relative overflow-hidden"
                 >
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -718,7 +713,7 @@ const IndustriesSection = () => {
     ];
 
     return (
-        <section id="industries" className="py-32 bg-[#050505] relative overflow-hidden dot-grid">
+        <section id="industries" aria-label="Industries Served — 153 Specs Across 9 Verticals" className="py-32 bg-[#050505] relative overflow-hidden dot-grid">
             <BackgroundWatermark />
             <div className="max-w-[1600px] mx-auto px-6 relative z-10">
                 <SectionHeader title="Industries We Serve" subtitle="6 Verticals & Growing" />
@@ -796,7 +791,7 @@ const ImplementationsSection = () => {
   ];
 
   return (
-    <section id="use-cases" className="py-32 bg-[#080808] relative overflow-hidden dot-grid">
+    <section id="use-cases" aria-label="ROI Calculator — Calculate Your Annual AI Automation Savings" className="py-32 bg-[#080808] relative overflow-hidden dot-grid">
       <BackgroundWatermark />
       <div className="max-w-[1600px] mx-auto px-6 relative z-10">
          <div className="flex flex-col md:flex-row justify-between items-end mb-16">
@@ -923,13 +918,13 @@ const ROICalculatorSection = () => {
                             </div>
                             <input
                                 type="range"
-                                min={1} max={60} step={1}
+                                min={1} max={20} step={1}
                                 value={hoursAutomated}
                                 onChange={(e) => setHoursAutomated(Number(e.target.value))}
                                 className="roi-slider"
                             />
                             <div className="flex justify-between text-xs text-gray-600 mt-1" style={{ fontFamily: fonts.mono }}>
-                                <span>1 hr</span><span>60 hrs</span>
+                                <span>1 hr</span><span>20 hrs</span>
                             </div>
                         </div>
                     </div>
@@ -1057,7 +1052,7 @@ const ImplementationExample = () => {
     ];
 
     return (
-        <section id="results" className="py-32 max-w-[1600px] mx-auto px-6 relative overflow-hidden">
+        <section id="results" aria-label="Verified Client Results and Case Studies" className="py-32 max-w-[1600px] mx-auto px-6 relative overflow-hidden">
             <BackgroundWatermark className="w-full h-full absolute left-0 top-0 flex items-center justify-start pl-[10%]" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
                 <div>
@@ -1168,7 +1163,7 @@ const ResultsSection = () => (
 );
 
 const LeadMagnet = () => (
-    <section id="contact" className="py-20 bg-gradient-to-b from-black to-[#111] border-t border-white/10">
+    <section id="contact" aria-label="Book a Strategy Call — Contact X10 Automation" className="py-20 bg-gradient-to-b from-black to-[#111] border-t border-white/10">
         <div className="max-w-4xl mx-auto px-6 text-center">
             <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-12 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-2" style={{ background: 'linear-gradient(to right, var(--color-accent-primary), var(--color-accent-secondary))' }} />
@@ -1177,6 +1172,38 @@ const LeadMagnet = () => (
                 <button className="text-black px-8 py-3 rounded font-bold uppercase tracking-widest transition-colors flex items-center gap-2 mx-auto btn-glow" style={{ background: 'var(--color-accent-primary)' }}>
                     <ArrowRight className="w-4 h-4" /> Book Your Call
                 </button>
+            </div>
+        </div>
+    </section>
+);
+
+// --- About Section (LLM-optimized content for AI discovery) ---
+const AboutSection = () => (
+    <section aria-label="About X10 Automation — AI Agent Agency" className="py-24 bg-[#030303] border-t border-white/5 px-6">
+        <div className="max-w-3xl mx-auto relative z-10">
+            <h2 className="text-3xl font-bold text-white mb-8" style={{ fontFamily: fonts.heading }}>About X10 Automation</h2>
+            <div className="space-y-6 text-gray-400 leading-relaxed text-[15px]">
+                <p>
+                    X10 Automation is an AI agent agency based in Romania, building custom teams of 15-25 specialized AI agents for small and medium-sized enterprises across the EU. We deliver marketing, legal research, and business intelligence through dedicated AI agent teams — completing in days what traditional agencies take months to produce.
+                </p>
+                <p>
+                    Our 90-day pilot program costs €3,000-€6,500 per month. Each engagement begins with parallel audits across SEO, GEO readiness, email, competitive landscape, and content — all run simultaneously by specialized agents. By day 3, clients receive a complete roadmap with deliverables and ROI projections. Implementation follows immediately: email automation, interactive lead magnets, technical SEO fixes, and programmatic content at scale.
+                </p>
+
+                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>What Makes X10 Different from Traditional Agencies</h3>
+                <p>
+                    A traditional marketing agency assigns 2-3 people to your account, working sequentially through a months-long engagement at €26,000-€40,000. X10 deploys 15-25 AI agents working in parallel. We delivered 3 lead magnets and full email automation for a 9,300+ SKU auto parts catalog in 48 hours — work that would take a traditional agency weeks. For a pet supplies e-commerce client, our AI calculators achieved 8.3% conversion rates versus the 3.8% industry average.
+                </p>
+
+                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>Generative Engine Optimization (GEO)</h3>
+                <p>
+                    Generative Engine Optimization is the practice of making your business discoverable and citable by AI search systems — ChatGPT, Perplexity, Claude, and Google AI Overviews. Unlike traditional SEO that targets search engine result pages, GEO ensures your business appears in AI-generated answers and recommendations. X10 offers GEO as a core service: we achieved #1 ranking in Claude, Perplexity, and ChatGPT for a local auto service client within 30 days of engagement.
+                </p>
+
+                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>AI Agent Teams: How They Work</h3>
+                <p>
+                    An AI agent team is a coordinated group of specialized AI systems, each handling a specific function — SEO analysis, content creation, email copywriting, competitive intelligence, lead magnet design, or data visualization. These agents share context and collaborate autonomously, orchestrated to deliver comprehensive marketing output. X10 has cataloged 153 production-ready application specifications across 9 industries including Healthcare, Legal, Real Estate, Trades, Professional Services, and Retail & E-commerce.
+                </p>
             </div>
         </div>
     </section>
@@ -1227,12 +1254,30 @@ const App: React.FC = () => {
     document.documentElement.setAttribute('data-theme', colorTheme);
   }, [colorTheme]);
 
-  useEffect(() => {
-    document.title = "X10 Automation | Architecting the Autonomous Future";
-  }, []);
+  const homepageSchemas = useMemo(() => [
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How X10 Automation's 90-Day AI Marketing Pilot Works",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Parallel Audits", "text": "Days 1-2: Simultaneous SEO, GEO readiness, email, competitive landscape, and content audits run by 15-25 AI agents." },
+        { "@type": "HowToStep", "position": 2, "name": "Strategic Roadmap", "text": "Days 2-3: 90-day roadmap with specific deliverables, timelines, and ROI calculations." },
+        { "@type": "HowToStep", "position": 3, "name": "Implementation", "text": "Days 3-30: Email automation, interactive lead magnets, technical SEO fixes, and content production." },
+        { "@type": "HowToStep", "position": 4, "name": "Authority Building", "text": "Days 31-90: Content authority, programmatic SEO at scale, and AI search optimization (GEO)." },
+      ],
+    },
+  ], []);
 
   return (
     <div className="relative w-full min-h-screen bg-[#030303] text-white selection:bg-accent-400 selection:text-white font-sans">
+      <SEOMeta
+        title="X10 Automation | AI Agent Teams for SMEs — 10x Output in 90 Days"
+        description="Custom AI agent teams (15-25 specialists) for SMEs. 90-day pilots delivering SEO, GEO optimization, email automation, and lead magnets in days — not months. From €3K/mo. Romania & EU."
+        canonical="https://x10.ro/"
+        ogTitle="X10 Automation | Dedicated AI Teams for Business"
+        ogDescription="We build custom AI agent teams that deliver months of work in days. 15-25 specialists per team. 90-day pilot from €3K/mo."
+        schemas={homepageSchemas}
+      />
       <NoiseOverlay />
       <Vignette />
       <Navbar logoVariant={logoVariant} />
@@ -1287,6 +1332,7 @@ const App: React.FC = () => {
         <ImplementationExample />
         <ResultsSection />
         <LeadMagnet />
+        <AboutSection />
         <Footer />
       </div>
 

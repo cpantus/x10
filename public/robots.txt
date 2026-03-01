@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Disallow: /assets/
+Disallow: /?theme=
+Disallow: /?hero=
+Disallow: /?logo=
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://x10.ro/sitemap.xml

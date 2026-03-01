@@ -1,0 +1,42 @@
+# X10 Automation
+
+> X10 Automation builds custom AI agent teams for SMEs. We deploy 15-25 specialized AI agents that deliver marketing, legal research, and business intelligence in days instead of months. 90-day pilot programs from €3,000-6,500/month. Based in Romania, serving the EU.
+
+## Core Offering
+90-day pilot program, €3,000-6,500/month. Each client gets a dedicated team of 15-25 specialized AI agents custom-built for their industry, data, and workflows.
+
+Engagement phases:
+- Days 1-2: Parallel audits (SEO, GEO readiness, email, competitive, content)
+- Days 2-3: 90-day roadmap with deliverables and ROI calculations
+- Days 3-30: Email automation, interactive tools, technical debt fixes
+- Days 31-90: Content authority, programmatic SEO, AI search optimization
+
+## Products
+
+### AI Marketing Team
+15-25 agents: SEO, GEO, content, email automation, competitive intelligence, lead magnets.
+- 30 lead magnet specs, 22 automation pipelines, 27 programmatic content specs
+- 17 chatbot specs, 18 data scrapers, 12 audit tools
+- Traditional agency: 6+ months, €26-40K. X10: 90 days, €3-6.5K/mo.
+
+### Praetor Legal AI
+8 legal agents searching 35M Romanian court decisions. 92.7% accuracy. Contract analysis, case research, compliance verification. Days reduced to minutes.
+
+### Private AI Solutions
+Open-source models, fine-tuned on client data, deployed on client infrastructure. EU AI Act + GDPR compliant by design.
+
+## Verified Results
+- Auto Parts E-commerce: 3 lead magnets + email automation for 9,300+ SKU catalog in 48 hours. 66+ additional orders/month from cart recovery.
+- Pet Supplies E-commerce: 3 AI calculators with Gemini. 8.3% conversion (vs 3.8% industry avg). 2.2x lead capture.
+- Local Auto Service: #1 in Claude, Perplexity, ChatGPT for competitive local queries within 30 days.
+
+## Industries
+Healthcare (21 specs), Legal (18), Real Estate (19), Trades (16), Professional Services (17), Retail & E-commerce (21). Total: 153 production-ready specs.
+
+## Pages
+- [Home](https://x10.ro/) - Services, ROI calculator, case studies
+- [Solutions](https://x10.ro/solutions) - AI Marketing Team + Praetor Legal AI deep dive
+- [Catalog](https://x10.ro/catalog) - 24 deliverables across 8 categories
+
+## Contact
+Book a strategy call: https://x10.ro/#contact

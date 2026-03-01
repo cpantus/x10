@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Search, FileText, Bell, Edit2, Target, Eye, BarChart3, type LucideIcon } from 'lucide-react';
+import SEOMeta from '../components/SEOMeta';
 
 const fonts = {
   heading: '"Space Grotesk", sans-serif',
@@ -118,9 +119,32 @@ const CatalogPage: React.FC = () => {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'midnight-gold');
-    document.title = 'Solutions Catalog | X10 Automation';
     window.scrollTo(0, 0);
   }, []);
+
+  const catalogSchemas = useMemo(() => [
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "X10 Automation AI Deliverables Catalog",
+      "description": "153 production-ready AI deliverable specifications across 8 categories from real client engagements.",
+      "numberOfItems": 153,
+      "itemListElement": categories.map((cat, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "name": cat.name,
+        "description": `${cat.deliverables.length} deliverables in ${cat.name}`,
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://x10.ro/" },
+        { "@type": "ListItem", "position": 2, "name": "Catalog", "item": "https://x10.ro/catalog" },
+      ],
+    },
+  ], []);
 
   const filteredDeliverables =
     activeCategory === 'All'
@@ -137,6 +161,12 @@ const CatalogPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#030303] text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
+      <SEOMeta
+        title="AI Deliverables Catalog | 153 Specs Across 9 Industries | X10 Automation"
+        description="Browse 153 production-ready AI deliverable specifications across 8 categories: strategic research, pitch decks, email campaigns, content strategy, lead generation, SEO, competitive intelligence, and data visualization."
+        canonical="https://x10.ro/catalog"
+        schemas={catalogSchemas}
+      />
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#030303]/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
