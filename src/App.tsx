@@ -1,6 +1,7 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
+ * x10.ro — AI Agent Agency Landing Page
 */
 
 import React, { useEffect, useState, useRef, useMemo } from 'react';
