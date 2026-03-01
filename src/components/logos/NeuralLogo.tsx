@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import type { LogoIconProps } from './types';
 
 // 5 nodes in a compact neural network layout
@@ -18,8 +18,6 @@ const CONNECTIONS = [
 ];
 
 export default function NeuralLogo({ className }: LogoIconProps) {
-  const reducedMotion = useReducedMotion();
-
   return (
     <div className={`w-10 h-10 ${className || ''}`}>
       <svg viewBox="0 0 40 42" className="w-full h-full">
@@ -44,7 +42,7 @@ export default function NeuralLogo({ className }: LogoIconProps) {
             r={3.5}
             fill="var(--color-accent-primary)"
             initial={{ opacity: 0.6, scale: 1 }}
-            animate={reducedMotion ? {} : {
+            animate={{
               opacity: [0.5, 1, 0.5],
               scale: [1, 1.3, 1],
             }}
@@ -59,21 +57,19 @@ export default function NeuralLogo({ className }: LogoIconProps) {
         ))}
 
         {/* Traveling dot along a connection */}
-        {!reducedMotion && (
-          <motion.circle
-            r={1.5}
-            fill="var(--color-accent-secondary)"
-            animate={{
-              cx: [NODES[0].cx, NODES[2].cx, NODES[4].cx, NODES[3].cx, NODES[1].cx, NODES[0].cx],
-              cy: [NODES[0].cy, NODES[2].cy, NODES[4].cy, NODES[3].cy, NODES[1].cy, NODES[0].cy],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: 'linear',
-            }}
-          />
-        )}
+        <motion.circle
+          r={1.5}
+          fill="var(--color-accent-secondary)"
+          animate={{
+            cx: [NODES[0].cx, NODES[2].cx, NODES[4].cx, NODES[3].cx, NODES[1].cx, NODES[0].cx],
+            cy: [NODES[0].cy, NODES[2].cy, NODES[4].cy, NODES[3].cy, NODES[1].cy, NODES[0].cy],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+        />
       </svg>
     </div>
   );

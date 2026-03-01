@@ -5,7 +5,7 @@
 
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Bot, Zap, Network, Shield, ChevronDown, FileText, Search, Users, ShieldCheck, BarChart3, Target, Check, Eye, Calculator, X, Server, Cpu, CheckSquare, Settings, Edit2, Save, Scale, BookOpen, Bell, Lock } from 'lucide-react';
+import { ArrowRight, Bot, Zap, Network, Shield, ChevronDown, FileText, Search, Users, ShieldCheck, BarChart3, Target, Check, Eye, Calculator, X, Server, Cpu, CheckSquare, Settings, Edit2, Save, Scale, BookOpen, Bell, Lock, Menu } from 'lucide-react';
 import AIChat from './components/AIChat';
 import HeroBackground from './components/heroes/HeroBackground';
 import type { HeroVariant } from './components/heroes/types';
@@ -61,57 +61,128 @@ const BackgroundWatermark: React.FC<WatermarkProps> = ({ className }) => (
 
 const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
   const navItems = ['Solutions', 'Industries', 'Case Studies', 'Results'];
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 max-w-[1920px] mx-auto backdrop-blur-xl bg-black/60 border-b border-white/5"
-    >
-      <div className="flex items-center gap-3 group cursor-pointer">
-        <LogoIcon variant={logoVariant} />
-        <div className="flex flex-col">
-            <span className="text-xl font-bold tracking-tight text-white leading-none" style={{ fontFamily: fonts.heading }}>X10</span>
-            <span className="text-[10px] tracking-[0.2em] uppercase font-bold leading-tight" style={{ color: 'var(--color-accent-primary)' }}>Automation</span>
-        </div>
-      </div>
-
-      <div className="hidden md:flex gap-10 items-center">
-        {navItems.map((item, i) => (
-          <motion.a
-            key={item}
-            href={`#${item.toLowerCase().replaceAll(' ', '-')}`}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 + (i * 0.1) }}
-            className="text-xs font-medium text-gray-400 hover:text-white transition-colors uppercase tracking-[0.2em] relative group"
-            style={{ fontFamily: fonts.mono }}
-          >
-            {item}
-            <span className="absolute -bottom-2 left-0 w-0 h-[1px] group-hover:w-full transition-all duration-300" style={{ background: 'var(--color-accent-primary)' }} />
-          </motion.a>
-        ))}
-      </div>
-
-      <motion.button
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.8 }}
-        whileHover={{
-          scale: 1.05,
-          boxShadow: "0 0 25px rgba(255, 255, 255, 0.5)",
-          borderColor: "rgba(255,255,255,0.8)",
-          transition: { duration: 0.1, delay: 0 }
-        }}
-        whileTap={{ scale: 0.95 }}
-        className="hidden md:flex items-center relative px-6 py-2.5 border border-white/20 text-white text-xs uppercase tracking-widest backdrop-blur-md bg-black/30 group overflow-hidden btn-glow"
-        style={{ fontFamily: fonts.mono }}
+    <>
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 max-w-[1920px] mx-auto backdrop-blur-xl bg-black/60 border-b border-white/5"
       >
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-white/20 to-white/40 translate-y-full group-hover:translate-y-0 transition-transform duration-100 ease-out" />
-        <span className="relative z-10">Book a Consultation</span>
-      </motion.button>
-    </motion.nav>
+        <div className="flex items-center gap-3 group cursor-pointer">
+          <LogoIcon variant={logoVariant} />
+          <div className="flex flex-col">
+              <span className="text-xl font-bold tracking-tight text-white leading-none" style={{ fontFamily: fonts.heading }}>X10</span>
+              <span className="text-[10px] tracking-[0.2em] uppercase font-bold leading-tight" style={{ color: 'var(--color-accent-primary)' }}>Automation</span>
+          </div>
+        </div>
+
+        <div className="hidden md:flex gap-10 items-center">
+          {navItems.map((item, i) => (
+            <motion.a
+              key={item}
+              href={`#${item.toLowerCase().replaceAll(' ', '-')}`}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 + (i * 0.1) }}
+              className="text-xs font-medium text-gray-400 hover:text-white transition-colors uppercase tracking-[0.2em] relative group"
+              style={{ fontFamily: fonts.mono }}
+            >
+              {item}
+              <span className="absolute -bottom-2 left-0 w-0 h-[1px] group-hover:w-full transition-all duration-300" style={{ background: 'var(--color-accent-primary)' }} />
+            </motion.a>
+          ))}
+        </div>
+
+        <motion.button
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.8 }}
+          whileHover={{
+            scale: 1.05,
+            boxShadow: "0 0 25px rgba(255, 255, 255, 0.5)",
+            borderColor: "rgba(255,255,255,0.8)",
+            transition: { duration: 0.1, delay: 0 }
+          }}
+          whileTap={{ scale: 0.95 }}
+          className="hidden md:flex items-center relative px-6 py-2.5 border border-white/20 text-white text-xs uppercase tracking-widest backdrop-blur-md bg-black/30 group overflow-hidden btn-glow"
+          style={{ fontFamily: fonts.mono }}
+        >
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-white/20 to-white/40 translate-y-full group-hover:translate-y-0 transition-transform duration-100 ease-out" />
+          <span className="relative z-10">Book a Consultation</span>
+        </motion.button>
+
+        {/* Mobile hamburger */}
+        <button
+          onClick={() => setMobileOpen(true)}
+          className="md:hidden p-2 text-white/70 hover:text-white transition-colors"
+          aria-label="Open menu"
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+      </motion.nav>
+
+      {/* Mobile menu overlay */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-md md:hidden"
+            onClick={() => setMobileOpen(false)}
+          >
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute right-0 top-0 h-full w-72 bg-[#0a0a0a] border-l border-white/10 p-8 flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="self-end p-2 text-white/50 hover:text-white transition-colors mb-8"
+                aria-label="Close menu"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <nav className="flex flex-col gap-6">
+                {navItems.map((item, i) => (
+                  <motion.a
+                    key={item}
+                    href={`#${item.toLowerCase().replaceAll(' ', '-')}`}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.05 }}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-sm text-gray-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
+                    style={{ fontFamily: fonts.mono }}
+                  >
+                    {item}
+                  </motion.a>
+                ))}
+              </nav>
+
+              <div className="mt-auto pt-8 border-t border-white/10">
+                <a
+                  href="#contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="block w-full text-center px-6 py-3 border text-white text-xs uppercase tracking-widest"
+                  style={{ fontFamily: fonts.mono, borderColor: 'var(--color-accent-primary)', color: 'var(--color-accent-primary)' }}
+                >
+                  Book a Consultation
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

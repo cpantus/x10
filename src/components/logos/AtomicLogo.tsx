@@ -1,9 +1,7 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import type { LogoIconProps } from './types';
 
 export default function AtomicLogo({ className }: LogoIconProps) {
-  const reducedMotion = useReducedMotion();
-
   return (
     <div className={`w-10 h-10 ${className || ''}`}>
       <svg viewBox="0 0 40 40" className="w-full h-full">
@@ -47,35 +45,31 @@ export default function AtomicLogo({ className }: LogoIconProps) {
         />
 
         {/* Electron 1 — orbits ring 1 */}
-        {!reducedMotion && (
-          <motion.g
-            animate={{ rotate: 360 }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-            style={{ transformOrigin: '20px 20px' }}
-          >
-            <circle
-              cx={36} cy={20} r={2}
-              fill="var(--color-accent-primary)"
-              filter="url(#atomic-glow)"
-            />
-          </motion.g>
-        )}
+        <motion.g
+          animate={{ rotate: 360 }}
+          transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+          style={{ transformOrigin: '20px 20px' }}
+        >
+          <circle
+            cx={36} cy={20} r={2}
+            fill="var(--color-accent-primary)"
+            filter="url(#atomic-glow)"
+          />
+        </motion.g>
 
         {/* Electron 2 — orbits ring 2 */}
-        {!reducedMotion && (
-          <motion.g
-            animate={{ rotate: 360 }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
-            style={{ transformOrigin: '20px 20px' }}
-          >
-            <circle
-              cx={36} cy={20} r={2}
-              fill="var(--color-accent-secondary)"
-              filter="url(#atomic-glow)"
-              transform="rotate(60 20 20)"
-            />
-          </motion.g>
-        )}
+        <motion.g
+          animate={{ rotate: 360 }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
+          style={{ transformOrigin: '20px 20px' }}
+        >
+          <circle
+            cx={36} cy={20} r={2}
+            fill="var(--color-accent-secondary)"
+            filter="url(#atomic-glow)"
+            transform="rotate(60 20 20)"
+          />
+        </motion.g>
 
         {/* Nucleus (center dot) */}
         <circle
