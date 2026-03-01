@@ -5,14 +5,13 @@
 
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Bot, Zap, Network, Shield, ChevronDown, Search, Users, Target, Check, Calculator, X, Server, Cpu, CheckSquare, Settings, Edit2, Save, Scale, Lock, Menu, CheckCircle } from 'lucide-react';
+import { ArrowRight, Bot, Zap, Network, Shield, ChevronDown, Search, Users, Target, Check, Calculator, X, Server, Cpu, CheckSquare, Settings, Edit2, Save, Scale, Lock, Menu } from 'lucide-react';
 import AIChat from './components/AIChat';
 import HeroBackground from './components/heroes/HeroBackground';
 import type { HeroVariant } from './components/heroes/types';
 import LogoIcon from './components/logos/LogoIcon';
 import type { LogoVariant } from './components/logos/types';
 import SEOMeta from './components/SEOMeta';
-import { submitContactForm } from './services/leadCapture';
 import { events as analytics } from './utils/analytics';
 
 // --- Design Tokens & Assets ---
@@ -113,7 +112,7 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
             transition: { duration: 0.1, delay: 0 }
           }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => { analytics.ctaClick('navbar_consultation'); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+          onClick={() => { analytics.ctaClick('navbar_consultation'); window.dispatchEvent(new Event('openChat')); }}
           className="hidden md:flex items-center relative px-6 py-2.5 border border-white/20 text-white text-xs uppercase tracking-widest backdrop-blur-md bg-black/30 group overflow-hidden btn-glow"
           style={{ fontFamily: fonts.mono }}
         >
@@ -179,14 +178,13 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
               </nav>
 
               <div className="mt-auto pt-8 border-t border-white/10">
-                <a
-                  href="#contact"
-                  onClick={() => setMobileOpen(false)}
+                <button
+                  onClick={() => { setMobileOpen(false); window.dispatchEvent(new Event('openChat')); }}
                   className="block w-full text-center px-6 py-3 border text-white text-xs uppercase tracking-widest"
                   style={{ fontFamily: fonts.mono, borderColor: 'var(--color-accent-primary)', color: 'var(--color-accent-primary)' }}
                 >
                   Book a Strategy Call
-                </a>
+                </button>
               </div>
             </motion.div>
           </motion.div>
@@ -304,7 +302,7 @@ const HeroContent = () => {
       >
         <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--color-accent-primary)', boxShadow: '0 0 10px var(--color-accent-primary)' }} />
         <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-white/90 font-bold" style={{ fontFamily: fonts.mono }}>
-          Live Production Results
+          Architecting the Autonomous Future
         </span>
       </motion.div>
 
@@ -320,10 +318,9 @@ const HeroContent = () => {
             textShadow: '0 0 80px var(--color-accent-glow)'
         }}
       >
-        15–25 AI Specialists.<br />
-        Working on Your Business.<br />
+        Your Dedicated AI Team.<br />
         <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/50">
-            Starting This Week.
+            10x the Output.
         </span>
       </motion.h1>
 
@@ -335,15 +332,15 @@ const HeroContent = () => {
         className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light"
         style={{ fontFamily: fonts.heading }}
       >
-        Traditional agencies assign 2–3 people and take months. We deploy a full AI agent team in 72 hours — running parallel audits, building automations, and generating{' '}
+        We build custom AI agent teams that deliver{' '}
         <motion.span
           className="font-bold text-white glow-pulse"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 0.8 }}
           style={{ color: 'var(--color-accent-primary)', animationDuration: '12s' }}
-        >revenue before your first invoice arrives</motion.span>
-        . Specific to your industry. Private. GDPR-compliant.
+        >months of work in days</motion.span>
+        . Interactive tools, automation pipelines, market intelligence — engineered specifically for your business.
       </motion.p>
 
       {/* CTA Buttons */}
@@ -359,7 +356,7 @@ const HeroContent = () => {
             boxShadow: "0 0 40px var(--color-accent-glow-strong)"
           }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => { analytics.ctaClick('hero_strategy_call'); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+          onClick={() => { analytics.ctaClick('hero_strategy_call'); window.dispatchEvent(new Event('openChat')); }}
           className="group relative px-9 py-4 bg-white text-black overflow-hidden cursor-pointer shadow-[0_0_30px_rgba(255,255,255,0.1)] btn-glow"
         >
           <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent-secondary/40 to-accent-primary/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
@@ -382,7 +379,7 @@ const HeroContent = () => {
         >
           <ChevronDown className="w-3 h-3" />
           <span className="font-bold uppercase tracking-wider text-sm" style={{ fontFamily: fonts.heading }}>
-            See the 48-Hour Case Study
+            See How It Works
           </span>
         </motion.button>
       </motion.div>
@@ -1011,14 +1008,13 @@ const ROICalculatorSection = () => {
                             <div className="text-gray-500 text-sm mb-6">
                                 Capital returned to strategy
                             </div>
-                            <a
-                                href="#contact"
-                                onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); analytics.ctaClick('roi_calculator_cta'); }}
+                            <button
+                                onClick={() => { analytics.ctaClick('roi_calculator_cta'); window.dispatchEvent(new Event('openChat')); }}
                                 className="text-black px-6 py-2.5 rounded font-bold text-sm uppercase tracking-widest transition-colors btn-glow inline-flex items-center gap-2"
                                 style={{ background: 'var(--color-accent-primary)' }}
                             >
                                 Get Your Roadmap <ArrowRight className="w-4 h-4" />
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1235,166 +1231,18 @@ const ResultsSection = () => (
             </div>
             <div className="text-center mt-12">
                 <p className="text-gray-400 mb-4">We can show you similar numbers for your industry.</p>
-                <a
-                    href="#contact"
-                    onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); analytics.ctaClick('case_studies_cta'); }}
+                <button
+                    onClick={() => { analytics.ctaClick('case_studies_cta'); window.dispatchEvent(new Event('openChat')); }}
                     className="text-black px-8 py-3 rounded font-bold uppercase tracking-widest transition-colors btn-glow inline-flex items-center gap-2"
                     style={{ background: 'var(--color-accent-primary)' }}
                 >
                     <ArrowRight className="w-4 h-4" /> Book a Strategy Call
-                </a>
+                </button>
             </div>
         </div>
     </section>
 );
 
-const ContactForm = () => {
-    const [form, setForm] = useState({ name: '', email: '', phone: '', company: '', message: '' });
-    const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-    const [emailWarning, setEmailWarning] = useState('');
-
-    const handleEmailChange = (email: string) => {
-        setForm(p => ({ ...p, email }));
-        if (/(@gmail\.|@yahoo\.|@hotmail\.|@outlook\.)/i.test(email)) {
-            setEmailWarning('We recommend using your work email for faster follow-up');
-        } else {
-            setEmailWarning('');
-        }
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setStatus('submitting');
-
-        try {
-            const ok = await submitContactForm(form);
-            if (ok) {
-                setStatus('success');
-                analytics.contactFormSubmit(form.company, !!form.phone, !!form.message);
-            } else {
-                setStatus('error');
-            }
-        } catch {
-            setStatus('error');
-        }
-    };
-
-    return (
-        <section id="contact" aria-label="Contact X10 Automation — Book a Strategy Call" className="py-20 bg-gradient-to-b from-black to-[#111] border-t border-white/10">
-            <div className="max-w-2xl mx-auto px-6">
-                <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-8 md:p-12 relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-2" style={{ background: 'linear-gradient(to right, var(--color-accent-primary), var(--color-accent-secondary))' }} />
-
-                    {status === 'success' ? (
-                        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-8">
-                            <div className="w-16 h-16 rounded-full bg-accent-400/20 flex items-center justify-center mx-auto mb-4">
-                                <CheckCircle className="w-8 h-8 text-accent-400" />
-                            </div>
-                            <h2 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: fonts.heading }}>Message Sent</h2>
-                            <p className="text-gray-400 mb-6">Thanks, {form.name.split(' ')[0]}. We'll review your inquiry and get back to you within 24 hours — usually much sooner.</p>
-                            <a href="#case-studies" onClick={(e) => { e.preventDefault(); document.getElementById('case-studies')?.scrollIntoView({ behavior: 'smooth' }); }} className="text-accent-400 text-sm hover:underline">
-                                View what our AI agents delivered for businesses like yours →
-                            </a>
-                        </motion.div>
-                    ) : (
-                        <>
-                            <div className="text-center mb-8">
-                                <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: fonts.heading }}>Let's Talk</h2>
-                                <p className="text-gray-400 text-sm">Tell us about your business. We'll reach out within 24 hours with a preliminary assessment — no commitment.</p>
-                            </div>
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <input
-                                        type="text" required minLength={2} placeholder="Full name"
-                                        value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
-                                        className="w-full p-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-accent-400/50 focus:outline-none"
-                                    />
-                                    <input
-                                        type="text" required minLength={2} placeholder="Company name"
-                                        value={form.company} onChange={e => setForm(p => ({ ...p, company: e.target.value }))}
-                                        className="w-full p-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-accent-400/50 focus:outline-none"
-                                    />
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <input
-                                            type="email" required placeholder="Work email"
-                                            value={form.email} onChange={e => handleEmailChange(e.target.value)}
-                                            className="w-full p-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-accent-400/50 focus:outline-none"
-                                        />
-                                        {emailWarning && <p className="text-yellow-500/70 text-xs mt-1">{emailWarning}</p>}
-                                    </div>
-                                    <input
-                                        type="tel" placeholder="+40 7XX XXX XXX"
-                                        value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
-                                        className="w-full p-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-accent-400/50 focus:outline-none"
-                                    />
-                                </div>
-                                <textarea
-                                    placeholder="Tell us about your biggest operational challenge..."
-                                    maxLength={500}
-                                    rows={3}
-                                    value={form.message} onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
-                                    className="w-full p-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-accent-400/50 focus:outline-none resize-none"
-                                />
-                                {status === 'error' && (
-                                    <p className="text-red-400 text-sm">Something went wrong. Please try again or email us directly at contact@x10.ro</p>
-                                )}
-                                <button
-                                    type="submit" disabled={status === 'submitting'}
-                                    className="w-full text-black p-3 rounded font-bold uppercase tracking-widest transition-colors btn-glow disabled:opacity-50 flex items-center justify-center gap-2"
-                                    style={{ background: 'var(--color-accent-primary)' }}
-                                >
-                                    {status === 'submitting' ? 'Sending...' : <><ArrowRight className="w-4 h-4" /> Send Message</>}
-                                </button>
-                                <p className="text-gray-600 text-xs text-center">We respond to every inquiry personally. No bots, no spam.</p>
-                            </form>
-                        </>
-                    )}
-                </div>
-            </div>
-        </section>
-    );
-};
-
-// --- About Section (LLM-optimized content for AI discovery) ---
-const AboutSection = () => (
-    <section aria-label="About X10 Automation — AI Agent Agency" className="py-24 bg-[#030303] border-t border-white/5 px-6">
-        <div className="max-w-3xl mx-auto relative z-10">
-            <h2 className="text-3xl font-bold text-white mb-8" style={{ fontFamily: fonts.heading }}>About X10 Automation</h2>
-            <div className="space-y-6 text-gray-400 leading-relaxed text-[15px]">
-                <p>
-                    X10 Automation is an AI agent agency based in Romania, serving SMEs across the EU. We build dedicated teams of 15–25 specialized AI agents per client — handling marketing, legal research, and business intelligence. What traditional agencies deliver in months, we deliver in days. Not because we cut corners, but because 25 agents working in parallel simply move faster than 3 people working sequentially.
-                </p>
-
-                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>How an Engagement Works</h3>
-                <p>
-                    Every engagement starts the same way: 5 parallel audits (SEO, GEO readiness, email infrastructure, competitive landscape, content gaps) run simultaneously by specialized agents. By day 3, you have a scored roadmap with specific deliverables and ROI calculations — not vague recommendations. Implementation starts immediately. Our 90-day pilot costs €3,000–€6,500 per month plus a one-time setup fee. No long-term lock-in.
-                </p>
-
-                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>Verified Results</h3>
-                <p>
-                    For an auto parts e-commerce client (9,300+ SKUs), we delivered 3 interactive lead magnets and complete email automation in 48 hours — work that quotes at €10–15K from traditional agencies. For a pet supplies e-commerce client, our AI-powered calculators achieved 8.3% conversion rates versus the 3.8% industry average. For a local auto service, we achieved #1 ranking in Claude, Perplexity, and ChatGPT within 30 days.
-                </p>
-
-                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>Generative Engine Optimization (GEO)</h3>
-                <p>
-                    GEO is the practice of making your business discoverable by AI search systems — ChatGPT, Perplexity, Claude, Google AI Overviews. Unlike traditional SEO that targets search engine result pages, GEO ensures your business appears in AI-generated answers. Most agencies don't offer this because most agencies don't understand how AI citation works. We do — it's how we built our own visibility.
-                </p>
-
-                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>Private AI: Open Source, EU-Hosted, Auditable</h3>
-                <p>
-                    We deploy open-source models (Qwen, Llama, Mistral) fine-tuned on your data, hosted on EU infrastructure. No data leaves the EU. No black-box APIs. Every deployment includes human approval gates, full audit trails, and GDPR-compliant consent flows. We're built for the EU AI Act — not retrofitting for it.
-                </p>
-
-                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>153 Production-Ready Applications</h3>
-                <p>
-                    X10 has cataloged 153 production-ready application specifications across 9 industries: Healthcare, Legal, Real Estate, Trades, Professional Services, Retail & E-commerce, Hospitality, Education, and Financial Services. Each specification includes agent architecture, data requirements, compliance considerations, and estimated ROI.
-                </p>
-            </div>
-        </div>
-    </section>
-);
 
 const Footer = () => (
     <footer className="py-20 border-t border-white/10 bg-black px-6">
@@ -1406,7 +1254,7 @@ const Footer = () => (
             <div className="flex gap-8 text-sm text-gray-400">
                 <a href="#how-it-works" className="hover:text-accent-400 transition-colors">How It Works</a>
                 <a href="#case-studies" className="hover:text-accent-400 transition-colors">Results</a>
-                <a href="#contact" className="hover:text-accent-400 transition-colors">Contact</a>
+                <button onClick={() => window.dispatchEvent(new Event('openChat'))} className="hover:text-accent-400 transition-colors">Contact</button>
             </div>
             <div className="text-gray-600 text-xs">
                 © 2026 X10 Automation. All rights reserved.<span className="text-gray-700 text-xs ml-2">&middot; Built with AI</span>
@@ -1537,8 +1385,6 @@ const App: React.FC = () => {
         <ImplementationsSection />
         <ImplementationExample />
         <ResultsSection />
-        <ContactForm />
-        <AboutSection />
         <Footer />
       </div>
 

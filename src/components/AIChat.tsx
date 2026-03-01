@@ -110,6 +110,13 @@ const AIChat: React.FC = () => {
     scrollToBottom();
   }, [messages, isOpen, scrollToBottom]);
 
+  // Allow external components to open the chat via custom event
+  useEffect(() => {
+    const handler = () => setIsOpen(true);
+    window.addEventListener('openChat', handler);
+    return () => window.removeEventListener('openChat', handler);
+  }, []);
+
   // Focus input when chat opens
   useEffect(() => {
     if (isOpen && inputRef.current) {
