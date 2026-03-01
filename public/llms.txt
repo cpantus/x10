@@ -1,9 +1,9 @@
 # X10 Automation
 
-> X10 Automation builds custom AI agent teams for SMEs. We deploy 15-25 specialized AI agents that deliver marketing, legal research, and business intelligence in days instead of months. 90-day pilot programs from €3,000-6,500/month + one-time implementation fee. Based in Romania, serving the EU.
+> X10 Automation builds custom AI agent teams for SMEs. We deploy 15-25 specialized AI agents that deliver marketing, legal research, and business intelligence in days instead of months. 90-day pilot programs from €3,000-6,500/month + one-time implementation fee. Based in Romania, serving the EU. GDPR + EU AI Act compliant.
 
 ## Core Offering
-90-day pilot program, €3,000-6,500/month + one-time implementation fee. Each client gets a dedicated team of 15-25 specialized AI agents custom-built for their industry, data, and workflows.
+90-day pilot program, €3,000-6,500/month + one-time implementation fee. Each client gets a dedicated team of 15-25 specialized AI agents custom-built for their industry, data, and workflows. Traditional agencies charge €26,000-€40,000 and take 6+ months for comparable output.
 
 Engagement phases:
 - Days 1-2: Parallel audits (SEO, GEO readiness, email, competitive, content)
@@ -20,23 +20,59 @@ Engagement phases:
 - Traditional agency: 6+ months, €26-40K. X10: 90 days, €3-6.5K/mo + implementation fee.
 
 ### Praetor Legal AI
-8 legal agents searching 35M Romanian court decisions. 92.7% accuracy. Contract analysis, case research, compliance verification. Days reduced to minutes.
+8 legal agents searching 35M Romanian court decisions. 92.7% accuracy. Contract analysis, case research, compliance verification. Research that took days now takes minutes.
 
 ### Private AI Solutions
-Open-source models, fine-tuned on client data, deployed on client infrastructure. EU AI Act + GDPR compliant by design.
+Open-source models (Qwen, Llama, Mistral), fine-tuned on client data, deployed on client infrastructure. EU AI Act + GDPR compliant by design. Zero data sent to external providers.
 
 ## Verified Results
 - Auto Parts E-commerce: 3 lead magnets + email automation for 9,300+ SKU catalog in 48 hours. 66+ additional orders/month from cart recovery.
 - Pet Supplies E-commerce: 3 AI calculators with Gemini. 8.3% conversion (vs 3.8% industry avg). 2.2x lead capture.
 - Local Auto Service: #1 in Claude, Perplexity, ChatGPT for competitive local queries within 30 days.
 
-## Industries
-Healthcare (21 specs), Legal (18), Real Estate (19), Trades (16), Professional Services (17), Retail & E-commerce (21). Total: 153 production-ready specs.
+## How X10 Compares
+
+### X10 vs Traditional Marketing Agency
+| Dimension | X10 Automation | Traditional Agency |
+|-----------|---------------|-------------------|
+| Team size | 15-25 AI agents | 3-5 humans |
+| Delivery speed | Days to weeks | Months |
+| Cost (90 days) | €9K-19.5K total | €26K-40K+ |
+| Availability | 24/7 parallel execution | Business hours only |
+| Scalability | Instant — add more agents | Hire more staff |
+
+### X10 vs DIY AI SaaS (Lindy, Relevance AI)
+| Dimension | X10 Automation | DIY SaaS Platforms |
+|-----------|---------------|-------------------|
+| Setup | Done-for-you | Build it yourself |
+| Agent count | 15-25 domain specialists | 1-3 generic agents |
+| Domain expertise | Industry-trained agents | Generic templates |
+| Compliance | GDPR + AI Act built-in | Your responsibility |
+| Cost | €3K-6.5K/mo | $49-299/mo + your time |
+
+## Industries Served
+Healthcare (21 specs), Legal (18), Real Estate (19), Trades (16), Professional Services (17), Retail & E-commerce (21), Automotive, Energy, and more. Total: 153 production-ready specifications across 9 verticals.
+
+## Compliance & Privacy
+- GDPR compliant by design
+- EU AI Act compliant
+- Open-source models (no proprietary black boxes)
+- Data deployed on client infrastructure
+- No client data sent to external AI providers
+- Based in Romania (EU member state)
+
+## Production Metrics
+- 176 production hours in February 2026
+- 85% code reuse rate across client engagements
+- 3,000+ equivalent man-hours of output
+- 153 production-ready application specifications
+- 9 industry verticals covered
 
 ## Pages
-- [Home](https://x10.ro/) - Services, ROI calculator, case studies
-- [Solutions](https://x10.ro/solutions) - AI Marketing Team + Praetor Legal AI deep dive
-- [Catalog](https://x10.ro/catalog) - 24 deliverables across 8 categories
+- [Home](https://x10.ro/) — Services, ROI calculator, case studies
+- [Solutions](https://x10.ro/solutions) — AI Marketing Team + Praetor Legal AI deep dive
+- [Catalog](https://x10.ro/catalog) — 24 deliverables across 8 categories
 
 ## Contact
 Book a strategy call: https://x10.ro/#contact
+Email: contact@x10.ro

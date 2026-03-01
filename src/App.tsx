@@ -5,13 +5,15 @@
 
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Bot, Zap, Network, Shield, ChevronDown, Search, Users, Target, Check, Calculator, X, Server, Cpu, CheckSquare, Settings, Edit2, Save, Scale, Lock, Menu } from 'lucide-react';
+import { ArrowRight, Bot, Zap, Network, Shield, ChevronDown, Search, Users, Target, Check, Calculator, X, Server, Cpu, CheckSquare, Settings, Edit2, Save, Scale, Lock, Menu, CheckCircle } from 'lucide-react';
 import AIChat from './components/AIChat';
 import HeroBackground from './components/heroes/HeroBackground';
 import type { HeroVariant } from './components/heroes/types';
 import LogoIcon from './components/logos/LogoIcon';
 import type { LogoVariant } from './components/logos/types';
 import SEOMeta from './components/SEOMeta';
+import { submitContactForm } from './services/leadCapture';
+import { events as analytics } from './utils/analytics';
 
 // --- Design Tokens & Assets ---
 
@@ -111,11 +113,12 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
             transition: { duration: 0.1, delay: 0 }
           }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => { analytics.ctaClick('navbar_consultation'); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
           className="hidden md:flex items-center relative px-6 py-2.5 border border-white/20 text-white text-xs uppercase tracking-widest backdrop-blur-md bg-black/30 group overflow-hidden btn-glow"
           style={{ fontFamily: fonts.mono }}
         >
           <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-white/20 to-white/40 translate-y-full group-hover:translate-y-0 transition-transform duration-100 ease-out" />
-          <span className="relative z-10">Book a Consultation</span>
+          <span className="relative z-10">Book a Strategy Call</span>
         </motion.button>
 
         {/* Mobile hamburger */}
@@ -182,7 +185,7 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
                   className="block w-full text-center px-6 py-3 border text-white text-xs uppercase tracking-widest"
                   style={{ fontFamily: fonts.mono, borderColor: 'var(--color-accent-primary)', color: 'var(--color-accent-primary)' }}
                 >
-                  Book a Consultation
+                  Book a Strategy Call
                 </a>
               </div>
             </motion.div>
@@ -301,7 +304,7 @@ const HeroContent = () => {
       >
         <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--color-accent-primary)', boxShadow: '0 0 10px var(--color-accent-primary)' }} />
         <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-white/90 font-bold" style={{ fontFamily: fonts.mono }}>
-          Architecting the Autonomous Future
+          Live Production Results
         </span>
       </motion.div>
 
@@ -317,9 +320,10 @@ const HeroContent = () => {
             textShadow: '0 0 80px var(--color-accent-glow)'
         }}
       >
-        Your Dedicated AI Team.<br />
+        15–25 AI Specialists.<br />
+        Working on Your Business.<br />
         <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/50">
-            10x the Output.
+            Starting This Week.
         </span>
       </motion.h1>
 
@@ -331,15 +335,15 @@ const HeroContent = () => {
         className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light"
         style={{ fontFamily: fonts.heading }}
       >
-        We build custom AI agent teams that deliver{' '}
+        Traditional agencies assign 2–3 people and take months. We deploy a full AI agent team in 72 hours — running parallel audits, building automations, and generating{' '}
         <motion.span
           className="font-bold text-white glow-pulse"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 0.8 }}
           style={{ color: 'var(--color-accent-primary)', animationDuration: '12s' }}
-        >months of work in days</motion.span>
-        . Interactive tools, automation pipelines, market intelligence — engineered specifically for your business.
+        >revenue before your first invoice arrives</motion.span>
+        . Specific to your industry. Private. GDPR-compliant.
       </motion.p>
 
       {/* CTA Buttons */}
@@ -355,6 +359,7 @@ const HeroContent = () => {
             boxShadow: "0 0 40px var(--color-accent-glow-strong)"
           }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => { analytics.ctaClick('hero_strategy_call'); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
           className="group relative px-9 py-4 bg-white text-black overflow-hidden cursor-pointer shadow-[0_0_30px_rgba(255,255,255,0.1)] btn-glow"
         >
           <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent-secondary/40 to-accent-primary/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
@@ -377,7 +382,7 @@ const HeroContent = () => {
         >
           <ChevronDown className="w-3 h-3" />
           <span className="font-bold uppercase tracking-wider text-sm" style={{ fontFamily: fonts.heading }}>
-            See How It Works
+            See the 48-Hour Case Study
           </span>
         </motion.button>
       </motion.div>
@@ -433,16 +438,16 @@ const FeatureCard: React.FC<{ icon: any, title: string, desc: string, delay: num
 
 const TransformationSection = () => {
   const features = [
-    { icon: Users, title: "Dedicated AI Teams", desc: "Not generic tools. Custom agent teams built for YOUR industry, YOUR data, YOUR workflows. Each team has 15-25 specialized agents working in concert." },
-    { icon: Zap, title: "10x Velocity", desc: "What takes traditional agencies 6-10 weeks, we deliver in days. A full SEO audit, GEO strategy, email automation architecture, and interactive lead magnets — all in one engagement." },
-    { icon: Target, title: "Hyper-Personalized at Scale", desc: "AI enables treating every customer as a segment of one. Interactive tools, personalized email flows, behavioral scoring — all data-driven, all automated." },
-    { icon: Cpu, title: "Private AI Solutions", desc: "Open-source models fine-tuned on your data, deployed on your infrastructure. Grounded generation, evaluation frameworks, and full EU AI Act + GDPR compliance built in." }
+    { icon: Users, title: "A Team Built for YOUR Business", desc: "Current: 2–3 agency people juggling 10 clients. You wait. With x10: 15–25 AI specialists with one focus — your revenue. Each agent handles a specific function: SEO analysis, email copywriting, competitive intelligence, lead magnet design. They share context and work in parallel." },
+    { icon: Zap, title: "Days, Not Months", desc: "A full SEO audit: traditionally 2–3 weeks. With x10: 2 days, included. 6 email automation flows: traditionally 4–6 weeks. With x10: 1 week, included. 3 interactive lead magnets: traditionally 6–8 weeks. With x10: 3–5 days. These are real comparisons from live engagements." },
+    { icon: Target, title: "Every Customer Treated Individually", desc: "AI makes true personalization possible at any scale. Behavioral email triggers. Lead scoring by engagement pattern. Product recommendations that adapt to each visitor. Not segments — individual people." },
+    { icon: Cpu, title: "Your Data Stays With You", desc: "We deploy open-source models — fine-tuned on your data, running on your infrastructure (or ours in the EU). No vendor lock-in. No data sent to US servers. GDPR-compliant from day one, not retrofitted. EU AI Act ready. Built in Romania, by people who understand EU regulation." }
   ];
 
   return (
     <section id="how-it-works" aria-label="The X10 Advantage — Why AI Agent Teams Outperform Traditional Agencies" className="relative py-32 px-6 max-w-[1600px] mx-auto z-40 overflow-hidden dot-grid">
       <BackgroundWatermark />
-      <SectionHeader title="Why x10" subtitle="The x10 Advantage" gradient />
+      <SectionHeader title="What You Actually Get" subtitle="The Honest Comparison" gradient />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
         {features.map((f, i) => (
           <FeatureCard key={i} {...f} delay={i * 0.2} />
@@ -538,13 +543,13 @@ const HumanInLoopSection = () => {
                         <span className="text-xs uppercase tracking-widest font-mono" style={{ color: 'var(--color-accent-secondary)' }}>Control</span>
                     </div>
                     <h2 className="text-4xl font-bold text-white mb-6 leading-tight" style={{ fontFamily: fonts.heading }}>
-                        AI Executes. <br /> <span style={{ color: 'var(--color-accent-primary)' }}>You Direct.</span>
+                        You Stay in Charge. <br /> <span style={{ color: 'var(--color-accent-primary)' }}>Always.</span>
                     </h2>
                     <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                        Your team reviews and approves every strategic decision. AI proposes, researches, and drafts — but critical actions wait for your single-click approval. Full transparency, full control.
+                        The common fear: "What if AI does something I haven't approved?" With x10, it cannot. Every strategic action — sending an email, publishing content, contacting a lead — waits for your single-click approval. AI proposes. You decide. Every approval or rejection teaches the system your standards.
                     </p>
                     <ul className="space-y-4">
-                        {['Human-in-the-loop approval Gates', 'Real-time Activity Stream', 'Instant "Kill-Switch" Override'].map((item, i) => (
+                        {['Approval gates on every outbound action', 'Full activity log — see what each agent did and why', 'Instant override: pause any agent, any time, from your phone'].map((item, i) => (
                             <li key={i} className="flex items-center gap-3 text-gray-300">
                                 <CheckSquare className="w-5 h-5" style={{ color: 'var(--color-accent-primary)' }} /> {item}
                             </li>
@@ -671,11 +676,11 @@ const HumanInLoopSection = () => {
 
 const MetricsBar = () => {
     const metrics = [
-        { value: "90", label: "Day Pilot Program" },
-        { value: "25", label: "AI Specialists Per Team" },
-        { value: "10x", label: "Content Output vs Agencies" },
-        { value: "All", label: "Channels Orchestrated" },
-        { value: "#1", label: "AI Search Rankings Achieved" },
+        { value: "48h", label: "Fastest Delivery on Record" },
+        { value: "25", label: "AI Specialists Per Engagement" },
+        { value: "90", label: "Day Pilot. Fixed Commitment." },
+        { value: "8.3%", label: "Conversion Rate (vs 3.8% avg)" },
+        { value: "66+", label: "Additional Orders/Month" },
     ];
 
     return (
@@ -694,6 +699,42 @@ const MetricsBar = () => {
                                 {m.value}
                             </div>
                             <div className="text-xs text-gray-500 uppercase tracking-widest font-mono">{m.label}</div>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+// --- Compliance Badges ---
+const ComplianceBadges = () => {
+    const badges = [
+        { icon: Shield, label: "GDPR Compliant", desc: "Your data stays in the EU. Period." },
+        { icon: Scale, label: "EU AI Act Ready", desc: "Risk-assessed, documented, audit-ready." },
+        { icon: Lock, label: "Open Source Stack", desc: "Inspectable. Auditable. No black boxes." },
+        { icon: Server, label: "On-Premise Option", desc: "Your infrastructure, your rules." },
+        { icon: Users, label: "Human-in-the-Loop", desc: "AI executes. Humans decide. Always." },
+    ];
+
+    return (
+        <section className="py-12 bg-[#020202] border-b border-white/5">
+            <div className="max-w-[1200px] mx-auto px-6">
+                <div className="flex flex-wrap justify-center gap-8 md:gap-12">
+                    {badges.map((b, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1 }}
+                            className="flex flex-col items-center text-center group"
+                        >
+                            <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-3 border transition-all group-hover:shadow-[0_0_15px_var(--color-accent-glow)]" style={{ background: 'var(--color-accent-subtle)', borderColor: 'var(--color-accent-glow)' }}>
+                                <b.icon className="w-6 h-6" style={{ color: 'var(--color-accent-primary)' }} />
+                            </div>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-white/80 mb-1" style={{ fontFamily: fonts.mono }}>{b.label}</span>
+                            <span className="text-[10px] text-gray-500 max-w-[120px]">{b.desc}</span>
                         </motion.div>
                     ))}
                 </div>
@@ -856,21 +897,42 @@ const ROICalculatorSection = () => {
     const annualSavings = teamSize * hourlyCost * hoursAutomated * 52;
     const animatedSavings = useCountUp(annualSavings);
 
+    // Track ROI calculator interactions (debounced)
+    const roiTracked = useRef(false);
+    useEffect(() => {
+      if (roiTracked.current) return;
+      // Only track after user changes from defaults
+      if (teamSize !== 5 || hourlyCost !== 50 || hoursAutomated !== 10) {
+        roiTracked.current = true;
+        const timer = setTimeout(() => {
+          analytics.roiCalculatorUse(teamSize, hourlyCost, hoursAutomated, annualSavings);
+        }, 1000);
+        return () => clearTimeout(timer);
+      }
+    }, [teamSize, hourlyCost, hoursAutomated, annualSavings]);
+
     const comparisons = [
-        { service: "SEO Audit + Fix", traditional: "2-3 weeks, €3-5K", x10: "2 days, included" },
-        { service: "Email Automation (6 flows)", traditional: "4-6 weeks, €5-8K", x10: "1 week, included" },
-        { service: "3 Interactive Lead Magnets", traditional: "6-8 weeks, €10-15K", x10: "3-5 days, included" },
-        { service: "Content (80 articles)", traditional: "3 months, €8-12K", x10: "1 month, included" },
-        { service: "GEO / AI Search Strategy", traditional: "Not offered", x10: "Included" },
+        { category: "Monthly Cost", traditional: "€3,000–€8,000 retainer", diy: "€49–€500 tool costs", x10: "€3,000–€6,500 (full team)" },
+        { category: "Setup Time", traditional: "4–8 weeks", diy: "1–4 weeks (if technical)", x10: "72 hours to first deliverable" },
+        { category: "Time to Results", traditional: "3–6 months", diy: "Ongoing DIY effort", x10: "Revenue by Week 3" },
+        { category: "Team Size", traditional: "2–3 account staff", diy: "You + whoever you hire", x10: "15–25 AI specialists" },
+        { category: "Customization", traditional: "High (slow)", diy: "Medium (complex)", x10: "High (fast)" },
+        { category: "Channels Covered", traditional: "2–3 typically", diy: "Whichever you configure", x10: "SEO, email, content, GEO, paid" },
+        { category: "EU AI Act / GDPR", traditional: "Varies, often undefined", diy: "Depends on tools used", x10: "Built-in, architecture-level" },
+        { category: "Data Privacy", traditional: "Third-party tools (varies)", diy: "US-based servers (typically)", x10: "EU infrastructure, open-source" },
+        { category: "Human Oversight", traditional: "Account manager reviews", diy: "You are the oversight", x10: "Approval gates on every action" },
+        { category: "Your Time Required", traditional: "High (briefings, reviews)", diy: "Very high (you build it)", x10: "Low (approvals only)" },
+        { category: "Commitment", traditional: "3–12 month contracts", diy: "Month-to-month", x10: "90-day pilot" },
+        { category: "Exit Risk", traditional: "High (vendor lock-in)", diy: "Medium (platform dependency)", x10: "Low (open-source, you own assets)" },
     ];
 
     return (
         <section className="py-32 bg-[#020202] border-t border-white/5 relative overflow-hidden">
             <BackgroundWatermark className="w-full h-full absolute left-0 top-0 flex items-center justify-start pl-[10%]" />
             <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-                <SectionHeader title="The x10 Multiplier" subtitle="Results Comparison" gradient />
+                <SectionHeader title="Three Ways to Get AI Working for Your Business" subtitle="Honest Comparison" gradient />
                 <p className="text-gray-400 text-lg text-center -mt-12 mb-16 max-w-2xl mx-auto">
-                    Same deliverables. 10x the velocity. A fraction of the cost.
+                    One of them is right for you. We'll tell you honestly if it's not us.
                 </p>
 
                 {/* Interactive ROI Calculator */}
@@ -946,20 +1008,29 @@ const ROICalculatorSection = () => {
                             <div className="text-accent-400 text-sm uppercase tracking-widest mb-2" style={{ fontFamily: fonts.mono }}>
                                 Estimated Annual Savings
                             </div>
-                            <div className="text-gray-500 text-sm">
+                            <div className="text-gray-500 text-sm mb-6">
                                 Capital returned to strategy
                             </div>
+                            <a
+                                href="#contact"
+                                onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); analytics.ctaClick('roi_calculator_cta'); }}
+                                className="text-black px-6 py-2.5 rounded font-bold text-sm uppercase tracking-widest transition-colors btn-glow inline-flex items-center gap-2"
+                                style={{ background: 'var(--color-accent-primary)' }}
+                            >
+                                Get Your Roadmap <ArrowRight className="w-4 h-4" />
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 {/* Comparison Table */}
-                <div className="overflow-hidden border border-white/10 rounded-xl">
+                <div className="overflow-x-auto border border-white/10 rounded-xl">
                     {/* Header */}
-                    <div className="grid grid-cols-3 bg-white/5 border-b border-white/10">
-                        <div className="p-4 text-sm font-bold text-gray-400 uppercase tracking-widest" style={{ fontFamily: '"JetBrains Mono", monospace' }}>Deliverable</div>
-                        <div className="p-4 text-sm font-bold text-gray-500 uppercase tracking-widest text-center" style={{ fontFamily: '"JetBrains Mono", monospace' }}>Traditional Agency</div>
-                        <div className="p-4 text-sm font-bold uppercase tracking-widest text-center" style={{ fontFamily: '"JetBrains Mono", monospace', color: 'var(--color-accent-primary)' }}>x10 Automation</div>
+                    <div className="grid grid-cols-4 min-w-[640px] bg-white/5 border-b border-white/10">
+                        <div className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest" style={{ fontFamily: '"JetBrains Mono", monospace' }}>Category</div>
+                        <div className="p-4 text-xs font-bold text-gray-500 uppercase tracking-widest text-center" style={{ fontFamily: '"JetBrains Mono", monospace' }}>Traditional Agency</div>
+                        <div className="p-4 text-xs font-bold text-gray-500 uppercase tracking-widest text-center" style={{ fontFamily: '"JetBrains Mono", monospace' }}>DIY SaaS</div>
+                        <div className="p-4 text-xs font-bold uppercase tracking-widest text-center" style={{ fontFamily: '"JetBrains Mono", monospace', color: 'var(--color-accent-primary)' }}>x10 Automation</div>
                     </div>
 
                     {/* Rows */}
@@ -969,34 +1040,38 @@ const ROICalculatorSection = () => {
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className={`grid grid-cols-3 border-b border-white/5 hover:bg-white/5 transition-colors ${i === comparisons.length - 1 ? 'border-b-0' : ''}`}
+                            transition={{ delay: i * 0.05 }}
+                            className={`grid grid-cols-4 min-w-[640px] border-b border-white/5 hover:bg-white/5 transition-colors ${i === comparisons.length - 1 ? 'border-b-0' : ''}`}
                         >
-                            <div className="p-4 text-white font-medium text-sm">{row.service}</div>
+                            <div className="p-4 text-white font-medium text-sm">{row.category}</div>
                             <div className="p-4 text-gray-500 text-sm text-center">{row.traditional}</div>
+                            <div className="p-4 text-gray-500 text-sm text-center">{row.diy}</div>
                             <div className="p-4 text-accent-300 text-sm text-center font-medium">{row.x10}</div>
                         </motion.div>
                     ))}
                 </div>
+                <p className="text-center text-gray-600 text-xs mt-4 max-w-2xl mx-auto" style={{ fontFamily: fonts.mono }}>
+                    Traditional agency costs based on 2026 EU market rates. DIY SaaS costs exclude implementation time (typically 20–40 hrs/month). x10 costs include full team; implementation fee quoted separately.
+                </p>
 
                 {/* Totals */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                    <div className="p-6 border border-white/10 rounded-lg bg-white/5 text-center">
-                        <div className="text-gray-500 text-xs uppercase tracking-widest mb-2 font-mono">Traditional Total</div>
-                        <div className="text-2xl font-bold text-gray-400" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>6+ months · €26-40K</div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+                    <div className="p-5 border border-white/10 rounded-lg bg-white/5 text-center">
+                        <div className="text-gray-500 text-xs uppercase tracking-widest mb-2 font-mono">Traditional Agency</div>
+                        <div className="text-xl font-bold text-gray-400" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>6+ months · €26-40K</div>
                     </div>
-                    <div className="p-6 border border-accent-400/30 rounded-lg bg-accent-950/20 text-center relative overflow-hidden">
+                    <div className="p-5 border border-white/10 rounded-lg bg-white/5 text-center">
+                        <div className="text-gray-500 text-xs uppercase tracking-widest mb-2 font-mono">DIY SaaS</div>
+                        <div className="text-xl font-bold text-gray-400" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>€600-6K/yr + your time</div>
+                    </div>
+                    <div className="p-5 border border-accent-400/30 rounded-lg bg-accent-950/20 text-center relative overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-r from-accent-400/5 to-transparent" />
                         <div className="relative z-10">
-                            <div className="text-accent-400 text-xs uppercase tracking-widest mb-2 font-mono">x10 Total</div>
-                            <div className="text-2xl font-bold text-white" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>90 days · €3-6.5K/mo + setup fee</div>
+                            <div className="text-accent-400 text-xs uppercase tracking-widest mb-2 font-mono">x10 Automation</div>
+                            <div className="text-xl font-bold text-white" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>90 days · €3-6.5K/mo</div>
                         </div>
                     </div>
                 </div>
-
-                <p className="text-center text-gray-500 text-sm mt-8 max-w-xl mx-auto">
-                    x10 amplifies human expertise. Your strategist + our AI team = 10x the output.
-                </p>
             </div>
         </section>
     );
@@ -1158,24 +1233,129 @@ const ResultsSection = () => (
                     color="bg-purple-500/20"
                 />
             </div>
-        </div>
-    </section>
-);
-
-const LeadMagnet = () => (
-    <section id="contact" aria-label="Book a Strategy Call — Contact X10 Automation" className="py-20 bg-gradient-to-b from-black to-[#111] border-t border-white/10">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-            <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-12 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-2" style={{ background: 'linear-gradient(to right, var(--color-accent-primary), var(--color-accent-secondary))' }} />
-                <h2 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>Book a Strategy Call</h2>
-                <p className="text-gray-400 mb-8">See what a dedicated AI team can do for your business. 30 minutes. No commitment. We'll show you exactly where AI can drive revenue for your specific situation.</p>
-                <button className="text-black px-8 py-3 rounded font-bold uppercase tracking-widest transition-colors flex items-center gap-2 mx-auto btn-glow" style={{ background: 'var(--color-accent-primary)' }}>
-                    <ArrowRight className="w-4 h-4" /> Book Your Call
-                </button>
+            <div className="text-center mt-12">
+                <p className="text-gray-400 mb-4">We can show you similar numbers for your industry.</p>
+                <a
+                    href="#contact"
+                    onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); analytics.ctaClick('case_studies_cta'); }}
+                    className="text-black px-8 py-3 rounded font-bold uppercase tracking-widest transition-colors btn-glow inline-flex items-center gap-2"
+                    style={{ background: 'var(--color-accent-primary)' }}
+                >
+                    <ArrowRight className="w-4 h-4" /> Book a Strategy Call
+                </a>
             </div>
         </div>
     </section>
 );
+
+const ContactForm = () => {
+    const [form, setForm] = useState({ name: '', email: '', phone: '', company: '', message: '' });
+    const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+    const [emailWarning, setEmailWarning] = useState('');
+
+    const handleEmailChange = (email: string) => {
+        setForm(p => ({ ...p, email }));
+        if (/(@gmail\.|@yahoo\.|@hotmail\.|@outlook\.)/i.test(email)) {
+            setEmailWarning('We recommend using your work email for faster follow-up');
+        } else {
+            setEmailWarning('');
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus('submitting');
+
+        try {
+            const ok = await submitContactForm(form);
+            if (ok) {
+                setStatus('success');
+                analytics.contactFormSubmit(form.company, !!form.phone, !!form.message);
+            } else {
+                setStatus('error');
+            }
+        } catch {
+            setStatus('error');
+        }
+    };
+
+    return (
+        <section id="contact" aria-label="Contact X10 Automation — Book a Strategy Call" className="py-20 bg-gradient-to-b from-black to-[#111] border-t border-white/10">
+            <div className="max-w-2xl mx-auto px-6">
+                <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-2" style={{ background: 'linear-gradient(to right, var(--color-accent-primary), var(--color-accent-secondary))' }} />
+
+                    {status === 'success' ? (
+                        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-8">
+                            <div className="w-16 h-16 rounded-full bg-accent-400/20 flex items-center justify-center mx-auto mb-4">
+                                <CheckCircle className="w-8 h-8 text-accent-400" />
+                            </div>
+                            <h2 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: fonts.heading }}>Message Sent</h2>
+                            <p className="text-gray-400 mb-6">Thanks, {form.name.split(' ')[0]}. We'll review your inquiry and get back to you within 24 hours — usually much sooner.</p>
+                            <a href="#case-studies" onClick={(e) => { e.preventDefault(); document.getElementById('case-studies')?.scrollIntoView({ behavior: 'smooth' }); }} className="text-accent-400 text-sm hover:underline">
+                                View what our AI agents delivered for businesses like yours →
+                            </a>
+                        </motion.div>
+                    ) : (
+                        <>
+                            <div className="text-center mb-8">
+                                <h2 className="text-3xl font-bold text-white mb-3" style={{ fontFamily: fonts.heading }}>Let's Talk</h2>
+                                <p className="text-gray-400 text-sm">Tell us about your business. We'll reach out within 24 hours with a preliminary assessment — no commitment.</p>
+                            </div>
+                            <form onSubmit={handleSubmit} className="space-y-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <input
+                                        type="text" required minLength={2} placeholder="Full name"
+                                        value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
+                                        className="w-full p-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-accent-400/50 focus:outline-none"
+                                    />
+                                    <input
+                                        type="text" required minLength={2} placeholder="Company name"
+                                        value={form.company} onChange={e => setForm(p => ({ ...p, company: e.target.value }))}
+                                        className="w-full p-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-accent-400/50 focus:outline-none"
+                                    />
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <input
+                                            type="email" required placeholder="Work email"
+                                            value={form.email} onChange={e => handleEmailChange(e.target.value)}
+                                            className="w-full p-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-accent-400/50 focus:outline-none"
+                                        />
+                                        {emailWarning && <p className="text-yellow-500/70 text-xs mt-1">{emailWarning}</p>}
+                                    </div>
+                                    <input
+                                        type="tel" placeholder="+40 7XX XXX XXX"
+                                        value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
+                                        className="w-full p-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-accent-400/50 focus:outline-none"
+                                    />
+                                </div>
+                                <textarea
+                                    placeholder="Tell us about your biggest operational challenge..."
+                                    maxLength={500}
+                                    rows={3}
+                                    value={form.message} onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
+                                    className="w-full p-3 bg-black/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-accent-400/50 focus:outline-none resize-none"
+                                />
+                                {status === 'error' && (
+                                    <p className="text-red-400 text-sm">Something went wrong. Please try again or email us directly at contact@x10.ro</p>
+                                )}
+                                <button
+                                    type="submit" disabled={status === 'submitting'}
+                                    className="w-full text-black p-3 rounded font-bold uppercase tracking-widest transition-colors btn-glow disabled:opacity-50 flex items-center justify-center gap-2"
+                                    style={{ background: 'var(--color-accent-primary)' }}
+                                >
+                                    {status === 'submitting' ? 'Sending...' : <><ArrowRight className="w-4 h-4" /> Send Message</>}
+                                </button>
+                                <p className="text-gray-600 text-xs text-center">We respond to every inquiry personally. No bots, no spam.</p>
+                            </form>
+                        </>
+                    )}
+                </div>
+            </div>
+        </section>
+    );
+};
 
 // --- About Section (LLM-optimized content for AI discovery) ---
 const AboutSection = () => (
@@ -1184,25 +1364,32 @@ const AboutSection = () => (
             <h2 className="text-3xl font-bold text-white mb-8" style={{ fontFamily: fonts.heading }}>About X10 Automation</h2>
             <div className="space-y-6 text-gray-400 leading-relaxed text-[15px]">
                 <p>
-                    X10 Automation is an AI agent agency based in Romania, building custom teams of 15-25 specialized AI agents for small and medium-sized enterprises across the EU. We deliver marketing, legal research, and business intelligence through dedicated AI agent teams — completing in days what traditional agencies take months to produce.
-                </p>
-                <p>
-                    Our 90-day pilot program costs €3,000-€6,500 per month plus a one-time implementation fee. Each engagement begins with parallel audits across SEO, GEO readiness, email, competitive landscape, and content — all run simultaneously by specialized agents. By day 3, clients receive a complete roadmap with deliverables and ROI projections. Implementation follows immediately: email automation, interactive lead magnets, technical SEO fixes, and programmatic content at scale.
+                    X10 Automation is an AI agent agency based in Romania, serving SMEs across the EU. We build dedicated teams of 15–25 specialized AI agents per client — handling marketing, legal research, and business intelligence. What traditional agencies deliver in months, we deliver in days. Not because we cut corners, but because 25 agents working in parallel simply move faster than 3 people working sequentially.
                 </p>
 
-                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>What Makes X10 Different from Traditional Agencies</h3>
+                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>How an Engagement Works</h3>
                 <p>
-                    A traditional marketing agency assigns 2-3 people to your account, working sequentially through a months-long engagement at €26,000-€40,000. X10 deploys 15-25 AI agents working in parallel. We delivered 3 lead magnets and full email automation for a 9,300+ SKU auto parts catalog in 48 hours — work that would take a traditional agency weeks. For a pet supplies e-commerce client, our AI calculators achieved 8.3% conversion rates versus the 3.8% industry average.
+                    Every engagement starts the same way: 5 parallel audits (SEO, GEO readiness, email infrastructure, competitive landscape, content gaps) run simultaneously by specialized agents. By day 3, you have a scored roadmap with specific deliverables and ROI calculations — not vague recommendations. Implementation starts immediately. Our 90-day pilot costs €3,000–€6,500 per month plus a one-time setup fee. No long-term lock-in.
+                </p>
+
+                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>Verified Results</h3>
+                <p>
+                    For an auto parts e-commerce client (9,300+ SKUs), we delivered 3 interactive lead magnets and complete email automation in 48 hours — work that quotes at €10–15K from traditional agencies. For a pet supplies e-commerce client, our AI-powered calculators achieved 8.3% conversion rates versus the 3.8% industry average. For a local auto service, we achieved #1 ranking in Claude, Perplexity, and ChatGPT within 30 days.
                 </p>
 
                 <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>Generative Engine Optimization (GEO)</h3>
                 <p>
-                    Generative Engine Optimization is the practice of making your business discoverable and citable by AI search systems — ChatGPT, Perplexity, Claude, and Google AI Overviews. Unlike traditional SEO that targets search engine result pages, GEO ensures your business appears in AI-generated answers and recommendations. X10 offers GEO as a core service: we achieved #1 ranking in Claude, Perplexity, and ChatGPT for a local auto service client within 30 days of engagement.
+                    GEO is the practice of making your business discoverable by AI search systems — ChatGPT, Perplexity, Claude, Google AI Overviews. Unlike traditional SEO that targets search engine result pages, GEO ensures your business appears in AI-generated answers. Most agencies don't offer this because most agencies don't understand how AI citation works. We do — it's how we built our own visibility.
                 </p>
 
-                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>AI Agent Teams: How They Work</h3>
+                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>Private AI: Open Source, EU-Hosted, Auditable</h3>
                 <p>
-                    An AI agent team is a coordinated group of specialized AI systems, each handling a specific function — SEO analysis, content creation, email copywriting, competitive intelligence, lead magnet design, or data visualization. These agents share context and collaborate autonomously, orchestrated to deliver comprehensive marketing output. X10 has cataloged 153 production-ready application specifications across 9 industries including Healthcare, Legal, Real Estate, Trades, Professional Services, and Retail & E-commerce.
+                    We deploy open-source models (Qwen, Llama, Mistral) fine-tuned on your data, hosted on EU infrastructure. No data leaves the EU. No black-box APIs. Every deployment includes human approval gates, full audit trails, and GDPR-compliant consent flows. We're built for the EU AI Act — not retrofitting for it.
+                </p>
+
+                <h3 className="text-xl font-bold text-white pt-4" style={{ fontFamily: fonts.heading }}>153 Production-Ready Applications</h3>
+                <p>
+                    X10 has cataloged 153 production-ready application specifications across 9 industries: Healthcare, Legal, Real Estate, Trades, Professional Services, Retail & E-commerce, Hospitality, Education, and Financial Services. Each specification includes agent architecture, data requirements, compliance considerations, and estimated ROI.
                 </p>
             </div>
         </div>
@@ -1214,12 +1401,12 @@ const Footer = () => (
         <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="text-center md:text-left">
                 <div className="text-2xl font-bold text-white mb-2" style={{ fontFamily: fonts.heading }}>X10 Automation</div>
-                <p className="text-gray-500 text-sm">Architecting the autonomous future.</p>
+                <p className="text-gray-500 text-sm">Dedicated AI agent teams for European SMEs.</p>
             </div>
             <div className="flex gap-8 text-sm text-gray-400">
                 <a href="#how-it-works" className="hover:text-accent-400 transition-colors">How It Works</a>
                 <a href="#case-studies" className="hover:text-accent-400 transition-colors">Results</a>
-                <a href="#" className="hover:text-accent-400 transition-colors">Book a Call</a>
+                <a href="#contact" className="hover:text-accent-400 transition-colors">Contact</a>
             </div>
             <div className="text-gray-600 text-xs">
                 © 2026 X10 Automation. All rights reserved.<span className="text-gray-700 text-xs ml-2">&middot; Built with AI</span>
@@ -1253,6 +1440,24 @@ const App: React.FC = () => {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', colorTheme);
   }, [colorTheme]);
+
+  // Scroll depth tracking (25%, 50%, 75%, 100%)
+  useEffect(() => {
+    const milestones = new Set<number>();
+    const handleScroll = () => {
+      const scrollPercent = Math.round(
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      );
+      for (const m of [25, 50, 75, 100]) {
+        if (scrollPercent >= m && !milestones.has(m)) {
+          milestones.add(m);
+          analytics.scrollDepth(m);
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const homepageSchemas = useMemo(() => [
     {
@@ -1317,6 +1522,7 @@ const App: React.FC = () => {
         <div className="section-divider max-w-4xl mx-auto" />
         <HumanInLoopSection />
         <MetricsBar />
+        <ComplianceBadges />
 
         {/* Solutions Teaser — links to /solutions page */}
         <SolutionsTeaser />
@@ -1331,7 +1537,7 @@ const App: React.FC = () => {
         <ImplementationsSection />
         <ImplementationExample />
         <ResultsSection />
-        <LeadMagnet />
+        <ContactForm />
         <AboutSection />
         <Footer />
       </div>

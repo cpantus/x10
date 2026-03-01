@@ -6,6 +6,7 @@ import './index.css'
 
 const CatalogPage = lazy(() => import('./pages/CatalogPage'))
 const SolutionsPage = lazy(() => import('./pages/SolutionsPage'))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -20,6 +21,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/solutions" element={
           <Suspense fallback={<div className="min-h-screen bg-[#030303] flex items-center justify-center text-white">Loading...</div>}>
             <SolutionsPage />
+          </Suspense>
+        } />
+        <Route path="*" element={
+          <Suspense fallback={<div className="min-h-screen bg-[#030303] flex items-center justify-center text-white">Loading...</div>}>
+            <NotFoundPage />
           </Suspense>
         } />
       </Routes>
