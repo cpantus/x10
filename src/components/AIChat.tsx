@@ -13,7 +13,7 @@ import type { ChatMessage } from '../types';
 const AIChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: 'System Online. I am Unit X1. How can I assist with your automation architecture today?' }
+    { role: 'model', text: 'Welcome to x10 Automation. I\'m your Strategy Advisor. Ask me about our AI agent teams, industries we serve, or how we can accelerate your business growth.' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -57,13 +57,13 @@ const AIChat: React.FC = () => {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="mb-4 w-[90vw] md:w-[400px] bg-[#0a0a0a] border border-red-500/30 rounded-lg overflow-hidden shadow-[0_0_40px_rgba(220,38,38,0.2)]"
+            className="mb-4 w-[90vw] md:w-[400px] bg-[#0a0a0a] border border-teal-400/30 rounded-lg overflow-hidden shadow-[0_0_40px_rgba(0,229,204,0.2)]"
           >
             {/* Header */}
-            <div className="bg-[#111] p-4 flex justify-between items-center border-b border-red-500/20">
+            <div className="bg-[#111] p-4 flex justify-between items-center border-b border-teal-400/20">
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                <h3 className="text-red-500 font-bold tracking-wider text-xs uppercase">X10 Neural Uplink</h3>
+                <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
+                <h3 className="text-teal-400 font-bold tracking-wider text-xs uppercase">x10 Strategy Advisor</h3>
               </div>
               <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-white transition-colors">
                 <X className="w-4 h-4" />
@@ -73,7 +73,7 @@ const AIChat: React.FC = () => {
             {/* Messages */}
             <div
               ref={chatContainerRef}
-              className="h-[400px] overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-red-900/50 scrollbar-track-transparent"
+              className="h-[400px] overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-teal-900/50 scrollbar-track-transparent"
             >
               {messages.map((msg, idx) => (
                 <div
@@ -84,19 +84,19 @@ const AIChat: React.FC = () => {
                     className={`max-w-[85%] p-3 text-xs md:text-sm leading-relaxed ${
                       msg.role === 'user'
                         ? 'bg-white text-black rounded-lg rounded-br-none font-sans font-semibold'
-                        : 'bg-red-950/20 text-red-100 border border-red-500/20 rounded-lg rounded-bl-none'
+                        : 'bg-teal-950/20 text-teal-100 border border-teal-400/20 rounded-lg rounded-bl-none'
                     }`}
                   >
-                    {msg.role === 'model' && <Terminal className="w-3 h-3 mb-2 text-red-500 inline-block mr-2" />}
+                    {msg.role === 'model' && <Terminal className="w-3 h-3 mb-2 text-teal-400 inline-block mr-2" />}
                     {msg.text}
                   </div>
                 </div>
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-red-950/10 p-3 rounded-lg border border-red-500/10 flex items-center gap-2">
-                    <span className="w-1 h-1 bg-red-500 animate-ping" />
-                    <span className="text-[10px] text-red-500 uppercase">Processing</span>
+                  <div className="bg-teal-950/10 p-3 rounded-lg border border-teal-400/10 flex items-center gap-2">
+                    <span className="w-1 h-1 bg-teal-400 animate-ping" />
+                    <span className="text-[10px] text-teal-400 uppercase">Processing</span>
                   </div>
                 </div>
               )}
@@ -115,13 +115,13 @@ const AIChat: React.FC = () => {
                       handleSend();
                     }
                   }}
-                  placeholder="Initialize inquiry..."
-                  className="flex-1 bg-[#111] border border-white/10 text-white placeholder-gray-600 text-xs p-3 focus:outline-none focus:border-red-500/50 transition-colors rounded"
+                  placeholder="Ask about our AI solutions..."
+                  className="flex-1 bg-[#111] border border-white/10 text-white placeholder-gray-600 text-xs p-3 focus:outline-none focus:border-teal-400/50 transition-colors rounded"
                 />
                 <button
                   onClick={handleSend}
                   disabled={isLoading || !input.trim()}
-                  className="bg-red-600 hover:bg-red-500 text-white p-3 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-teal-500 hover:bg-teal-400 text-white p-3 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" />
                 </button>
@@ -136,12 +136,12 @@ const AIChat: React.FC = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="group w-14 h-14 rounded-full bg-black border border-red-500/50 flex items-center justify-center shadow-[0_0_20px_rgba(220,38,38,0.3)] hover:bg-red-950/30 transition-colors"
+        className="group w-14 h-14 rounded-full bg-black border border-teal-400/50 flex items-center justify-center shadow-[0_0_20px_rgba(0,229,204,0.3)] hover:bg-teal-950/30 transition-colors"
       >
         {isOpen ? (
-          <X className="w-6 h-6 text-red-500" />
+          <X className="w-6 h-6 text-teal-400" />
         ) : (
-          <Bot className="w-6 h-6 text-red-500 group-hover:text-white transition-colors" />
+          <Bot className="w-6 h-6 text-teal-400 group-hover:text-white transition-colors" />
         )}
       </motion.button>
     </div>

@@ -53,13 +53,13 @@ const StarField = () => {
 
 const FluidBackground: React.FC = () => {
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-gradient-to-br from-[#31326f] via-[#28295c] to-[#1f2048]">
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-gradient-to-br from-[#0a2e2b] via-[#0a2525] to-[#0a1f1f]">
 
       <StarField />
 
       {/* Blob 1: Mint - Optimized Blur (60px -> 40px) and Animation Speed */}
       <motion.div
-        className="absolute top-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-[#a8fbd3] rounded-full mix-blend-screen filter blur-[40px] opacity-30 will-change-transform"
+        className="absolute top-[-10%] left-[-10%] w-[90vw] h-[90vw] bg-[#4cfbd7] rounded-full mix-blend-screen filter blur-[40px] opacity-30 will-change-transform"
         animate={{
           x: [0, 50, -25, 0],
           y: [0, -25, 25, 0],
@@ -74,7 +74,7 @@ const FluidBackground: React.FC = () => {
 
       {/* Blob 2: Teal */}
       <motion.div
-        className="absolute top-[20%] right-[-20%] w-[100vw] h-[80vw] bg-[#4fb7b3] rounded-full mix-blend-screen filter blur-[40px] opacity-20 will-change-transform"
+        className="absolute top-[20%] right-[-20%] w-[100vw] h-[80vw] bg-[#00E5CC] rounded-full mix-blend-screen filter blur-[40px] opacity-20 will-change-transform"
         animate={{
           x: [0, -50, 25, 0],
           y: [0, 50, -25, 0],
@@ -89,7 +89,7 @@ const FluidBackground: React.FC = () => {
 
       {/* Blob 3: Periwinkle */}
       <motion.div
-        className="absolute bottom-[-20%] left-[20%] w-[80vw] h-[80vw] bg-[#637ab9] rounded-full mix-blend-screen filter blur-[40px] opacity-20 will-change-transform"
+        className="absolute bottom-[-20%] left-[20%] w-[80vw] h-[80vw] bg-[#00c9b3] rounded-full mix-blend-screen filter blur-[40px] opacity-20 will-change-transform"
         animate={{
           x: [0, 75, -75, 0],
           y: [0, -50, 50, 0],
