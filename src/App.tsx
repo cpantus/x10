@@ -75,7 +75,7 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
         <div className="flex items-center gap-3 group cursor-pointer">
           <LogoIcon variant={logoVariant} />
           <div className="flex flex-col items-center">
-              <span className="text-xl font-bold tracking-tight text-white leading-none" style={{ fontFamily: fonts.heading }}>X10</span>
+              <span className="text-xl font-bold tracking-tight text-white leading-none" style={{ fontFamily: fonts.heading }}>x10</span>
               <span className="text-[10px] tracking-[0.2em] uppercase font-bold leading-tight" style={{ color: 'var(--color-accent-primary)' }}>Automation</span>
           </div>
         </div>
