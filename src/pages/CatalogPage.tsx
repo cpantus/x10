@@ -317,9 +317,16 @@ const CatalogPage: React.FC = () => {
               AI-Powered Marketing Teams
             </span>
           </div>
-          <p className="text-white/20 text-xs" style={{ fontFamily: fonts.mono }}>
-            {totalDeliverables} deliverables shown &middot; 153 total specifications &middot; 9 industries
-          </p>
+          <div className="flex flex-col items-center md:items-end gap-2">
+            <div className="flex gap-4 text-xs text-white/30">
+              <a href="/privacy" className="hover:text-white/60 transition-colors">Privacy Policy</a>
+              <a href="/terms" className="hover:text-white/60 transition-colors">Terms & Conditions</a>
+              <button onClick={() => window.dispatchEvent(new Event('reopenCookieConsent'))} className="hover:text-white/60 transition-colors">Cookie Settings</button>
+            </div>
+            <p className="text-white/20 text-xs" style={{ fontFamily: fonts.mono }}>
+              {totalDeliverables} deliverables shown &middot; 153 total specifications &middot; 9 industries
+            </p>
+          </div>
         </div>
       </footer>
     </div>

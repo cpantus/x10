@@ -1257,8 +1257,15 @@ const Footer = () => (
                 <a href="#case-studies" className="hover:text-accent-400 transition-colors">Results</a>
                 <button onClick={() => window.dispatchEvent(new Event('openChat'))} className="hover:text-accent-400 transition-colors">Contact</button>
             </div>
-            <div className="text-gray-600 text-xs">
-                © 2026 X10 Automation. All rights reserved.<span className="text-gray-700 text-xs ml-2">&middot; Built with AI</span>
+            <div className="text-center md:text-right">
+                <div className="flex gap-4 text-xs text-gray-500 mb-2 justify-center md:justify-end">
+                    <a href="/privacy" className="hover:text-gray-300 transition-colors">Privacy Policy</a>
+                    <a href="/terms" className="hover:text-gray-300 transition-colors">Terms & Conditions</a>
+                    <button onClick={() => window.dispatchEvent(new Event('reopenCookieConsent'))} className="hover:text-gray-300 transition-colors">Cookie Settings</button>
+                </div>
+                <div className="text-gray-600 text-xs">
+                    © 2026 X10 Automation. All rights reserved.<span className="text-gray-700 text-xs ml-2">&middot; Built with AI</span>
+                </div>
             </div>
         </div>
     </footer>

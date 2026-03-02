@@ -88,7 +88,7 @@ function renderInline(text: string): React.ReactNode {
 const AIChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: 'Welcome to x10 Automation. I\'m Unit x10, your AI strategy advisor. Ask me about our AI agent teams, how we deliver results, or whether we\'re a fit for your business.' }
+    { role: 'model', text: 'Welcome to x10 Automation. I\'m Unit x10, an **AI assistant** (not a human). I can answer questions about our AI agent teams, results, and services. Your messages are processed by third-party AI models — see our [Privacy Policy](/privacy) for details.' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -295,6 +295,10 @@ const AIChat: React.FC = () => {
                 >
                   <Send className="w-4 h-4" />
                 </button>
+              </div>
+              <div className="flex items-center justify-between mt-1.5 px-1">
+                <span className="text-[9px] text-gray-600">AI-powered assistant</span>
+                <a href="/privacy" className="text-[9px] text-gray-600 hover:text-gray-400 transition-colors">Privacy</a>
               </div>
             </div>
           </motion.div>
