@@ -889,7 +889,7 @@ const eurFormat = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 
 
 const ROICalculatorSection = () => {
     const [teamSize, setTeamSize] = useState(5);
-    const [hourlyCost, setHourlyCost] = useState(50);
+    const [hourlyCost, setHourlyCost] = useState(30);
     const [hoursAutomated, setHoursAutomated] = useState(10);
 
     const annualSavings = teamSize * hourlyCost * hoursAutomated * 52;
@@ -900,7 +900,7 @@ const ROICalculatorSection = () => {
     useEffect(() => {
       if (roiTracked.current) return;
       // Only track after user changes from defaults
-      if (teamSize !== 5 || hourlyCost !== 50 || hoursAutomated !== 10) {
+      if (teamSize !== 5 || hourlyCost !== 30 || hoursAutomated !== 10) {
         roiTracked.current = true;
         const timer = setTimeout(() => {
           analytics.roiCalculatorUse(teamSize, hourlyCost, hoursAutomated, annualSavings);
@@ -961,13 +961,13 @@ const ROICalculatorSection = () => {
                             </div>
                             <input
                                 type="range"
-                                min={10} max={100} step={5}
+                                min={10} max={50} step={5}
                                 value={hourlyCost}
                                 onChange={(e) => setHourlyCost(Number(e.target.value))}
                                 className="roi-slider"
                             />
                             <div className="flex justify-between text-xs text-gray-600 mt-1" style={{ fontFamily: fonts.mono }}>
-                                <span>{'\u20AC'}10</span><span>{'\u20AC'}100</span>
+                                <span>{'\u20AC'}10</span><span>{'\u20AC'}50</span>
                             </div>
                         </div>
 
