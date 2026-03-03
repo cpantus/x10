@@ -7,11 +7,6 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 
-const fonts = {
-  heading: '"Space Grotesk", sans-serif',
-  mono: '"JetBrains Mono", monospace',
-};
-
 const PrivacyPage: React.FC = () => {
   useEffect(() => {
     document.title = 'Privacy Policy — X10 Automation';
@@ -19,17 +14,17 @@ const PrivacyPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#030303] text-gray-300">
+    <div className="min-h-screen bg-[var(--color-bg-primary)] text-gray-300">
       {/* Navbar */}
-      <nav className="sticky top-0 z-40 bg-[#030303]/90 backdrop-blur border-b border-white/5 px-6 py-4">
+      <nav className="sticky top-0 z-40 bg-[var(--color-bg-primary)]/90 backdrop-blur border-b border-white/5 px-6 py-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 text-white hover:text-blue-400 transition-colors text-sm">
             <ArrowLeft className="w-4 h-4" />
-            <span style={{ fontFamily: fonts.heading }} className="font-bold tracking-wider text-xs uppercase">
+            <span className="font-heading font-bold tracking-wider text-xs uppercase">
               x10 Automation
             </span>
           </a>
-          <span className="text-xs text-gray-600" style={{ fontFamily: fonts.mono }}>
+          <span className="text-xs text-gray-600 font-mono">
             Last updated: March 2026
           </span>
         </div>
@@ -37,10 +32,10 @@ const PrivacyPage: React.FC = () => {
 
       {/* Content */}
       <main className="max-w-4xl mx-auto px-6 py-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2" style={{ fontFamily: fonts.heading }}>
+        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 font-heading">
           Privacy Policy
         </h1>
-        <p className="text-sm text-gray-500 mb-10" style={{ fontFamily: fonts.mono }}>
+        <p className="text-sm text-gray-500 mb-10 font-mono">
           Effective date: March 2, 2026 &middot; Version 1.0
         </p>
 
@@ -48,7 +43,7 @@ const PrivacyPage: React.FC = () => {
 
           {/* 1. Data Controller */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               1. Data Controller
             </h2>
             <p>
@@ -63,7 +58,7 @@ const PrivacyPage: React.FC = () => {
 
           {/* 2. What Data We Collect */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               2. What Data We Collect
             </h2>
             <p className="mb-3">We process minimal personal data through the following channels:</p>
@@ -93,7 +88,7 @@ const PrivacyPage: React.FC = () => {
 
           {/* 3. Third-Party Processors */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               3. Third-Party Data Processors
             </h2>
             <div className="overflow-x-auto">
@@ -132,7 +127,7 @@ const PrivacyPage: React.FC = () => {
 
           {/* 4. Legal Basis */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               4. Legal Basis for Processing
             </h2>
             <ul className="space-y-2">
@@ -143,7 +138,7 @@ const PrivacyPage: React.FC = () => {
 
           {/* 5. Cookies & Storage */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               5. Cookies & Local Storage
             </h2>
             <div className="overflow-x-auto">
@@ -186,7 +181,7 @@ const PrivacyPage: React.FC = () => {
 
           {/* 6. Data Retention */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               6. Data Retention
             </h2>
             <ul className="space-y-2">
@@ -198,7 +193,7 @@ const PrivacyPage: React.FC = () => {
 
           {/* 7. International Transfers */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               7. International Data Transfers
             </h2>
             <p>
@@ -210,7 +205,7 @@ const PrivacyPage: React.FC = () => {
 
           {/* 8. Your Rights */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               8. Your Rights (GDPR Articles 15-22)
             </h2>
             <p className="mb-3">Under the GDPR, you have the right to:</p>
@@ -238,7 +233,7 @@ const PrivacyPage: React.FC = () => {
 
           {/* 9. AI Chatbot Disclosure */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               9. AI Chatbot Disclosure (EU AI Act, Article 50)
             </h2>
             <ul className="space-y-2">
@@ -251,7 +246,7 @@ const PrivacyPage: React.FC = () => {
 
           {/* 10. Changes */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               10. Changes to This Policy
             </h2>
             <p>

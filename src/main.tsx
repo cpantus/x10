@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App'
 import CookieConsent from './components/CookieConsent'
+import { DesignVariantProvider } from './context/DesignVariantContext'
 import { initAnalytics } from './utils/analytics'
 import './index.css'
 
@@ -16,21 +17,23 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 initAnalytics()
 
 const LoadingFallback = () => (
-  <div className="min-h-screen bg-[#030303] flex items-center justify-center text-white">Loading...</div>
+  <div className="min-h-screen bg-[var(--color-bg-primary,#030303)] flex items-center justify-center text-white">Loading...</div>
 )
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/catalog" element={<Suspense fallback={<LoadingFallback />}><CatalogPage /></Suspense>} />
-        <Route path="/solutions" element={<Suspense fallback={<LoadingFallback />}><SolutionsPage /></Suspense>} />
-        <Route path="/privacy" element={<Suspense fallback={<LoadingFallback />}><PrivacyPage /></Suspense>} />
-        <Route path="/terms" element={<Suspense fallback={<LoadingFallback />}><TermsPage /></Suspense>} />
-        <Route path="*" element={<Suspense fallback={<LoadingFallback />}><NotFoundPage /></Suspense>} />
-      </Routes>
-      <CookieConsent />
-    </BrowserRouter>
+    <DesignVariantProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/catalog" element={<Suspense fallback={<LoadingFallback />}><CatalogPage /></Suspense>} />
+          <Route path="/solutions" element={<Suspense fallback={<LoadingFallback />}><SolutionsPage /></Suspense>} />
+          <Route path="/privacy" element={<Suspense fallback={<LoadingFallback />}><PrivacyPage /></Suspense>} />
+          <Route path="/terms" element={<Suspense fallback={<LoadingFallback />}><TermsPage /></Suspense>} />
+          <Route path="*" element={<Suspense fallback={<LoadingFallback />}><NotFoundPage /></Suspense>} />
+        </Routes>
+        <CookieConsent />
+      </BrowserRouter>
+    </DesignVariantProvider>
   </React.StrictMode>,
 )

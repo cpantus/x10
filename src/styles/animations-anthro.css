@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Anthro variant animations
+   Aggressive motion, diagonal geometry, brutalist typography
+   ========================================================================== */
+
+/* --- Section dividers: diagonal clip-paths --- */
+html[data-design="anthro"] .section-divider {
+  height: 60px;
+  background: none;
+  background-color: var(--color-accent-primary);
+  opacity: 0.06;
+  clip-path: polygon(0 0, 100% 40px, 100% 60px, 0 20px);
+}
+
+/* --- Typography: uppercase condensed headings --- */
+html[data-design="anthro"] h1,
+html[data-design="anthro"] h2 {
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* --- Dot-grid replacement: hard grid lines --- */
+html[data-design="anthro"] .dot-grid {
+  background-image:
+    linear-gradient(rgba(184, 255, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 255, 0, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* --- Card hover: aggressive lift + slight skew --- */
+html[data-design="anthro"] .gradient-border:hover,
+html[data-design="anthro"] .scanline-hover:hover {
+  transform: translateY(-4px) skewY(-0.3deg);
+  transition: transform 100ms ease-out;
+}
+
+/* --- Glow pulse: green flash --- */
+html[data-design="anthro"] .glow-pulse {
+  animation-duration: 2s;
+}
+
+/* --- Sharp card shadows --- */
+html[data-design="anthro"] .gradient-border,
+html[data-design="anthro"] .scanline-hover {
+  box-shadow: 4px 4px 0 rgba(184, 255, 0, 0.08);
+}
+
+/* --- Watermark: rotated, condensed --- */
+html[data-design="anthro"] .absolute.pointer-events-none.select-none span {
+  transform: rotate(-5deg);
+  opacity: 0.04;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-design="anthro"] .gradient-border:hover,
+  html[data-design="anthro"] .scanline-hover:hover {
+    transform: none;
+  }
+}

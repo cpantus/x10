@@ -31,7 +31,7 @@ function renderMessageText(text: string): React.ReactNode {
       const content = line.replace(/^[-•]\s/, '');
       elements.push(
         <div key={i} className="flex gap-1.5 ml-1">
-          <span className="text-teal-400 shrink-0">•</span>
+          <span className="text-accent-400 shrink-0">•</span>
           <span>{renderInline(content)}</span>
         </div>
       );
@@ -65,11 +65,11 @@ function renderInline(text: string): React.ReactNode {
 
     if (match[2]) {
       // **bold**
-      parts.push(<strong key={match.index} className="font-semibold text-teal-300">{match[2]}</strong>);
+      parts.push(<strong key={match.index} className="font-semibold text-accent-300">{match[2]}</strong>);
     } else if (match[3] && match[4]) {
       // [text](url)
       parts.push(
-        <a key={match.index} href={match[4]} target="_blank" rel="noopener noreferrer" className="text-teal-400 underline hover:text-teal-300">
+        <a key={match.index} href={match[4]} target="_blank" rel="noopener noreferrer" className="text-accent-400 underline hover:text-accent-300">
           {match[3]}
         </a>
       );
@@ -204,13 +204,13 @@ const AIChat: React.FC = () => {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="mb-4 w-[90vw] md:w-[400px] bg-[#0a0a0a] border border-teal-400/30 rounded-lg overflow-hidden shadow-[0_0_40px_rgba(0,229,204,0.2)]"
+            className="mb-4 w-[90vw] md:w-[400px] bg-[#0a0a0a] border border-accent-400/30 rounded-lg overflow-hidden shadow-[0_0_40px_var(--color-accent-glow)]"
           >
             {/* Header */}
-            <div className="bg-[#111] p-4 flex justify-between items-center border-b border-teal-400/20">
+            <div className="bg-[#111] p-4 flex justify-between items-center border-b border-accent-400/20">
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
-                <h3 className="text-teal-400 font-bold tracking-wider text-xs uppercase">Unit x10</h3>
+                <div className="w-2 h-2 bg-accent-400 rounded-full animate-pulse" />
+                <h3 className="text-accent-400 font-bold tracking-wider text-xs uppercase">Unit x10</h3>
                 {!isAvailable() && (
                   <span className="text-[9px] text-yellow-500/80 uppercase tracking-wide">demo</span>
                 )}
@@ -223,7 +223,7 @@ const AIChat: React.FC = () => {
             {/* Messages */}
             <div
               ref={chatContainerRef}
-              className="h-[400px] overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-teal-900/50 scrollbar-track-transparent"
+              className="h-[400px] overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-accent-900/50 scrollbar-track-transparent"
             >
               {messages.map((msg, idx) => (
                 <div
@@ -234,10 +234,10 @@ const AIChat: React.FC = () => {
                     className={`max-w-[85%] p-3 text-xs md:text-sm leading-relaxed ${
                       msg.role === 'user'
                         ? 'bg-white text-black rounded-lg rounded-br-none font-sans font-semibold'
-                        : 'bg-teal-950/20 text-teal-100 border border-teal-400/20 rounded-lg rounded-bl-none'
+                        : 'bg-accent-950/20 text-accent-100 border border-accent-400/20 rounded-lg rounded-bl-none'
                     }`}
                   >
-                    {msg.role === 'model' && <Terminal className="w-3 h-3 mb-2 text-teal-400 inline-block mr-2" />}
+                    {msg.role === 'model' && <Terminal className="w-3 h-3 mb-2 text-accent-400 inline-block mr-2" />}
                     {msg.role === 'model' ? renderMessageText(msg.text) : msg.text}
                   </div>
                 </div>
@@ -250,7 +250,7 @@ const AIChat: React.FC = () => {
                     <button
                       key={s.label}
                       onClick={() => handleStarterClick(s.message)}
-                      className="text-[10px] md:text-xs px-3 py-1.5 rounded-full border border-teal-400/30 text-teal-300 hover:bg-teal-400/10 hover:border-teal-400/50 transition-colors"
+                      className="text-[10px] md:text-xs px-3 py-1.5 rounded-full border border-accent-400/30 text-accent-300 hover:bg-accent-400/10 hover:border-accent-400/50 transition-colors"
                     >
                       {s.label}
                     </button>
@@ -261,10 +261,10 @@ const AIChat: React.FC = () => {
               {/* Typing indicator */}
               {isLoading && messages[messages.length - 1]?.text === '' && (
                 <div className="flex justify-start">
-                  <div className="bg-teal-950/10 p-3 rounded-lg border border-teal-400/10 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 bg-teal-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-1.5 h-1.5 bg-teal-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-1.5 h-1.5 bg-teal-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <div className="bg-accent-950/10 p-3 rounded-lg border border-accent-400/10 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-accent-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-1.5 h-1.5 bg-accent-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-1.5 h-1.5 bg-accent-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
                 </div>
               )}
@@ -286,12 +286,12 @@ const AIChat: React.FC = () => {
                   }}
                   placeholder="Ask about our AI solutions..."
                   disabled={isLoading}
-                  className="flex-1 bg-[#111] border border-white/10 text-white placeholder-gray-600 text-xs p-3 focus:outline-none focus:border-teal-400/50 transition-colors rounded disabled:opacity-50"
+                  className="flex-1 bg-[#111] border border-white/10 text-white placeholder-gray-600 text-xs p-3 focus:outline-none focus:border-accent-400/50 transition-colors rounded disabled:opacity-50"
                 />
                 <button
                   onClick={() => handleSend()}
                   disabled={isLoading || !input.trim()}
-                  className="bg-teal-500 hover:bg-teal-400 text-white p-3 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-accent-500 hover:bg-accent-400 text-white p-3 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" />
                 </button>
@@ -310,12 +310,12 @@ const AIChat: React.FC = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={handleToggle}
-        className="group w-14 h-14 rounded-full bg-black border border-teal-400/50 flex items-center justify-center shadow-[0_0_20px_rgba(0,229,204,0.3)] hover:bg-teal-950/30 transition-colors"
+        className="group w-14 h-14 rounded-full bg-black border border-accent-400/50 flex items-center justify-center shadow-[0_0_20px_var(--color-accent-glow)] hover:bg-accent-950/30 transition-colors"
       >
         {isOpen ? (
-          <X className="w-6 h-6 text-teal-400" />
+          <X className="w-6 h-6 text-accent-400" />
         ) : (
-          <Bot className="w-6 h-6 text-teal-400 group-hover:text-white transition-colors" />
+          <Bot className="w-6 h-6 text-accent-400 group-hover:text-white transition-colors" />
         )}
       </motion.button>
     </div>

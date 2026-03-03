@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Design Variant: Anthro (editorial brutalism)
+   Fonts: Bebas Neue / Syne / DM Mono
+   Palette: Acid green #B8FF00, sharp edges, fast motion
+   ========================================================================== */
+
+html[data-design="anthro"] {
+  /* Fonts */
+  --font-display: 'Bebas Neue';
+  --font-body: 'Syne';
+  --font-mono: 'DM Mono';
+
+  /* Accent colors — acid green palette */
+  --color-accent-primary: #B8FF00;
+  --color-accent-secondary: #D4FF4D;
+  --color-accent-cta: #B8FF00;
+  --color-accent-deep: #5A8000;
+  --color-accent-glow: rgba(184, 255, 0, 0.3);
+  --color-accent-glow-strong: rgba(184, 255, 0, 0.6);
+  --color-accent-subtle: rgba(184, 255, 0, 0.08);
+  --color-accent-muted: rgba(184, 255, 0, 0.6);
+
+  /* Background */
+  --color-bg-primary: #030303;
+  --color-bg-secondary: #050505;
+  --color-bg-elevated: #0a0a0a;
+
+  /* Duration — faster, snappier */
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 350ms;
+  --duration-emphasis: 600ms;
+}
+
+/* --- Radius: sharp everything --- */
+html[data-design="anthro"] *:not(.rounded-full):not([class*="rounded-full"]) {
+  border-radius: 0 !important;
+}

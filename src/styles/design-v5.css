@@ -1,0 +1,43 @@
+/* ==========================================================================
+   Design Variant: V5 (dark luxury editorial)
+   Fonts: Cormorant Garamond / Space Grotesk / Syne
+   Palette: Warm gold #D4A853, soft radius, slow motion
+   ========================================================================== */
+
+html[data-design="v5"] {
+  /* Fonts */
+  --font-display: 'Cormorant Garamond';
+  --font-body: 'Space Grotesk';
+  --font-mono: 'Syne';
+
+  /* Accent colors — warm gold palette */
+  --color-accent-primary: #D4A853;
+  --color-accent-secondary: #E8C97A;
+  --color-accent-cta: #D4A853;
+  --color-accent-deep: #8B6914;
+  --color-accent-glow: rgba(212, 168, 83, 0.25);
+  --color-accent-glow-strong: rgba(212, 168, 83, 0.5);
+  --color-accent-subtle: rgba(212, 168, 83, 0.06);
+  --color-accent-muted: rgba(212, 168, 83, 0.5);
+
+  /* Background */
+  --color-bg-primary: #030303;
+  --color-bg-secondary: #050505;
+  --color-bg-elevated: #0a0a0a;
+
+  /* Duration — slower, more elegant */
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 700ms;
+  --duration-emphasis: 1200ms;
+}
+
+/* --- Radius: soften currently-sharp elements --- */
+html[data-design="v5"] .gradient-border,
+html[data-design="v5"] .scanline-hover {
+  border-radius: 0.5rem;
+}
+
+html[data-design="v5"] .btn-glow {
+  border-radius: 0.25rem;
+}

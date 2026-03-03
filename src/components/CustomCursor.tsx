@@ -6,8 +6,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
+import { useDesignVariant } from '../context/DesignVariantContext';
 
 const CustomCursor: React.FC = () => {
+  const { variant } = useDesignVariant();
   const [isHovering, setIsHovering] = useState(false);
 
   // Initialize off-screen to prevent flash
@@ -43,8 +45,14 @@ const CustomCursor: React.FC = () => {
       {/* This div is the actual cursor "body" and will handle the scaling and text centering */}
       {/* Changed base size to 80px diameter (40px radius) */}
       <motion.div
-        className="relative rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.3)] flex items-center justify-center"
-        style={{ width: 80, height: 80 }}
+        className={`relative flex items-center justify-center ${
+          variant === 'anthro'
+            ? 'rounded-none border-2 border-[var(--color-accent-primary)] bg-transparent'
+            : variant === 'v5'
+            ? 'rounded-full border-2 border-[var(--color-accent-primary)] bg-transparent'
+            : 'rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.3)]'
+        }`}
+        style={{ width: variant === 'v5' ? 64 : 80, height: variant === 'v5' ? 64 : 80 }}
         animate={{
           // Scaled by 1.5 to become 120px diameter (60px radius) when hovering
           scale: isHovering ? 1.5 : 1,

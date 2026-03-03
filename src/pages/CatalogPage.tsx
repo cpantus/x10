@@ -4,11 +4,6 @@ import { ArrowLeft, Search, FileText, Bell, Edit2, Target, Eye, BarChart3, type 
 import SEOMeta from '../components/SEOMeta';
 import LogoIcon from '../components/logos/LogoIcon';
 
-const fonts = {
-  heading: '"Space Grotesk", sans-serif',
-  mono: '"JetBrains Mono", monospace',
-};
-
 const iconMap: Record<string, LucideIcon> = {
   Search,
   FileText,
@@ -133,7 +128,6 @@ const CatalogPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'midnight-gold');
     window.scrollTo(0, 0);
   }, []);
 
@@ -175,7 +169,7 @@ const CatalogPage: React.FC = () => {
           })) || []);
 
   return (
-    <div className="min-h-screen bg-[#030303] text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
+    <div className="min-h-screen bg-[var(--color-bg-primary)] text-white font-sans">
       <SEOMeta
         title="AI Deliverables Catalog | 153 Specs Across 9 Industries | X10 Automation"
         description="Browse 153 production-ready AI deliverable specifications across 8 categories: strategic research, pitch decks, email campaigns, content strategy, lead generation, SEO, competitive intelligence, and data visualization."
@@ -183,12 +177,12 @@ const CatalogPage: React.FC = () => {
         schemas={catalogSchemas}
       />
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#030303]/80 backdrop-blur-xl border-b border-white/5">
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-white/5" style={{ backgroundColor: 'color-mix(in srgb, var(--color-bg-primary) 80%, transparent)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center gap-3 group cursor-pointer">
             <LogoIcon variant="gears" />
             <div className="flex flex-col items-center">
-              <span className="text-xl font-bold tracking-tight text-white leading-none" style={{ fontFamily: fonts.heading }}>x10</span>
+              <span className="text-xl font-bold tracking-tight text-white leading-none font-heading">x10</span>
               <span className="text-[10px] tracking-[0.2em] uppercase font-bold leading-tight" style={{ color: 'var(--color-accent-primary)' }}>Automation</span>
             </div>
           </a>
@@ -204,14 +198,14 @@ const CatalogPage: React.FC = () => {
 
       {/* Hero */}
       <section className="pt-32 pb-16 px-6 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030303] via-[#0a0a0a] to-[#030303]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg-primary)] via-[#0a0a0a] to-[var(--color-bg-primary)]" />
         <div className="max-w-7xl mx-auto relative z-10 text-center">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-xs tracking-[0.3em] uppercase block mb-4"
-            style={{ fontFamily: fonts.mono, color: 'var(--color-accent, #00E5CC)' }}
+            className="text-xs tracking-[0.3em] uppercase block mb-4 font-mono"
+            style={{ color: 'var(--color-accent-primary)' }}
           >
             Production-Ready Deliverables
           </motion.span>
@@ -219,8 +213,7 @@ const CatalogPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
-            style={{ fontFamily: fonts.heading }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-heading"
           >
             Solutions Catalog
           </motion.h1>
@@ -240,11 +233,11 @@ const CatalogPage: React.FC = () => {
       </section>
 
       {/* Category Filter */}
-      <section className="pb-12 sticky top-16 z-40 bg-[#030303]/90 backdrop-blur-xl">
+      <section className="pb-12 sticky top-16 z-40 backdrop-blur-xl" style={{ backgroundColor: 'color-mix(in srgb, var(--color-bg-primary) 90%, transparent)' }}>
         <div className="max-w-7xl mx-auto relative">
           {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[var(--color-bg-primary)] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[var(--color-bg-primary)] to-transparent z-10 pointer-events-none" />
           <div
             ref={filterRef}
             className="flex gap-2 overflow-x-auto pb-2 px-6"
@@ -307,13 +300,13 @@ const CatalogPage: React.FC = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
             <span
-              className="text-sm font-bold tracking-widest"
-              style={{ fontFamily: fonts.heading, color: 'var(--color-accent, #00E5CC)' }}
+              className="text-sm font-bold tracking-widest font-heading"
+              style={{ color: 'var(--color-accent-primary)' }}
             >
               X10 AUTOMATION
             </span>
             <span className="text-white/20 text-xs">|</span>
-            <span className="text-white/30 text-xs" style={{ fontFamily: fonts.mono }}>
+            <span className="text-white/30 text-xs font-mono">
               AI-Powered Marketing Teams
             </span>
           </div>
@@ -323,7 +316,7 @@ const CatalogPage: React.FC = () => {
               <a href="/terms" className="hover:text-white/60 transition-colors">Terms & Conditions</a>
               <button onClick={() => window.dispatchEvent(new Event('reopenCookieConsent'))} className="hover:text-white/60 transition-colors">Cookie Settings</button>
             </div>
-            <p className="text-white/20 text-xs" style={{ fontFamily: fonts.mono }}>
+            <p className="text-white/20 text-xs font-mono">
               {totalDeliverables} deliverables shown &middot; 153 total specifications &middot; 9 industries
             </p>
           </div>
@@ -353,7 +346,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({ label, count, active, onCli
         ? 'border-accent-400 bg-accent-400/10 text-white'
         : 'border-white/10 bg-white/5 text-white/50 hover:text-white/80 hover:border-white/20'
     }`}
-    style={active ? { borderColor: 'var(--color-accent, #00E5CC)', background: 'var(--color-accent, #00E5CC)10' } : {}}
+    style={active ? { borderColor: 'var(--color-accent-primary)', background: 'var(--color-accent-subtle)' } : {}}
   >
     {icon}
     <span>{label}</span>
@@ -388,11 +381,11 @@ const DeliverableCard: React.FC<{ item: DeliverableItem }> = ({ item }) => {
         <div className="flex items-center gap-2">
           <div
             className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/5 group-hover:bg-white/10 transition-colors"
-            style={{ color: 'var(--color-accent, #00E5CC)' }}
+            style={{ color: 'var(--color-accent-primary)' }}
           >
             <Icon className="w-4 h-4" />
           </div>
-          <span className="text-[10px] tracking-wider uppercase text-white/25" style={{ fontFamily: fonts.mono }}>
+          <span className="text-[10px] tracking-wider uppercase text-white/25 font-mono">
             {item.category}
           </span>
         </div>
@@ -403,8 +396,7 @@ const DeliverableCard: React.FC<{ item: DeliverableItem }> = ({ item }) => {
 
       {/* Title & Description */}
       <h3
-        className="text-base font-semibold text-white mb-2 group-hover:text-white transition-colors"
-        style={{ fontFamily: fonts.heading }}
+        className="text-base font-semibold text-white mb-2 group-hover:text-white transition-colors font-heading"
       >
         {item.title}
       </h3>
@@ -413,7 +405,7 @@ const DeliverableCard: React.FC<{ item: DeliverableItem }> = ({ item }) => {
       {/* Bottom Row */}
       <div className="flex items-center justify-between pt-3 border-t border-white/5">
         <span className={`text-[11px] px-2.5 py-1 rounded-full border ${colorClass}`}>{item.type}</span>
-        <span className="text-xs text-white/30" style={{ fontFamily: fonts.mono }}>
+        <span className="text-xs text-white/30 font-mono">
           {item.metric}
         </span>
       </div>

@@ -14,22 +14,13 @@ import LogoIcon from './components/logos/LogoIcon';
 import type { LogoVariant } from './components/logos/types';
 import SEOMeta from './components/SEOMeta';
 import { events as analytics } from './utils/analytics';
+import { useDesignVariant } from './context/DesignVariantContext';
 
 // --- Design Tokens & Assets ---
-
-const fonts = {
-  heading: '"Space Grotesk", sans-serif',
-  mono: '"JetBrains Mono", monospace',
-};
 
 // Hero background variant — change here or use ?hero=lightweight in URL
 const DEFAULT_HERO_VARIANT: HeroVariant = 'lightweight';
 const SHOW_HERO_ANNOTATIONS = false;
-
-// Color theme — switchable via ?theme=midnight-teal in URL
-type ColorTheme = 'electric-blue' | 'midnight-teal' | 'cyan-spectrum' | 'midnight-gold';
-const DEFAULT_THEME: ColorTheme = 'midnight-gold';
-const VALID_THEMES: ColorTheme[] = ['electric-blue', 'midnight-teal', 'cyan-spectrum', 'midnight-gold'];
 
 // Logo variant — switchable via ?logo=gears in URL
 const DEFAULT_LOGO: LogoVariant = 'gears';
@@ -56,7 +47,7 @@ interface WatermarkProps {
 
 const BackgroundWatermark: React.FC<WatermarkProps> = ({ className }) => (
     <div className={`absolute pointer-events-none select-none overflow-hidden flex items-center z-0 ${className || "inset-0 justify-center"}`}>
-        <span className="text-[20vw] font-bold text-white/[0.07] leading-none whitespace-nowrap" style={{ fontFamily: fonts.heading }}>X10</span>
+        <span className="text-[20vw] font-bold text-white/[0.07] leading-none whitespace-nowrap font-heading">X10</span>
     </div>
 );
 
@@ -77,7 +68,7 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
         <div className="flex items-center gap-3 group cursor-pointer">
           <LogoIcon variant={logoVariant} />
           <div className="flex flex-col items-center">
-              <span className="text-xl font-bold tracking-tight text-white leading-none" style={{ fontFamily: fonts.heading }}>x10</span>
+              <span className="text-xl font-bold tracking-tight text-white leading-none font-heading">x10</span>
               <span className="text-[10px] tracking-[0.2em] uppercase font-bold leading-tight" style={{ color: 'var(--color-accent-primary)' }}>Automation</span>
           </div>
         </div>
@@ -92,8 +83,7 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + (i * 0.1) }}
-                className="text-xs font-medium text-gray-400 hover:text-white transition-colors uppercase tracking-[0.2em] relative group"
-                style={{ fontFamily: fonts.mono }}
+                className="text-xs font-medium text-gray-400 hover:text-white transition-colors uppercase tracking-[0.2em] relative group font-mono"
               >
                 {item}
                 <span className="absolute -bottom-2 left-0 w-0 h-[1px] group-hover:w-full transition-all duration-300" style={{ background: 'var(--color-accent-primary)' }} />
@@ -114,8 +104,7 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
           }}
           whileTap={{ scale: 0.95 }}
           onClick={() => { analytics.ctaClick('navbar_consultation'); window.dispatchEvent(new Event('openChat')); }}
-          className="hidden md:flex items-center relative px-6 py-2.5 border border-white/20 text-white text-xs uppercase tracking-widest backdrop-blur-md bg-black/30 group overflow-hidden btn-glow"
-          style={{ fontFamily: fonts.mono }}
+          className="hidden md:flex items-center relative px-6 py-2.5 border border-white/20 text-white text-xs uppercase tracking-widest backdrop-blur-md bg-black/30 group overflow-hidden btn-glow font-mono"
         >
           <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-white/20 to-white/40 translate-y-full group-hover:translate-y-0 transition-transform duration-100 ease-out" />
           <span className="relative z-10">Book a Strategy Call</span>
@@ -147,7 +136,7 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute right-0 top-0 h-full w-72 bg-[#0a0a0a] border-l border-white/10 p-8 flex flex-col"
+              className="absolute right-0 top-0 h-full w-72 bg-[var(--color-bg-elevated,#0a0a0a)] border-l border-white/10 p-8 flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -169,8 +158,7 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + i * 0.05 }}
                       onClick={() => setMobileOpen(false)}
-                      className="text-sm text-gray-400 hover:text-white transition-colors uppercase tracking-[0.2em]"
-                      style={{ fontFamily: fonts.mono }}
+                      className="text-sm text-gray-400 hover:text-white transition-colors uppercase tracking-[0.2em] font-mono"
                     >
                       {item}
                     </motion.a>
@@ -181,8 +169,8 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
               <div className="mt-auto pt-8 border-t border-white/10">
                 <button
                   onClick={() => { setMobileOpen(false); window.dispatchEvent(new Event('openChat')); }}
-                  className="block w-full text-center px-6 py-3 border text-white text-xs uppercase tracking-widest"
-                  style={{ fontFamily: fonts.mono, borderColor: 'var(--color-accent-primary)', color: 'var(--color-accent-primary)' }}
+                  className="block w-full text-center px-6 py-3 border text-white text-xs uppercase tracking-widest font-mono"
+                  style={{ borderColor: 'var(--color-accent-primary)', color: 'var(--color-accent-primary)' }}
                 >
                   Book a Strategy Call
                 </button>
@@ -223,8 +211,8 @@ const Annotation: React.FC<AnnotationProps> = ({ label, side, delay, x, y }) => 
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: delay + 0.5 }}
-            className="text-xs uppercase tracking-widest font-bold"
-            style={{ fontFamily: fonts.mono, textShadow: '0 0 10px var(--color-accent-glow)', color: 'var(--color-accent-secondary)' }}
+            className="text-xs uppercase tracking-widest font-bold font-mono"
+            style={{ textShadow: '0 0 10px var(--color-accent-glow)', color: 'var(--color-accent-secondary)' }}
           >
             {label}
           </motion.span>
@@ -250,8 +238,8 @@ const Annotation: React.FC<AnnotationProps> = ({ label, side, delay, x, y }) => 
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: delay + 0.5 }}
-            className="text-xs uppercase tracking-widest font-bold"
-            style={{ fontFamily: fonts.mono, textShadow: '0 0 10px var(--color-accent-glow)', color: 'var(--color-accent-secondary)' }}
+            className="text-xs uppercase tracking-widest font-bold font-mono"
+            style={{ textShadow: '0 0 10px var(--color-accent-glow)', color: 'var(--color-accent-secondary)' }}
           >
             {label}
           </motion.span>
@@ -302,7 +290,7 @@ const HeroContent = () => {
         style={{ border: '1px solid var(--color-accent-glow)', background: 'var(--color-accent-subtle)', boxShadow: '0 0 20px var(--color-accent-glow)' }}
       >
         <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--color-accent-primary)', boxShadow: '0 0 10px var(--color-accent-primary)' }} />
-        <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-white/90 font-bold" style={{ fontFamily: fonts.mono }}>
+        <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-white/90 font-bold font-mono">
           Architecting the Autonomous Future
         </span>
       </motion.div>
@@ -312,9 +300,8 @@ const HeroContent = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1.2, duration: 1, ease: "easeOut" }}
-        className="font-bold leading-[1.05] tracking-tight mb-8 text-white drop-shadow-2xl"
+        className="font-bold leading-[1.05] tracking-tight mb-8 text-white drop-shadow-2xl font-heading"
         style={{
-            fontFamily: fonts.heading,
             fontSize: 'clamp(3rem, 0.273rem + 8.18vw, 7.5rem)',
             textShadow: '0 0 80px var(--color-accent-glow)'
         }}
@@ -330,8 +317,7 @@ const HeroContent = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 1 }}
-        className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light"
-        style={{ fontFamily: fonts.heading }}
+        className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light font-heading"
       >
         We build custom AI agent teams that deliver{' '}
         <motion.span
@@ -361,7 +347,7 @@ const HeroContent = () => {
           className="group relative px-9 py-4 bg-white text-black overflow-hidden cursor-pointer shadow-[0_0_30px_rgba(255,255,255,0.1)] btn-glow"
         >
           <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent-secondary/40 to-accent-primary/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-          <span className="relative z-10 flex items-center gap-3 font-bold uppercase tracking-wider text-sm" style={{ fontFamily: fonts.heading }}>
+          <span className="relative z-10 flex items-center gap-3 font-bold uppercase tracking-wider text-sm font-heading">
             Book a Strategy Call
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </span>
@@ -379,7 +365,7 @@ const HeroContent = () => {
           className="group flex items-center gap-3 px-9 py-4 border border-white/20 text-white transition-colors backdrop-blur-sm cursor-pointer"
         >
           <ChevronDown className="w-3 h-3" />
-          <span className="font-bold uppercase tracking-wider text-sm" style={{ fontFamily: fonts.heading }}>
+          <span className="font-bold uppercase tracking-wider text-sm font-heading">
             See How It Works
           </span>
         </motion.button>
@@ -407,9 +393,8 @@ const SectionHeader = ({ title, subtitle, gradient }: { title: string, subtitle:
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.1 }}
-      className={`text-4xl md:text-5xl font-bold ${gradient ? 'text-transparent bg-clip-text' : 'text-white'}`}
+      className={`text-4xl md:text-5xl font-bold font-heading ${gradient ? 'text-transparent bg-clip-text' : 'text-white'}`}
       style={{
-        fontFamily: fonts.heading,
         ...(gradient ? { backgroundImage: 'linear-gradient(to right, var(--color-accent-primary), var(--color-accent-secondary))' } : {}),
       }}
     >
@@ -429,7 +414,7 @@ const FeatureCard: React.FC<{ icon: any, title: string, desc: string, delay: num
     <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-colors border" style={{ background: 'var(--color-accent-subtle)', borderColor: 'var(--color-accent-glow)' }}>
       <Icon className="w-6 h-6" style={{ color: 'var(--color-accent-primary)' }} />
     </div>
-    <h3 className="text-xl font-bold text-white mb-4" style={{ fontFamily: fonts.heading }}>{title}</h3>
+    <h3 className="text-xl font-bold text-white mb-4 font-heading">{title}</h3>
     <p className="text-gray-400 leading-relaxed font-light">{desc}</p>
   </motion.div>
 );
@@ -457,7 +442,7 @@ const TransformationSection = () => {
 
 // --- Solutions Teaser (links to /solutions page) ---
 const SolutionsTeaser = () => (
-    <section aria-label="AI Agent Team Solutions — Marketing and Legal AI" className="py-24 bg-[#020202] border-t border-white/5 relative">
+    <section aria-label="AI Agent Team Solutions — Marketing and Legal AI" className="py-24 bg-[var(--color-bg-primary)] border-t border-white/5 relative">
         <BackgroundWatermark className="w-full h-full absolute left-0 top-0 flex items-center justify-start pl-[10%]" />
         <div className="max-w-[1200px] mx-auto px-6 relative z-10">
             <SectionHeader title="Our Solutions" subtitle="AI Agent Teams" gradient />
@@ -472,9 +457,9 @@ const SolutionsTeaser = () => (
                         <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 border" style={{ background: 'var(--color-accent-subtle)', borderColor: 'var(--color-accent-glow)' }}>
                             <Network className="w-6 h-6" style={{ color: 'var(--color-accent-primary)' }} />
                         </div>
-                        <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: fonts.heading }}>AI Marketing Team</h3>
+                        <h3 className="text-2xl font-bold text-white mb-3 font-heading">AI Marketing Team</h3>
                         <p className="text-gray-400 leading-relaxed mb-6">15-25 specialized agents orchestrating SEO, content, email automation, and competitive intelligence — delivering in days what agencies take months.</p>
-                        <span className="inline-flex items-center gap-2 font-bold text-sm uppercase tracking-wider group-hover:gap-3 transition-all" style={{ color: 'var(--color-accent-primary)', fontFamily: fonts.mono }}>
+                        <span className="inline-flex items-center gap-2 font-bold text-sm uppercase tracking-wider group-hover:gap-3 transition-all font-mono" style={{ color: 'var(--color-accent-primary)' }}>
                             See it in action <ArrowRight className="w-4 h-4" />
                         </span>
                     </div>
@@ -490,9 +475,9 @@ const SolutionsTeaser = () => (
                         <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 bg-purple-900/20 border border-purple-500/30">
                             <Scale className="w-6 h-6 text-purple-400" />
                         </div>
-                        <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: fonts.heading }}>AI Legal Team (Praetor)</h3>
+                        <h3 className="text-2xl font-bold text-white mb-3 font-heading">AI Legal Team (Praetor)</h3>
                         <p className="text-gray-400 leading-relaxed mb-6">8 specialized legal agents researching across 35M court decisions, analyzing contracts, and verifying compliance — minutes instead of days.</p>
-                        <span className="inline-flex items-center gap-2 text-purple-400 font-bold text-sm uppercase tracking-wider group-hover:gap-3 transition-all" style={{ fontFamily: fonts.mono }}>
+                        <span className="inline-flex items-center gap-2 text-purple-400 font-bold text-sm uppercase tracking-wider group-hover:gap-3 transition-all font-mono">
                             See it in action <ArrowRight className="w-4 h-4" />
                         </span>
                     </div>
@@ -533,14 +518,14 @@ const HumanInLoopSection = () => {
     };
 
     return (
-        <section className="py-32 bg-[#050505] relative overflow-hidden">
+        <section className="py-32 bg-[var(--color-bg-secondary)] relative overflow-hidden">
             <div className="max-w-[1600px] mx-auto px-6 flex flex-col md:flex-row items-center gap-16 relative z-10">
                 <div className="flex-1">
                     <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border" style={{ borderColor: 'var(--color-accent-glow)', background: 'var(--color-accent-subtle)' }}>
                         <Users className="w-4 h-4" style={{ color: 'var(--color-accent-primary)' }} />
                         <span className="text-xs uppercase tracking-widest font-mono" style={{ color: 'var(--color-accent-secondary)' }}>Control</span>
                     </div>
-                    <h2 className="text-4xl font-bold text-white mb-6 leading-tight" style={{ fontFamily: fonts.heading }}>
+                    <h2 className="text-4xl font-bold text-white mb-6 leading-tight font-heading">
                         You Stay in Charge. <br /> <span style={{ color: 'var(--color-accent-primary)' }}>Always.</span>
                     </h2>
                     <p className="text-gray-400 text-lg mb-8 leading-relaxed">
@@ -682,7 +667,7 @@ const MetricsBar = () => {
     ];
 
     return (
-        <section className="py-16 bg-[#020202] border-y border-white/5">
+        <section className="py-16 bg-[var(--color-bg-primary)] border-y border-white/5">
             <div className="max-w-[1600px] mx-auto px-6">
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
                     {metrics.map((m, i) => (
@@ -693,7 +678,7 @@ const MetricsBar = () => {
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
                         >
-                            <div className="text-3xl md:text-4xl font-bold mb-2 glow-pulse tabular-nums" style={{ fontFamily: '"Space Grotesk", sans-serif', color: 'var(--color-accent-primary)' }}>
+                            <div className="text-3xl md:text-4xl font-bold mb-2 glow-pulse tabular-nums font-heading" style={{ color: 'var(--color-accent-primary)' }}>
                                 {m.value}
                             </div>
                             <div className="text-xs text-gray-500 uppercase tracking-widest font-mono">{m.label}</div>
@@ -716,7 +701,7 @@ const ComplianceBadges = () => {
     ];
 
     return (
-        <section className="py-12 bg-[#020202] border-b border-white/5">
+        <section className="py-12 bg-[var(--color-bg-primary)] border-b border-white/5">
             <div className="max-w-[1200px] mx-auto px-6">
                 <div className="flex flex-wrap justify-center gap-8 md:gap-12">
                     {badges.map((b, i) => (
@@ -731,7 +716,7 @@ const ComplianceBadges = () => {
                             <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-3 border transition-all group-hover:shadow-[0_0_15px_var(--color-accent-glow)]" style={{ background: 'var(--color-accent-subtle)', borderColor: 'var(--color-accent-glow)' }}>
                                 <b.icon className="w-6 h-6" style={{ color: 'var(--color-accent-primary)' }} />
                             </div>
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-white/80 mb-1" style={{ fontFamily: fonts.mono }}>{b.label}</span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-white/80 mb-1 font-mono">{b.label}</span>
                             <span className="text-[10px] text-gray-500 max-w-[120px]">{b.desc}</span>
                         </motion.div>
                     ))}
@@ -752,7 +737,7 @@ const IndustriesSection = () => {
     ];
 
     return (
-        <section id="industries" aria-label="Industries Served — 153 Specs Across 9 Verticals" className="py-32 bg-[#050505] relative overflow-hidden dot-grid">
+        <section id="industries" aria-label="Industries Served — 153 Specs Across 9 Verticals" className="py-32 bg-[var(--color-bg-secondary)] relative overflow-hidden dot-grid">
             <BackgroundWatermark />
             <div className="max-w-[1600px] mx-auto px-6 relative z-10">
                 <SectionHeader title="Industries We Serve" subtitle="6 Verticals & Growing" />
@@ -767,7 +752,7 @@ const IndustriesSection = () => {
                             className="p-6 border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 rounded-lg group"
                         >
                             <div className="flex justify-between items-start mb-4">
-                                <h3 className="text-lg font-bold text-white" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{ind.name}</h3>
+                                <h3 className="text-lg font-bold text-white font-heading">{ind.name}</h3>
                                 <span className="text-accent-400 font-mono text-sm font-bold">{ind.apps} apps</span>
                             </div>
                             <ul className="space-y-2">
@@ -805,7 +790,7 @@ const UseCaseCard: React.FC<{ title: string, metric: string, label: string, desc
     </div>
 
     <div className="mt-auto">
-        <div className="text-5xl font-bold text-white mb-2" style={{ fontFamily: fonts.mono }}>{metric}</div>
+        <div className="text-5xl font-bold text-white mb-2 font-mono">{metric}</div>
         <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
             <motion.div
                 initial={{ width: 0 }}
@@ -830,13 +815,13 @@ const ImplementationsSection = () => {
   ];
 
   return (
-    <section id="use-cases" aria-label="ROI Calculator — Calculate Your Annual AI Automation Savings" className="py-32 bg-[#080808] relative overflow-hidden dot-grid">
+    <section id="use-cases" aria-label="ROI Calculator — Calculate Your Annual AI Automation Savings" className="py-32 bg-[var(--color-bg-secondary)] relative overflow-hidden dot-grid">
       <BackgroundWatermark />
       <div className="max-w-[1600px] mx-auto px-6 relative z-10">
          <div className="flex flex-col md:flex-row justify-between items-end mb-16">
              <div className="max-w-2xl">
                 <span className="text-accent-400 font-mono text-xs tracking-widest mb-4 block">READY TO DEPLOY</span>
-                <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: fonts.heading }}>
+                <h2 className="text-4xl md:text-5xl font-bold text-white font-heading">
                     Ready-to-Deploy Solutions
                 </h2>
              </div>
@@ -925,7 +910,7 @@ const ROICalculatorSection = () => {
     ];
 
     return (
-        <section className="py-32 bg-[#020202] border-t border-white/5 relative overflow-hidden">
+        <section className="py-32 bg-[var(--color-bg-primary)] border-t border-white/5 relative overflow-hidden">
             <BackgroundWatermark className="w-full h-full absolute left-0 top-0 flex items-center justify-start pl-[10%]" />
             <div className="max-w-[1200px] mx-auto px-6 relative z-10">
                 <SectionHeader title="Three Ways to Get AI Working for Your Business" subtitle="Honest Comparison" gradient />
@@ -939,8 +924,8 @@ const ROICalculatorSection = () => {
                     <div className="space-y-8">
                         <div>
                             <div className="flex justify-between items-baseline mb-3">
-                                <label className="text-sm text-gray-400 uppercase tracking-widest" style={{ fontFamily: fonts.mono }}>Team Size</label>
-                                <span className="text-white font-bold text-lg" style={{ fontFamily: fonts.heading }}>{teamSize} employees</span>
+                                <label className="text-sm text-gray-400 uppercase tracking-widest font-mono">Team Size</label>
+                                <span className="text-white font-bold text-lg font-heading">{teamSize} employees</span>
                             </div>
                             <input
                                 type="range"
@@ -949,15 +934,15 @@ const ROICalculatorSection = () => {
                                 onChange={(e) => setTeamSize(Number(e.target.value))}
                                 className="roi-slider"
                             />
-                            <div className="flex justify-between text-xs text-gray-600 mt-1" style={{ fontFamily: fonts.mono }}>
+                            <div className="flex justify-between text-xs text-gray-600 mt-1 font-mono">
                                 <span>1</span><span>20</span>
                             </div>
                         </div>
 
                         <div>
                             <div className="flex justify-between items-baseline mb-3">
-                                <label className="text-sm text-gray-400 uppercase tracking-widest" style={{ fontFamily: fonts.mono }}>Avg. Hourly Cost</label>
-                                <span className="text-white font-bold text-lg" style={{ fontFamily: fonts.heading }}>{'\u20AC'}{hourlyCost}/hr <span className="text-gray-400 text-sm font-normal">({Math.round(hourlyCost / 1.7 * 160 * 5).toLocaleString()} RON net/mo)</span></span>
+                                <label className="text-sm text-gray-400 uppercase tracking-widest font-mono">Avg. Hourly Cost</label>
+                                <span className="text-white font-bold text-lg font-heading">{'\u20AC'}{hourlyCost}/hr <span className="text-gray-400 text-sm font-normal">({Math.round(hourlyCost / 1.7 * 160 * 5).toLocaleString()} RON net/mo)</span></span>
                             </div>
                             <input
                                 type="range"
@@ -966,15 +951,15 @@ const ROICalculatorSection = () => {
                                 onChange={(e) => setHourlyCost(Number(e.target.value))}
                                 className="roi-slider"
                             />
-                            <div className="flex justify-between text-xs text-gray-600 mt-1" style={{ fontFamily: fonts.mono }}>
+                            <div className="flex justify-between text-xs text-gray-600 mt-1 font-mono">
                                 <span>{'\u20AC'}10</span><span>{'\u20AC'}50</span>
                             </div>
                         </div>
 
                         <div>
                             <div className="flex justify-between items-baseline mb-3">
-                                <label className="text-sm text-gray-400 uppercase tracking-widest" style={{ fontFamily: fonts.mono }}>Hours Automated / Week / Person</label>
-                                <span className="text-white font-bold text-lg" style={{ fontFamily: fonts.heading }}>{hoursAutomated} hrs</span>
+                                <label className="text-sm text-gray-400 uppercase tracking-widest font-mono">Hours Automated / Week / Person</label>
+                                <span className="text-white font-bold text-lg font-heading">{hoursAutomated} hrs</span>
                             </div>
                             <input
                                 type="range"
@@ -983,7 +968,7 @@ const ROICalculatorSection = () => {
                                 onChange={(e) => setHoursAutomated(Number(e.target.value))}
                                 className="roi-slider"
                             />
-                            <div className="flex justify-between text-xs text-gray-600 mt-1" style={{ fontFamily: fonts.mono }}>
+                            <div className="flex justify-between text-xs text-gray-600 mt-1 font-mono">
                                 <span>1 hr</span><span>20 hrs</span>
                             </div>
                         </div>
@@ -998,12 +983,12 @@ const ROICalculatorSection = () => {
                                 initial={{ scale: 1.05 }}
                                 animate={{ scale: 1 }}
                                 transition={{ duration: 0.3, ease: 'easeOut' }}
-                                className="text-5xl md:text-6xl font-bold glow-pulse mb-4"
-                                style={{ fontFamily: fonts.heading, color: 'var(--color-accent-primary)' }}
+                                className="text-5xl md:text-6xl font-bold glow-pulse mb-4 font-heading"
+                                style={{ color: 'var(--color-accent-primary)' }}
                             >
                                 {eurFormat.format(animatedSavings)}
                             </motion.div>
-                            <div className="text-accent-400 text-sm uppercase tracking-widest mb-2" style={{ fontFamily: fonts.mono }}>
+                            <div className="text-accent-400 text-sm uppercase tracking-widest mb-2 font-mono">
                                 Estimated Annual Savings
                             </div>
                             <div className="text-gray-500 text-sm mb-6">
@@ -1024,10 +1009,10 @@ const ROICalculatorSection = () => {
                 <div className="overflow-x-auto border border-white/10 rounded-xl">
                     {/* Header */}
                     <div className="grid grid-cols-4 min-w-[640px] bg-white/5 border-b border-white/10">
-                        <div className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest" style={{ fontFamily: '"JetBrains Mono", monospace' }}>Category</div>
-                        <div className="p-4 text-xs font-bold text-gray-500 uppercase tracking-widest text-center" style={{ fontFamily: '"JetBrains Mono", monospace' }}>Traditional Agency</div>
-                        <div className="p-4 text-xs font-bold text-gray-500 uppercase tracking-widest text-center" style={{ fontFamily: '"JetBrains Mono", monospace' }}>DIY SaaS</div>
-                        <div className="p-4 text-xs font-bold uppercase tracking-widest text-center" style={{ fontFamily: '"JetBrains Mono", monospace', color: 'var(--color-accent-primary)' }}>x10 Automation</div>
+                        <div className="p-4 text-xs font-bold text-gray-400 uppercase tracking-widest font-mono">Category</div>
+                        <div className="p-4 text-xs font-bold text-gray-500 uppercase tracking-widest text-center font-mono">Traditional Agency</div>
+                        <div className="p-4 text-xs font-bold text-gray-500 uppercase tracking-widest text-center font-mono">DIY SaaS</div>
+                        <div className="p-4 text-xs font-bold uppercase tracking-widest text-center font-mono" style={{ color: 'var(--color-accent-primary)' }}>x10 Automation</div>
                     </div>
 
                     {/* Rows */}
@@ -1047,7 +1032,7 @@ const ROICalculatorSection = () => {
                         </motion.div>
                     ))}
                 </div>
-                <p className="text-center text-gray-600 text-xs mt-4 max-w-2xl mx-auto" style={{ fontFamily: fonts.mono }}>
+                <p className="text-center text-gray-600 text-xs mt-4 max-w-2xl mx-auto font-mono">
                     Traditional agency costs based on 2026 EU market rates. DIY SaaS costs exclude implementation time (typically 20–40 hrs/month). x10 costs include full team; implementation fee quoted separately.
                 </p>
 
@@ -1055,17 +1040,17 @@ const ROICalculatorSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
                     <div className="p-5 border border-white/10 rounded-lg bg-white/5 text-center">
                         <div className="text-gray-500 text-xs uppercase tracking-widest mb-2 font-mono">Traditional Agency</div>
-                        <div className="text-xl font-bold text-gray-400" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>6+ months · €26-40K</div>
+                        <div className="text-xl font-bold text-gray-400 font-heading">6+ months · €26-40K</div>
                     </div>
                     <div className="p-5 border border-white/10 rounded-lg bg-white/5 text-center">
                         <div className="text-gray-500 text-xs uppercase tracking-widest mb-2 font-mono">DIY SaaS</div>
-                        <div className="text-xl font-bold text-gray-400" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>€600-6K/yr + your time</div>
+                        <div className="text-xl font-bold text-gray-400 font-heading">€600-6K/yr + your time</div>
                     </div>
                     <div className="p-5 border border-accent-400/30 rounded-lg bg-accent-950/20 text-center relative overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-r from-accent-400/5 to-transparent" />
                         <div className="relative z-10">
                             <div className="text-accent-400 text-xs uppercase tracking-widest mb-2 font-mono">x10 Automation</div>
-                            <div className="text-xl font-bold text-white" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>90 days · €3-6.5K/mo + impl. fee</div>
+                            <div className="text-xl font-bold text-white font-heading">90 days · €3-6.5K/mo + impl. fee</div>
                         </div>
                     </div>
                 </div>
@@ -1090,7 +1075,7 @@ const PrivateAISection = () => {
                     <Server className="w-4 h-4 text-accent-400" />
                     <span className="text-xs uppercase tracking-widest text-accent-100 font-mono">Enterprise AI</span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>Private AI Solutions</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">Private AI Solutions</h2>
                 <p className="text-gray-400 mb-16 max-w-2xl mx-auto">Your models. Your data. Your infrastructure.</p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -1101,10 +1086,10 @@ const PrivateAISection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
-                            className="p-6 border border-white/10 rounded-lg bg-[#050505] hover:border-accent-400/30 transition-colors text-left"
+                            className="p-6 border border-white/10 rounded-lg bg-[var(--color-bg-secondary)] hover:border-accent-400/30 transition-colors text-left"
                         >
                             <f.icon className="w-8 h-8 text-accent-400 mb-4" />
-                            <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{f.title}</h3>
+                            <h3 className="text-lg font-bold text-white mb-2 font-heading">{f.title}</h3>
                             <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
                         </motion.div>
                     ))}
@@ -1194,7 +1179,7 @@ const ResultCard = ({ vertical, icon: Icon, result, metrics, color }: { vertical
         <div className={`w-12 h-12 rounded-lg ${color} flex items-center justify-center mb-6`}>
             <Icon className="w-6 h-6 text-white" />
         </div>
-        <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>{vertical}</h3>
+        <h3 className="text-lg font-bold text-white mb-2 font-heading">{vertical}</h3>
         <p className="text-gray-300 mb-6 leading-relaxed text-sm">{result}</p>
         <div className="pt-4 border-t border-white/10">
             <p className="text-accent-400 text-xs font-mono uppercase tracking-wider">{metrics}</p>
@@ -1203,7 +1188,7 @@ const ResultCard = ({ vertical, icon: Icon, result, metrics, color }: { vertical
 );
 
 const ResultsSection = () => (
-    <section id="case-studies" className="py-32 bg-[#050505] px-6 border-t border-white/5 relative overflow-hidden">
+    <section id="case-studies" className="py-32 bg-[var(--color-bg-secondary)] px-6 border-t border-white/5 relative overflow-hidden">
         <BackgroundWatermark />
         <div className="max-w-[1600px] mx-auto relative z-10">
             <SectionHeader title="Real Results" subtitle="Case Studies" gradient />
@@ -1249,7 +1234,7 @@ const Footer = () => (
     <footer className="py-20 border-t border-white/10 bg-black px-6">
         <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="text-center md:text-left">
-                <div className="text-2xl font-bold text-white mb-2" style={{ fontFamily: fonts.heading }}>X10 Automation</div>
+                <div className="text-2xl font-bold text-white mb-2 font-heading">X10 Automation</div>
                 <p className="text-gray-500 text-sm">Dedicated AI agent teams for European SMEs.</p>
             </div>
             <div className="flex gap-8 text-sm text-gray-400">
@@ -1274,28 +1259,22 @@ const Footer = () => (
 // --- Main Page Component ---
 
 const App: React.FC = () => {
-  // URL param overrides: ?hero=lightweight&theme=midnight-teal&logo=gears
+  // URL param overrides: ?hero=lightweight&logo=gears
   const params = useMemo(() => new URLSearchParams(window.location.search), []);
 
+  const { variant: designVariant } = useDesignVariant();
+
   const heroVariant = useMemo<HeroVariant>(() => {
+    if (designVariant !== 'current') return 'lightweight'; // anthro/v5 use their own hero via HeroBackground
     const param = params.get('hero');
     const valid: HeroVariant[] = ['planet', 'constellation', 'network', 'blob', 'lightweight'];
     return valid.includes(param as HeroVariant) ? (param as HeroVariant) : DEFAULT_HERO_VARIANT;
-  }, [params]);
-
-  const colorTheme = useMemo<ColorTheme>(() => {
-    const param = params.get('theme') as ColorTheme;
-    return VALID_THEMES.includes(param) ? param : DEFAULT_THEME;
-  }, [params]);
+  }, [params, designVariant]);
 
   const logoVariant = useMemo<LogoVariant>(() => {
     const param = params.get('logo') as LogoVariant;
     return VALID_LOGOS.includes(param) ? param : DEFAULT_LOGO;
   }, [params]);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', colorTheme);
-  }, [colorTheme]);
 
   // Scroll depth tracking (25%, 50%, 75%, 100%)
   useEffect(() => {
@@ -1330,7 +1309,7 @@ const App: React.FC = () => {
   ], []);
 
   return (
-    <div className="relative w-full min-h-screen bg-[#030303] text-white selection:bg-accent-400 selection:text-white font-sans">
+    <div className="relative w-full min-h-screen bg-[var(--color-bg-primary)] text-white selection:bg-accent-400 selection:text-white font-sans">
       <SEOMeta
         title="X10 Automation | AI Agent Teams for SMEs — 10x Output in 90 Days"
         description="Custom AI agent teams (15-25 specialists) for SMEs. 90-day pilots delivering SEO, GEO optimization, email automation, and lead magnets in days — not months. From €3K/mo + implementation fee. Romania & EU."
@@ -1345,7 +1324,7 @@ const App: React.FC = () => {
 
       {/* Hero Section */}
       <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
-        <HeroBackground variant={heroVariant} />
+        <HeroBackground variant={heroVariant} designVariant={designVariant} />
 
         <div className="w-full max-w-[1600px] mx-auto relative flex flex-col justify-center items-center pt-20 z-30">
             <HeroContent />
@@ -1368,12 +1347,12 @@ const App: React.FC = () => {
         >
             <ChevronDown className="w-8 h-8 text-white/30" />
         </motion.div>
-        <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-b from-transparent to-[#030303] z-20 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-b from-transparent to-[var(--color-bg-primary)] z-20 pointer-events-none" />
       </section>
 
       {/* Content Sections */}
-      <div className="relative z-30 bg-[#030303]">
-        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#030303] to-transparent pointer-events-none z-50" />
+      <div className="relative z-30 bg-[var(--color-bg-primary)]">
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[var(--color-bg-primary)] to-transparent pointer-events-none z-50" />
         <TransformationSection />
         <div className="section-divider max-w-4xl mx-auto" />
         <HumanInLoopSection />

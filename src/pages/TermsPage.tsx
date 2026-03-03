@@ -6,11 +6,6 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 
-const fonts = {
-  heading: '"Space Grotesk", sans-serif',
-  mono: '"JetBrains Mono", monospace',
-};
-
 const TermsPage: React.FC = () => {
   useEffect(() => {
     document.title = 'Terms & Conditions — X10 Automation';
@@ -18,17 +13,17 @@ const TermsPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#030303] text-gray-300">
+    <div className="min-h-screen bg-[var(--color-bg-primary)] text-gray-300">
       {/* Navbar */}
-      <nav className="sticky top-0 z-40 bg-[#030303]/90 backdrop-blur border-b border-white/5 px-6 py-4">
+      <nav className="sticky top-0 z-40 bg-[var(--color-bg-primary)]/90 backdrop-blur border-b border-white/5 px-6 py-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 text-white hover:text-blue-400 transition-colors text-sm">
             <ArrowLeft className="w-4 h-4" />
-            <span style={{ fontFamily: fonts.heading }} className="font-bold tracking-wider text-xs uppercase">
+            <span className="font-heading font-bold tracking-wider text-xs uppercase">
               x10 Automation
             </span>
           </a>
-          <span className="text-xs text-gray-600" style={{ fontFamily: fonts.mono }}>
+          <span className="text-xs text-gray-600 font-mono">
             Last updated: March 2026
           </span>
         </div>
@@ -36,10 +31,10 @@ const TermsPage: React.FC = () => {
 
       {/* Content */}
       <main className="max-w-4xl mx-auto px-6 py-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2" style={{ fontFamily: fonts.heading }}>
+        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 font-heading">
           Terms & Conditions
         </h1>
-        <p className="text-sm text-gray-500 mb-10" style={{ fontFamily: fonts.mono }}>
+        <p className="text-sm text-gray-500 mb-10 font-mono">
           Effective date: March 2, 2026 &middot; Version 1.0
         </p>
 
@@ -47,7 +42,7 @@ const TermsPage: React.FC = () => {
 
           {/* 1. Introduction */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               1. Introduction
             </h2>
             <p>
@@ -64,7 +59,7 @@ const TermsPage: React.FC = () => {
 
           {/* 2. Intellectual Property */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               2. Intellectual Property
             </h2>
             <p>
@@ -80,7 +75,7 @@ const TermsPage: React.FC = () => {
 
           {/* 3. AI Chatbot Terms */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               3. AI Chatbot Terms
             </h2>
             <ul className="space-y-2">
@@ -94,7 +89,7 @@ const TermsPage: React.FC = () => {
 
           {/* 4. Service Descriptions */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               4. Service Descriptions
             </h2>
             <p>
@@ -109,7 +104,7 @@ const TermsPage: React.FC = () => {
 
           {/* 5. Limitation of Liability */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               5. Limitation of Liability
             </h2>
             <p>
@@ -127,7 +122,7 @@ const TermsPage: React.FC = () => {
 
           {/* 6. Acceptable Use */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               6. Acceptable Use
             </h2>
             <p className="mb-2">You agree not to:</p>
@@ -142,7 +137,7 @@ const TermsPage: React.FC = () => {
 
           {/* 7. Third-Party Links */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               7. Third-Party Links
             </h2>
             <p>
@@ -154,7 +149,7 @@ const TermsPage: React.FC = () => {
 
           {/* 8. Governing Law */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               8. Governing Law & Dispute Resolution
             </h2>
             <p>
@@ -177,7 +172,7 @@ const TermsPage: React.FC = () => {
 
           {/* 9. Changes */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               9. Changes to These Terms
             </h2>
             <p>
@@ -189,7 +184,7 @@ const TermsPage: React.FC = () => {
 
           {/* 10. Contact */}
           <section>
-            <h2 className="text-lg font-semibold text-white mb-3" style={{ fontFamily: fonts.heading }}>
+            <h2 className="text-lg font-semibold text-white mb-3 font-heading">
               10. Contact
             </h2>
             <p>

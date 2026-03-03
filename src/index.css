@@ -1,7 +1,16 @@
+/* Design variant token CSS — must be first */
+@import './styles/design-current.css';
+@import './styles/design-anthro.css';
+@import './styles/design-v5.css';
+@import './styles/animations-anthro.css';
+@import './styles/animations-v5.css';
+
 /* ==========================================================================
    SELF-HOSTED FONTS — Eliminates Google CDN (GDPR: no IP leakage)
    Variable fonts: single file per family covers all weights
    ========================================================================== */
+
+/* --- Current variant fonts --- */
 
 /* Space Grotesk — headings (weights 300-700) */
 @font-face {
@@ -57,88 +66,94 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+/* --- Anthro variant fonts --- */
+
+/* Bebas Neue — display (weight 400 only) */
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/bebas-neue-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Syne — body (weights 400-800 variable) */
+@font-face {
+  font-family: 'Syne';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/syne-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Syne';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/syne-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* DM Mono — monospace (weight 400) */
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/dm-mono-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/dm-mono-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* --- V5 variant fonts --- */
+
+/* Cormorant Garamond — display (weights 300-700 variable, normal + italic) */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ==========================================================================
-   THEME SYSTEM — 3-Layer Token Architecture
-   Layer 1: Primitive (raw HSL per theme)
-   Layer 2: Semantic (shared token names)
-   Layer 3: Component (Tailwind utilities reference semantics)
+   SHARED TOKENS (all variants)
    ========================================================================== */
 
-/* --- Shared tokens across all themes --- */
 :root {
-  --color-bg-primary: #030303;
-  --color-bg-secondary: #050505;
-  --color-bg-elevated: #0C1120;
-
-  /* Duration tokens */
-  --duration-fast: 150ms;
-  --duration-normal: 300ms;
-  --duration-slow: 500ms;
-  --duration-emphasis: 800ms;
-
   /* Easing tokens */
   --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1.0);
   --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1.0);
-}
-
-/* --- Theme A: Electric Blue Authority --- */
-[data-theme="electric-blue"] {
-  --accent-h: 217;
-  --accent-s: 91%;
-  --color-accent-primary: #60A5FA;
-  --color-accent-secondary: #93C5FD;
-  --color-accent-cta: #3B82F6;
-  --color-accent-deep: #1D4ED8;
-  --color-accent-glow: rgba(96, 165, 250, 0.3);
-  --color-accent-glow-strong: rgba(96, 165, 250, 0.6);
-  --color-accent-subtle: rgba(96, 165, 250, 0.1);
-  --color-accent-muted: rgba(96, 165, 250, 0.6);
-}
-
-/* --- Theme B: Midnight Teal (Default) --- */
-[data-theme="midnight-teal"] {
-  --accent-h: 170;
-  --accent-s: 100%;
-  --color-accent-primary: #00E5CC;
-  --color-accent-secondary: #22D3EE;
-  --color-accent-cta: #00C9B3;
-  --color-accent-deep: #3B82F6;
-  --color-accent-glow: rgba(0, 229, 204, 0.3);
-  --color-accent-glow-strong: rgba(0, 229, 204, 0.6);
-  --color-accent-subtle: rgba(0, 229, 204, 0.1);
-  --color-accent-muted: rgba(0, 229, 204, 0.6);
-}
-
-/* --- Theme C: Cyan Spectrum --- */
-[data-theme="cyan-spectrum"] {
-  --accent-h: 199;
-  --accent-s: 95%;
-  --color-accent-primary: #38BDF8;
-  --color-accent-secondary: #22D3EE;
-  --color-accent-cta: #00E5CC;
-  --color-accent-deep: #60A5FA;
-  --color-accent-glow: rgba(56, 189, 248, 0.3);
-  --color-accent-glow-strong: rgba(56, 189, 248, 0.6);
-  --color-accent-subtle: rgba(56, 189, 248, 0.1);
-  --color-accent-muted: rgba(56, 189, 248, 0.6);
-}
-
-/* --- Theme D: Midnight Gold --- */
-[data-theme="midnight-gold"] {
-  --accent-h: 217;
-  --accent-s: 91%;
-  --color-accent-primary: #60A5FA;
-  --color-accent-secondary: #F59E0B;
-  --color-accent-cta: #F59E0B;
-  --color-accent-deep: #1D4ED8;
-  --color-accent-glow: rgba(245, 158, 11, 0.3);
-  --color-accent-glow-strong: rgba(245, 158, 11, 0.6);
-  --color-accent-subtle: rgba(245, 158, 11, 0.1);
-  --color-accent-muted: rgba(245, 158, 11, 0.6);
 }
 
 /* ==========================================================================
@@ -149,7 +164,7 @@ body {
   margin: 0;
   background: var(--color-bg-primary);
   overflow-x: hidden;
-  font-family: 'Sora', sans-serif;
+  font-family: var(--font-body), sans-serif;
 }
 
 html {

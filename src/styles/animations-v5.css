@@ -1,0 +1,76 @@
+/* ==========================================================================
+   V5 variant animations
+   Slow gold sweep, elegant reveals, generous spacing
+   ========================================================================== */
+
+/* --- Section dividers: thin gold hairline --- */
+html[data-design="v5"] .section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-accent-primary) 30%,
+    var(--color-accent-primary) 70%,
+    transparent 100%
+  );
+  opacity: 0.15;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Typography: italic serif headings --- */
+html[data-design="v5"] h1,
+html[data-design="v5"] h2 {
+  font-style: italic;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+/* --- Dot-grid: subtle gold --- */
+html[data-design="v5"] .dot-grid {
+  background-image: radial-gradient(circle, rgba(212, 168, 83, 0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* --- Card hover: gentle lift + gold glow --- */
+html[data-design="v5"] .gradient-border:hover,
+html[data-design="v5"] .scanline-hover:hover {
+  transform: translateY(-2px);
+  transition: transform 400ms ease-out;
+  box-shadow: 0 8px 30px rgba(212, 168, 83, 0.08);
+}
+
+/* --- Glow pulse: slow, warm --- */
+html[data-design="v5"] .glow-pulse {
+  animation-duration: 6s;
+}
+
+/* --- Gradient border: gold tones --- */
+html[data-design="v5"] .gradient-border::before {
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-primary) 0%,
+    transparent 50%,
+    var(--color-accent-secondary) 100%
+  );
+}
+
+/* --- Wider section padding --- */
+html[data-design="v5"] section[id] {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+/* --- Watermark: lighter, serif --- */
+html[data-design="v5"] .absolute.pointer-events-none.select-none span {
+  opacity: 0.03;
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-design="v5"] .gradient-border:hover,
+  html[data-design="v5"] .scanline-hover:hover {
+    transform: none;
+  }
+}

@@ -1,5 +1,7 @@
 export type HeroVariant = 'planet' | 'constellation' | 'network' | 'blob' | 'lightweight';
 
+export type DesignVariant = 'current' | 'anthro' | 'v5';
+
 // Theme-aware colors — reads from CSS custom properties at runtime
 export function getHeroColors() {
   const style = getComputedStyle(document.documentElement);

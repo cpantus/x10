@@ -4,13 +4,6 @@ import { ArrowRight, Bot, Zap, Network, Shield, FileText, Search, ShieldCheck, B
 import SEOMeta from '../components/SEOMeta';
 import LogoIcon from '../components/logos/LogoIcon';
 
-// --- Design Tokens ---
-
-const fonts = {
-  heading: '"Space Grotesk", sans-serif',
-  mono: '"JetBrains Mono", monospace',
-};
-
 // --- Shared Components (duplicated from App.tsx) ---
 
 interface WatermarkProps {
@@ -19,7 +12,7 @@ interface WatermarkProps {
 
 const BackgroundWatermark: React.FC<WatermarkProps> = ({ className }) => (
     <div className={`absolute pointer-events-none select-none overflow-hidden flex items-center z-0 ${className || "inset-0 justify-center"}`}>
-        <span className="text-[20vw] font-bold text-white/[0.07] leading-none whitespace-nowrap" style={{ fontFamily: fonts.heading }}>X10</span>
+        <span className="text-[20vw] font-bold text-white/[0.07] leading-none whitespace-nowrap font-heading">X10</span>
     </div>
 );
 
@@ -40,9 +33,8 @@ const SectionHeader = ({ title, subtitle, gradient }: { title: string, subtitle:
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.1 }}
-      className={`text-4xl md:text-5xl font-bold ${gradient ? 'text-transparent bg-clip-text' : 'text-white'}`}
+      className={`text-4xl md:text-5xl font-bold font-heading ${gradient ? 'text-transparent bg-clip-text' : 'text-white'}`}
       style={{
-        fontFamily: fonts.heading,
         ...(gradient ? { backgroundImage: 'linear-gradient(to right, var(--color-accent-primary), var(--color-accent-secondary))' } : {}),
       }}
     >
@@ -55,7 +47,7 @@ const SectionHeader = ({ title, subtitle, gradient }: { title: string, subtitle:
 
 const ComparisonSection = () => {
     return (
-        <section className="py-24 bg-[#020202] border-t border-white/5 relative">
+        <section className="py-24 bg-[var(--color-bg-primary)] border-t border-white/5 relative">
             <BackgroundWatermark className="w-full h-full absolute left-0 top-0 flex items-center justify-start pl-[10%]" />
             <div className="max-w-[1600px] mx-auto px-6 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -305,7 +297,7 @@ const SwarmGraph = () => {
 
 const AgentShowcaseSection = () => {
   return (
-    <section id="solutions" className="relative py-24 bg-[#020202] overflow-hidden border-y border-white/5">
+    <section id="solutions" className="relative py-24 bg-[var(--color-bg-primary)] overflow-hidden border-y border-white/5">
       <BackgroundWatermark className="w-full h-full absolute left-0 top-0 flex items-center justify-start pl-[10%]" />
 
       <div className="max-w-[1600px] mx-auto px-6 relative z-10">
@@ -452,7 +444,7 @@ const LegalSwarmGraph = () => {
 
 const LegalAgentShowcaseSection = () => {
   return (
-    <section id="legal-ai" className="relative py-24 bg-[#020202] overflow-hidden border-y border-white/5">
+    <section id="legal-ai" className="relative py-24 bg-[var(--color-bg-primary)] overflow-hidden border-y border-white/5">
       <BackgroundWatermark className="w-full h-full absolute left-0 top-0 flex items-center justify-start pl-[10%]" />
 
       <div className="max-w-[1600px] mx-auto px-6 relative z-10">
@@ -471,8 +463,7 @@ const LegalAgentShowcaseSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-bold text-white"
-            style={{ fontFamily: fonts.heading }}
+            className="text-4xl md:text-5xl font-bold text-white font-heading"
           >
             Your AI Legal Team
           </motion.h2>
@@ -518,7 +509,7 @@ const LegalAgentShowcaseSection = () => {
 // --- Legal Comparison Section ---
 const LegalComparisonSection = () => {
     return (
-        <section className="py-24 bg-[#020202] border-t border-white/5 relative">
+        <section className="py-24 bg-[var(--color-bg-primary)] border-t border-white/5 relative">
             <BackgroundWatermark className="w-full h-full absolute left-0 top-0 flex items-center justify-start pl-[10%]" />
             <div className="max-w-[1600px] mx-auto px-6 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -677,7 +668,7 @@ const LegalCaseStudySection = () => {
     }, [activeMessage]);
 
     return (
-        <section className="py-32 bg-[#050505] relative overflow-hidden">
+        <section className="py-32 bg-[var(--color-bg-secondary)] relative overflow-hidden">
             <BackgroundWatermark className="w-full h-full absolute left-0 top-0 flex items-center justify-start pl-[10%]" />
             <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
 
@@ -687,7 +678,7 @@ const LegalCaseStudySection = () => {
                         <Scale className="w-4 h-4 text-purple-400" />
                         <span className="text-xs uppercase tracking-widest text-purple-200 font-mono">Live Agent Workflow</span>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight" style={{ fontFamily: fonts.heading }}>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight font-heading">
                         Watch Your AI Legal Team <br /> <span className="text-purple-400">In Action</span>
                     </h2>
                     <p className="text-gray-400 text-lg mb-8 leading-relaxed">
@@ -812,7 +803,7 @@ const EcommerceCaseStudySection = () => {
     }, [activeMessage]);
 
     return (
-        <section id="case-study" className="py-32 bg-[#050505] relative overflow-hidden">
+        <section id="case-study" className="py-32 bg-[var(--color-bg-secondary)] relative overflow-hidden">
             <BackgroundWatermark className="w-full h-full absolute left-0 top-0 flex items-center justify-start pl-[10%]" />
             <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
 
@@ -822,7 +813,7 @@ const EcommerceCaseStudySection = () => {
                         <Target className="w-4 h-4 text-accent-400" />
                         <span className="text-xs uppercase tracking-widest text-accent-100 font-mono">Live Agent Workflow</span>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight" style={{ fontFamily: fonts.heading }}>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight font-heading">
                         Watch Your AI Marketing Team <br /> <span className="text-accent-400">In Action</span>
                     </h2>
                     <p className="text-gray-400 text-lg mb-8 leading-relaxed">
@@ -916,11 +907,11 @@ const SolutionsNavbar = () => (
     <a href="/" className="flex items-center gap-3 group cursor-pointer">
       <LogoIcon variant="gears" />
       <div className="flex flex-col items-center">
-        <span className="text-xl font-bold tracking-tight text-white leading-none" style={{ fontFamily: fonts.heading }}>x10</span>
+        <span className="text-xl font-bold tracking-tight text-white leading-none font-heading">x10</span>
         <span className="text-[10px] tracking-[0.2em] uppercase font-bold leading-tight" style={{ color: 'var(--color-accent-primary)' }}>Automation</span>
       </div>
     </a>
-    <a href="/" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm" style={{ fontFamily: fonts.mono }}>
+    <a href="/" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-mono">
       <ArrowLeft className="w-4 h-4" /> Back to Home
     </a>
   </nav>
@@ -930,7 +921,7 @@ const SolutionsFooter = () => (
   <footer className="py-12 border-t border-white/10 bg-black px-6">
     <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
       <div className="text-center md:text-left">
-        <div className="text-2xl font-bold text-white mb-2" style={{ fontFamily: fonts.heading }}>X10 Automation</div>
+        <div className="text-2xl font-bold text-white mb-2 font-heading">X10 Automation</div>
         <p className="text-gray-500 text-sm">Architecting the autonomous future.</p>
       </div>
       <div className="text-center md:text-right">
@@ -948,20 +939,6 @@ const SolutionsFooter = () => (
 );
 
 const SolutionsPage: React.FC = () => {
-  type ColorTheme = 'electric-blue' | 'midnight-teal' | 'cyan-spectrum' | 'midnight-gold';
-  const DEFAULT_THEME: ColorTheme = 'midnight-gold';
-  const VALID_THEMES: ColorTheme[] = ['electric-blue', 'midnight-teal', 'cyan-spectrum', 'midnight-gold'];
-
-  const params = useMemo(() => new URLSearchParams(window.location.search), []);
-  const colorTheme = useMemo<ColorTheme>(() => {
-    const param = params.get('theme') as ColorTheme;
-    return VALID_THEMES.includes(param) ? param : DEFAULT_THEME;
-  }, [params]);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', colorTheme);
-  }, [colorTheme]);
-
   const solutionsSchemas = useMemo(() => [
     {
       "@context": "https://schema.org",
@@ -989,7 +966,7 @@ const SolutionsPage: React.FC = () => {
   ], []);
 
   return (
-    <div className="relative w-full min-h-screen bg-[#030303] text-white selection:bg-accent-400 selection:text-white font-sans">
+    <div className="relative w-full min-h-screen bg-[var(--color-bg-primary)] text-white selection:bg-accent-400 selection:text-white font-sans">
       <SEOMeta
         title="AI Marketing & Legal Agent Teams | X10 Automation Solutions"
         description="Explore X10 Automation's AI agent teams: 15-25 marketing specialists delivering SEO, GEO, email automation, and lead magnets, plus Praetor Legal AI searching 35M court decisions. 90-day pilot from €3K/mo + implementation fee."
@@ -1014,8 +991,7 @@ const SolutionsPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-6xl font-bold text-white mb-6"
-            style={{ fontFamily: fonts.heading }}
+            className="text-5xl md:text-6xl font-bold text-white mb-6 font-heading"
           >
             Our Solutions
           </motion.h1>

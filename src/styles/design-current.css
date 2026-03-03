@@ -1,0 +1,35 @@
+/* ==========================================================================
+   Design Variant: Current (control)
+   Pixel-perfect match of the existing midnight-gold theme.
+   Fonts: Space Grotesk / Sora / JetBrains Mono
+   Palette: Blue primary + gold accent (midnight-gold)
+   ========================================================================== */
+
+html[data-design="current"],
+html:not([data-design]) {
+  /* Fonts */
+  --font-display: 'Space Grotesk';
+  --font-body: 'Sora';
+  --font-mono: 'JetBrains Mono';
+
+  /* Accent colors — midnight-gold palette (exact match) */
+  --color-accent-primary: #60A5FA;
+  --color-accent-secondary: #F59E0B;
+  --color-accent-cta: #F59E0B;
+  --color-accent-deep: #1D4ED8;
+  --color-accent-glow: rgba(245, 158, 11, 0.3);
+  --color-accent-glow-strong: rgba(245, 158, 11, 0.6);
+  --color-accent-subtle: rgba(245, 158, 11, 0.1);
+  --color-accent-muted: rgba(245, 158, 11, 0.6);
+
+  /* Background */
+  --color-bg-primary: #030303;
+  --color-bg-secondary: #050505;
+  --color-bg-elevated: #0C1120;
+
+  /* Duration */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-emphasis: 800ms;
+}
