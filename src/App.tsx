@@ -439,7 +439,7 @@ const TransformationSection = () => {
     { icon: Users, title: "A Team Built for YOUR Business", desc: "Current: 2–3 agency people juggling 10 clients. You wait. With x10: 15–25 AI specialists with one focus — your revenue. Each agent handles a specific function: SEO analysis, email copywriting, competitive intelligence, lead magnet design. They share context and work in parallel." },
     { icon: Zap, title: "Days, Not Months", desc: "A full SEO audit: traditionally 2–3 weeks. With x10: 2 days, included. 6 email automation flows: traditionally 4–6 weeks. With x10: 1 week, included. 3 interactive lead magnets: traditionally 6–8 weeks. With x10: 3–5 days. These are real comparisons from live engagements." },
     { icon: Target, title: "Every Customer Treated Individually", desc: "AI makes true personalization possible at any scale. Behavioral email triggers. Lead scoring by engagement pattern. Product recommendations that adapt to each visitor. Not segments — individual people." },
-    { icon: Cpu, title: "Your Data Stays With You", desc: "We deploy open-source models — fine-tuned on your data, running on your infrastructure (or ours in the EU). No vendor lock-in. No data sent to US servers. GDPR-compliant from day one, not retrofitted. EU AI Act ready. Built in Romania, by people who understand EU regulation." }
+    { icon: Cpu, title: "Your Data Stays With You", desc: "GDPR-compliant from day one, not retrofitted. EU AI Act ready. No data sent to US servers without your consent. Private AI deployment available for sensitive data. Built in Romania, by people who understand EU regulation." }
   ];
 
   return (
@@ -710,7 +710,7 @@ const ComplianceBadges = () => {
     const badges = [
         { icon: Shield, label: "GDPR Compliant", desc: "Your data stays in the EU. Period." },
         { icon: Scale, label: "EU AI Act Ready", desc: "Risk-assessed, documented, audit-ready." },
-        { icon: Lock, label: "Open Source Stack", desc: "Inspectable. Auditable. No black boxes." },
+        { icon: Lock, label: "Transparent Process", desc: "Clear reporting. Auditable results. No black boxes." },
         { icon: Server, label: "On-Premise Option", desc: "Your infrastructure, your rules." },
         { icon: Users, label: "Human-in-the-Loop", desc: "AI executes. Humans decide. Always." },
     ];
@@ -911,17 +911,17 @@ const ROICalculatorSection = () => {
 
     const comparisons = [
         { category: "Monthly Cost", traditional: "€3,000–€8,000 retainer + setup fees", diy: "€49–€500 tool costs", x10: "€3,000–€6,500/mo + implementation fee" },
-        { category: "Setup Time", traditional: "4–8 weeks", diy: "1–4 weeks (if technical)", x10: "72 hours to first deliverable" },
-        { category: "Time to Results", traditional: "3–6 months", diy: "Ongoing DIY effort", x10: "Revenue by Week 3" },
+        { category: "Setup Time", traditional: "4–8 weeks", diy: "1–4 weeks (if technical)", x10: "1 week to first deliverable" },
+        { category: "Time to Results", traditional: "3–6 months", diy: "Ongoing DIY effort", x10: "Revenue impact by Month 2" },
         { category: "Team Size", traditional: "2–3 account staff", diy: "You + whoever you hire", x10: "15–25 AI specialists" },
         { category: "Customization", traditional: "High (slow)", diy: "Medium (complex)", x10: "High (fast)" },
-        { category: "Channels Covered", traditional: "2–3 typically", diy: "Whichever you configure", x10: "SEO, email, content, GEO, paid" },
+        { category: "Channels Covered", traditional: "2–3 typically", diy: "Whichever you configure", x10: "SEO, email, content, social, paid" },
         { category: "EU AI Act / GDPR", traditional: "Varies, often undefined", diy: "Depends on tools used", x10: "Built-in, architecture-level" },
-        { category: "Data Privacy", traditional: "Third-party tools (varies)", diy: "US-based servers (typically)", x10: "EU infrastructure, open-source" },
+        { category: "Data Privacy", traditional: "Third-party tools (varies)", diy: "US-based servers (typically)", x10: "GDPR-compliant, EU data processing" },
         { category: "Human Oversight", traditional: "Account manager reviews", diy: "You are the oversight", x10: "Approval gates on every action" },
         { category: "Your Time Required", traditional: "High (briefings, reviews)", diy: "Very high (you build it)", x10: "Low (approvals only)" },
         { category: "Commitment", traditional: "3–12 month contracts", diy: "Month-to-month", x10: "90-day pilot" },
-        { category: "Exit Risk", traditional: "High (vendor lock-in)", diy: "Medium (platform dependency)", x10: "Low (open-source, you own assets)" },
+        { category: "Exit Risk", traditional: "High (vendor lock-in)", diy: "Medium (platform dependency)", x10: "Low (you own all assets)" },
     ];
 
     return (
@@ -1119,7 +1119,7 @@ const ImplementationExample = () => {
     const steps = [
         { title: "Deep Research (Days 1-2)", desc: "We run 5 parallel audits before our first meeting. SEO, GEO readiness, email infrastructure, competitive landscape, content gaps. You receive a scored report with specific revenue calculations — not vague recommendations." },
         { title: "Strategy & Architecture (Days 2-3)", desc: "We design your custom AI team (15-25 specialists), build your 90-day roadmap with week-by-week deliverables, and calculate ROI for every initiative. You review and approve before we build." },
-        { title: "Build & Launch (Days 3-30)", desc: "Month 1: Fix critical technical debt, launch email automation, deploy interactive tools. Revenue from email by Week 3. Quick wins that fund the engagement." },
+        { title: "Build & Launch (Days 3-30)", desc: "Month 1: Fix critical technical debt, launch email automation, deploy interactive tools. Quick wins that fund the engagement." },
         { title: "Scale & Dominate (Days 31-90)", desc: "Months 2-3: Content authority, programmatic SEO, advanced automations, AI search optimization. Full performance review at Day 90 with before/after data." },
     ];
 

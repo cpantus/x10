@@ -794,7 +794,7 @@ const EcommerceCaseStudySection = () => {
         { agent: "Builder", role: "Deploy", text: "Launching abandoned cart automation — est. 3-5% recovery rate", color: "text-pink-400" },
         { agent: "Results", role: "Report", text: "Technical SEO fixes deployed — 30-min configs the agency missed for months", color: "text-green-400" },
         { agent: "Results", role: "Report", text: "3 interactive lead magnets live — 8.3% conversion vs 3.8% industry avg", color: "text-green-400" },
-        { agent: "Results", role: "Report", text: "Email automation generating revenue from Week 3", color: "text-green-400" },
+        { agent: "Results", role: "Report", text: "Email automation generating revenue by Month 2", color: "text-green-400" },
         { agent: "Results", role: "Report", text: "GEO readiness: 3.5/10 → 7.5/10 target in 90 days", color: "text-green-400" },
     ];
 
