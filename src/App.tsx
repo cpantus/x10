@@ -910,7 +910,7 @@ const ROICalculatorSection = () => {
     }, [teamSize, hourlyCost, hoursAutomated, annualSavings]);
 
     const comparisons = [
-        { category: "Monthly Cost", traditional: "€3,000–€8,000 retainer", diy: "€49–€500 tool costs", x10: "€3,000–€6,500 (full team)" },
+        { category: "Monthly Cost", traditional: "€3,000–€8,000 retainer + setup fees", diy: "€49–€500 tool costs", x10: "€3,000–€6,500/mo + implementation fee" },
         { category: "Setup Time", traditional: "4–8 weeks", diy: "1–4 weeks (if technical)", x10: "72 hours to first deliverable" },
         { category: "Time to Results", traditional: "3–6 months", diy: "Ongoing DIY effort", x10: "Revenue by Week 3" },
         { category: "Team Size", traditional: "2–3 account staff", diy: "You + whoever you hire", x10: "15–25 AI specialists" },
@@ -957,7 +957,7 @@ const ROICalculatorSection = () => {
                         <div>
                             <div className="flex justify-between items-baseline mb-3">
                                 <label className="text-sm text-gray-400 uppercase tracking-widest" style={{ fontFamily: fonts.mono }}>Avg. Hourly Cost</label>
-                                <span className="text-white font-bold text-lg" style={{ fontFamily: fonts.heading }}>{'\u20AC'}{hourlyCost}/hr</span>
+                                <span className="text-white font-bold text-lg" style={{ fontFamily: fonts.heading }}>{'\u20AC'}{hourlyCost}/hr <span className="text-gray-400 text-sm font-normal">({Math.round(hourlyCost / 1.7 * 160 * 5).toLocaleString()} RON net/mo)</span></span>
                             </div>
                             <input
                                 type="range"
@@ -1065,7 +1065,7 @@ const ROICalculatorSection = () => {
                         <div className="absolute inset-0 bg-gradient-to-r from-accent-400/5 to-transparent" />
                         <div className="relative z-10">
                             <div className="text-accent-400 text-xs uppercase tracking-widest mb-2 font-mono">x10 Automation</div>
-                            <div className="text-xl font-bold text-white" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>90 days · €3-6.5K/mo</div>
+                            <div className="text-xl font-bold text-white" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>90 days · €3-6.5K/mo + impl. fee</div>
                         </div>
                     </div>
                 </div>
