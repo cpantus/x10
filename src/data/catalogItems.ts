@@ -45,7 +45,7 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'LM-A1',
     title: 'Treatment Cost Estimator',
-    desc: 'Patients compare clinic prices against city averages with financing options. Captures high-intent leads searching for procedure pricing.',
+    desc: 'Patients compare your clinic prices against city averages with financing options. Production-tested lead magnet that captures high-intent visitors searching for procedure pricing.',
     appType: 'LM',
     vertical: 'healthcare',
     complexity: 'low',
@@ -66,7 +66,7 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'DE-A1',
     title: 'Patient Reactivation Engine',
-    desc: 'Scores dormant patients by reactivation probability using visit recency, procedure type, and seasonal patterns. Reactivation is 5x cheaper than acquisition.',
+    desc: 'Identifies which dormant patients are most likely to return based on visit recency, procedure type, and seasonal patterns. Reactivates past patients at 1/5 the cost of finding new ones.',
     appType: 'DE',
     vertical: 'healthcare',
     complexity: 'medium',
@@ -76,7 +76,7 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'AP-A2',
     title: 'Review Generation & Response Pipeline',
-    desc: 'Post-appointment NPS routing sends happy patients to Google Reviews and catches unhappy ones privately. AI drafts personalized responses for approval.',
+    desc: 'Post-appointment routing sends happy patients to Google Reviews and catches unhappy ones privately before they post. AI drafts personalized responses — proven to deliver 300-500% more reviews.',
     appType: 'AP',
     vertical: 'healthcare',
     complexity: 'medium',
@@ -117,11 +117,11 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'DB-A1',
     title: 'Practice Performance Dashboard',
-    desc: 'Real-time view of patient volume, revenue, no-show rates, practitioner utilization, and marketing ROI. Clinics with dashboards retain agency services 3x longer.',
+    desc: 'Real-time view of patient volume, revenue, no-show rates, practitioner utilization, and marketing ROI. Spot underperforming services and over-capacity gaps before they cost you money.',
     appType: 'DB',
     vertical: 'healthcare',
     complexity: 'medium',
-    metric: '3x client retention',
+    metric: '15-20% fewer no-shows',
     startingFrom: 1200,
   },
 
@@ -221,7 +221,7 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'LM-C3',
     title: 'Investment Property ROI Calculator',
-    desc: 'Investors compare rental yield vs bank deposits and government bonds. Airbnb vs long-term rental comparison with net yield after all expenses.',
+    desc: 'Investors see rental yield vs bank deposits and bonds, with Airbnb vs long-term comparison after all expenses. Captures high-net-worth leads at the research stage.',
     appType: 'LM',
     vertical: 'real-estate',
     complexity: 'low',
@@ -231,11 +231,11 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'SC-C1',
     title: 'Real Estate Market Intelligence Scraper',
-    desc: 'Scrapes all active listings, tracks price changes and new listings daily. Foundation data layer that feeds neighborhood tools, CMAs, and dashboards.',
+    desc: 'Tracks every active listing, price change, and new property daily across major portals. Know the real market price in any neighborhood before your competitors do.',
     appType: 'SC',
     vertical: 'real-estate',
     complexity: 'medium',
-    metric: 'Feeds 6+ downstream tools',
+    metric: '2-3 days faster than competitors',
     startingFrom: 1200,
   },
   {
@@ -251,7 +251,7 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'AP-C1',
     title: 'Lead Nurture Pipeline',
-    desc: 'Multi-touch WhatsApp + email sequence from portal inquiry to viewing to offer. Day 1 property match, Day 3 neighborhood guide, Day 7 viewing invite. 25-40% conversion lift.',
+    desc: 'Automated WhatsApp + email sequence from inquiry to viewing to offer — property match on Day 1, neighborhood guide on Day 3, viewing invite on Day 7. Converts leads that would otherwise go cold.',
     appType: 'AP',
     vertical: 'real-estate',
     complexity: 'medium',
@@ -261,7 +261,7 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'AT-C1',
     title: 'Agency Digital Marketing Audit',
-    desc: 'Audits website, marketplace profile, social presence, listing quality, and lead capture infrastructure. Converts at 40%\u2014highest of any vertical.',
+    desc: 'Audits website, marketplace profile, social presence, listing quality, and lead capture infrastructure. Pinpoints exactly where you are losing leads to competing agencies.',
     appType: 'AT',
     vertical: 'real-estate',
     complexity: 'low',
@@ -271,11 +271,11 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'CB-C1',
     title: '24/7 Property Inquiry Assistant',
-    desc: 'Answers listing questions, qualifies buyers by budget and preferences, suggests matching properties, and schedules viewings\u2014all after hours.',
+    desc: 'Answers listing questions, qualifies buyers by budget and preferences, suggests matching properties, and schedules viewings — all after hours. Captures leads that would otherwise go to the next agent.',
     appType: 'CB',
     vertical: 'real-estate',
     complexity: 'medium',
-    metric: '50+ after-hours inquiries',
+    metric: '35% after-hours conversion',
     startingFrom: 1200,
   },
   {
@@ -307,7 +307,7 @@ export const catalogItems: CatalogItem[] = [
     appType: 'LM',
     vertical: 'trades',
     complexity: 'low',
-    metric: 'Drives EUR 150-300/yr contracts',
+    metric: 'EUR 150-300/yr per contract',
     startingFrom: 400,
   },
   {
@@ -323,7 +323,7 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'F-DE-01',
     title: 'Service History & Property Intelligence',
-    desc: 'Enriches job records with property age, value, and cross-sell opportunities. Identifies 50-80 upsell targets from 500 past clients via neighborhood clustering.',
+    desc: 'Analyzes your past job records against property age, value, and service history to surface cross-sell opportunities. Finds 50-80 upsell-ready customers hiding in your existing client base of 500.',
     appType: 'DE',
     vertical: 'trades',
     complexity: 'medium',
@@ -353,17 +353,17 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'F-CB-01',
     title: 'First Response AI Agent',
-    desc: 'AI first responder across website, WhatsApp, and Facebook. Qualifies leads, requests photos, classifies urgency, and schedules callbacks\u201424/7 in under 30 seconds.',
+    desc: 'AI first responder across website, WhatsApp, and Facebook — qualifies leads, requests photos, classifies urgency, and schedules callbacks 24/7 in under 30 seconds. Never lose a lead to voicemail again.',
     appType: 'CB',
     vertical: 'trades',
     complexity: 'medium',
-    metric: '100% inbound capture',
+    metric: '85% after-hours capture',
     startingFrom: 1200,
   },
   {
     id: 'F-PC-01',
     title: 'City + Service Landing Pages',
-    desc: 'Pages for every [service] x [location]: "Instalator Sector 3 Bucuresti" with click-to-call, service zone map, and local reviews. 8-12% conversion.',
+    desc: 'Generates pages for every service and location combination — "Instalator Sector 3 Bucuresti" — with click-to-call, service zone map, and local reviews. Converts 8-12% of visitors into booked jobs.',
     appType: 'PC',
     vertical: 'trades',
     complexity: 'low',
@@ -373,11 +373,11 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'F-DB-01',
     title: 'Field Service Dashboard',
-    desc: 'Single-screen view of job pipeline, revenue, team utilization, seasonal demand trends, and customer satisfaction. Clients with dashboards retain 3x longer.',
+    desc: 'Single-screen view of job pipeline, revenue, team utilization, seasonal demand trends, and customer satisfaction. See which services and crews are profitable and which are costing you money.',
     appType: 'DB',
     vertical: 'trades',
     complexity: 'medium',
-    metric: '3x client retention',
+    metric: '10-15% revenue per tech increase',
     startingFrom: 1200,
   },
 
@@ -415,11 +415,11 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'DE-H1',
     title: 'Prospect Company Profiler',
-    desc: 'Enriches target companies with ONRC revenue, employee count, industry code, and social presence. Outputs fit-scored prospect lists that convert 3-5x better.',
+    desc: 'Enriches target companies with ONRC revenue, employee count, industry code, and social presence. Get fit-scored prospect lists so your team only calls companies likely to buy.',
     appType: 'DE',
     vertical: 'professional-services',
     complexity: 'medium',
-    metric: '3-5x better outreach',
+    metric: '3-5x higher response rate',
     startingFrom: 1200,
   },
   {
@@ -445,11 +445,11 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'PC-H1',
     title: 'Service + City Landing Pages',
-    desc: 'Generates "Contabil Cluj-Napoca" and "IT Consulting Timisoara" pages with localized content, team bios, and ProfessionalService schema markup.',
+    desc: 'Generates "Contabil Cluj-Napoca" and "IT Consulting Timisoara" pages with localized content, team bios, and ProfessionalService schema markup. Each page ranks for searches your competitors are ignoring.',
     appType: 'PC',
     vertical: 'professional-services',
     complexity: 'low',
-    metric: '120 consultations/month',
+    metric: '15-25 inquiries/month per 50 pages',
     startingFrom: 400,
   },
   {
@@ -467,7 +467,7 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'LM-I1',
     title: 'Product Compatibility Checker',
-    desc: 'Customers enter vehicle, pet breed, or room dimensions to see exactly which products fit. Eliminates the #1 reason for returns and boosts buyer confidence.',
+    desc: 'Customers enter vehicle, pet breed, or room dimensions to see exactly which products fit. Production-tested tool that eliminates the #1 reason for returns and boosts buyer confidence.',
     appType: 'LM',
     vertical: 'retail-ecommerce',
     complexity: 'low',
@@ -478,7 +478,7 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'LM-I2',
     title: 'Total Cost of Ownership Calculator',
-    desc: 'New owners get an itemized annual cost projection with essentials, upgrades, and replacement schedules. Captures customers at the start of a multi-year relationship.',
+    desc: 'New owners get an itemized annual cost projection with essentials, upgrades, and replacement schedules. Production-tested lead magnet that captures customers at the start of a multi-year buying relationship.',
     appType: 'LM',
     vertical: 'retail-ecommerce',
     complexity: 'low',
@@ -489,7 +489,7 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'SC-I1',
     title: 'Competitor Price Tracker',
-    desc: 'Scrapes competitor sites and eMAG daily. Flags overpriced products (losing sales) and underpriced ones (leaving margin). Dynamic pricing lifts margin 3-8%.',
+    desc: 'Scrapes competitor sites and eMAG daily, flagging overpriced products losing sales and underpriced ones leaving margin on the table. Dynamic pricing adjustments lift overall margin 3-8%.',
     appType: 'SC',
     vertical: 'retail-ecommerce',
     complexity: 'medium',
@@ -499,11 +499,11 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'DE-I2',
     title: 'Ownership Change Monitor',
-    desc: 'Monitors public vehicle registry for new owners, cross-references insurance and marketplace data. Reaches new buyers at the moment of maximum purchase intent.',
+    desc: 'Detects new vehicle owners from public registry and marketplace data, then triggers targeted offers at the moment of maximum purchase intent. Production-tested pipeline that turns ownership changes into sales.',
     appType: 'DE',
     vertical: 'retail-ecommerce',
     complexity: 'high',
-    metric: '500 changes tracked/month',
+    metric: '12-18% conversion on new owners',
     proven: true,
     startingFrom: 2500,
   },
@@ -520,7 +520,7 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'AT-I1',
     title: 'E-commerce Search Visibility Audit',
-    desc: 'Technical SEO, on-page optimization, and AI search visibility across ChatGPT, Perplexity, and Gemini. Quantifies exact missed revenue from poor search presence.',
+    desc: 'Audits technical SEO, on-page optimization, and AI search visibility across ChatGPT, Perplexity, and Gemini. Production-tested audit that quantifies exact missed revenue from poor search presence.',
     appType: 'AT',
     vertical: 'retail-ecommerce',
     complexity: 'low',
@@ -551,11 +551,11 @@ export const catalogItems: CatalogItem[] = [
   {
     id: 'DB-I1',
     title: 'E-commerce Performance Dashboard',
-    desc: 'Unified view of sales, inventory turnover, marketing ROI, customer cohorts, and margin analysis. Identifies which products, channels, and campaigns drive profit.',
+    desc: 'Unified view of sales, inventory turnover, marketing ROI, customer cohorts, and margin analysis. See exactly which products, channels, and campaigns drive profit — and which ones drain it.',
     appType: 'DB',
     vertical: 'retail-ecommerce',
     complexity: 'medium',
-    metric: '12-18% margin visibility',
+    metric: '8-15% profit margin improvement',
     startingFrom: 1200,
   },
 ];

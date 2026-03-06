@@ -728,16 +728,16 @@ const ComplianceBadges = () => {
 
 const IndustriesSection = () => {
     const industries = [
-        { name: "Healthcare", apps: 21, examples: ["Patient intake automation", "Appointment scheduling", "Health calculators"] },
-        { name: "Legal", apps: 18, examples: ["Document analysis", "Case research", "Client intake forms"] },
-        { name: "Real Estate", apps: 19, examples: ["Property valuation tools", "Lead qualification", "Market reports"] },
-        { name: "Trades", apps: 16, examples: ["Quote generators", "Job scheduling", "Inventory management"] },
-        { name: "Professional Services", apps: 17, examples: ["Proposal generators", "Time tracking", "Client portals"] },
-        { name: "Retail & E-commerce", apps: 21, examples: ["Product recommenders", "Cart recovery", "Pricing intelligence"] },
+        { name: "Healthcare", apps: 8, examples: ["Patient intake automation", "Appointment scheduling", "Health calculators"] },
+        { name: "Legal", apps: 8, examples: ["Document analysis", "Case research", "Client intake forms"] },
+        { name: "Real Estate", apps: 8, examples: ["Property valuation tools", "Lead qualification", "Market reports"] },
+        { name: "Trades", apps: 9, examples: ["Quote generators", "Job scheduling", "Inventory management"] },
+        { name: "Professional Services", apps: 8, examples: ["Proposal generators", "Time tracking", "Client portals"] },
+        { name: "Retail & E-commerce", apps: 9, examples: ["Product recommenders", "Cart recovery", "Pricing intelligence"] },
     ];
 
     return (
-        <section id="industries" aria-label="Industries Served — 153 Specs Across 9 Verticals" className="py-32 bg-[var(--color-bg-secondary)] relative overflow-hidden dot-grid">
+        <section id="industries" aria-label="Industries Served — 50 Solutions Across 6 Verticals" className="py-32 bg-[var(--color-bg-secondary)] relative overflow-hidden dot-grid">
             <BackgroundWatermark />
             <div className="max-w-[1600px] mx-auto px-6 relative z-10">
                 <SectionHeader title="Industries We Serve" subtitle="6 Verticals & Growing" />
@@ -806,9 +806,9 @@ const UseCaseCard: React.FC<{ title: string, metric: string, label: string, desc
 
 const ImplementationsSection = () => {
   const useCases = [
-    { title: "Lead Magnets", metric: "30", label: "Ready Specs", desc: "Interactive calculators, quizzes, and configurators that capture leads at 2x industry average conversion rates." },
-    { title: "Automation Pipelines", metric: "22", label: "Ready Specs", desc: "Email sequences, CRM workflows, and behavioral triggers that recover revenue on autopilot." },
-    { title: "Programmatic Content", metric: "27", label: "Ready Specs", desc: "SEO-optimized landing pages, product descriptions, and blog content generated at scale." },
+    { title: "Lead Magnets", metric: "10", label: "Ready Specs", desc: "Interactive calculators, quizzes, and configurators that capture leads at 2x industry average conversion rates." },
+    { title: "Automation Pipelines", metric: "5", label: "Ready Specs", desc: "Email sequences, CRM workflows, and behavioral triggers that recover revenue on autopilot." },
+    { title: "Programmatic Content", metric: "6", label: "Ready Specs", desc: "SEO-optimized landing pages, product descriptions, and blog content generated at scale." },
     { title: "AI Chatbots", metric: "17", label: "Ready Specs", desc: "Intelligent customer service and sales bots trained on your specific business knowledge." },
     { title: "Data Scrapers", metric: "18", label: "Ready Specs", desc: "Competitive intelligence, pricing monitors, and market data collection running 24/7." },
     { title: "Audit Tools", metric: "12", label: "Ready Specs", desc: "Comprehensive SEO, GEO readiness, and digital presence scoring with actionable recommendations." }
