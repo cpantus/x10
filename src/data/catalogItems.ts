@@ -1,5 +1,5 @@
 export type AppType = 'LM' | 'SC' | 'DE' | 'AP' | 'AT' | 'CB' | 'PC' | 'DB';
-export type Vertical = 'healthcare' | 'legal' | 'real-estate' | 'education' | 'wellness' | 'trades' | 'food-hospitality' | 'professional-services' | 'retail-ecommerce';
+export type Vertical = 'healthcare' | 'legal' | 'real-estate' | 'trades' | 'professional-services' | 'retail-ecommerce';
 export type ComplexityTier = 'low' | 'medium' | 'high';
 
 export interface CatalogItem {
@@ -29,10 +29,7 @@ export const VERTICAL_META: Record<Vertical, { label: string; icon: string }> = 
   healthcare: { label: 'Healthcare', icon: 'Heart' },
   legal: { label: 'Legal', icon: 'Scale' },
   'real-estate': { label: 'Real Estate', icon: 'Home' },
-  education: { label: 'Education', icon: 'GraduationCap' },
-  wellness: { label: 'Wellness', icon: 'Sparkles' },
   trades: { label: 'Trades', icon: 'Wrench' },
-  'food-hospitality': { label: 'Food & Hospitality', icon: 'UtensilsCrossed' },
   'professional-services': { label: 'Professional Services', icon: 'Briefcase' },
   'retail-ecommerce': { label: 'Retail / E-commerce', icon: 'ShoppingCart' },
 };
@@ -44,7 +41,7 @@ export const COMPLEXITY_META: Record<ComplexityTier, { label: string; colorClass
 };
 
 export const catalogItems: CatalogItem[] = [
-  // ─── Healthcare (A) ─── 2 LM, 1 DE, 1 AP, 1 AT, 1 CB, 1 PC ───
+  // --- Healthcare (A) --- 2 LM, 1 DE, 1 AP, 1 AT, 1 CB, 1 PC, 1 DB ---
   {
     id: 'LM-A1',
     title: 'Treatment Cost Estimator',
@@ -117,8 +114,18 @@ export const catalogItems: CatalogItem[] = [
     metric: '9 new patients/mo',
     startingFrom: 400,
   },
+  {
+    id: 'DB-A1',
+    title: 'Practice Performance Dashboard',
+    desc: 'Real-time view of patient volume, revenue, no-show rates, practitioner utilization, and marketing ROI. Clinics with dashboards retain agency services 3x longer.',
+    appType: 'DB',
+    vertical: 'healthcare',
+    complexity: 'medium',
+    metric: '3x client retention',
+    startingFrom: 1200,
+  },
 
-  // ─── Legal (B) ─── 1 LM, 1 SC, 1 DE, 1 AP, 1 CB, 1 PC, 1 DB ───
+  // --- Legal (B) --- 1 LM, 1 SC, 1 DE, 1 AP, 1 AT, 1 CB, 1 PC, 1 DB ---
   {
     id: 'LM-B1',
     title: 'Legal Fee Estimator',
@@ -160,6 +167,16 @@ export const catalogItems: CatalogItem[] = [
     startingFrom: 2500,
   },
   {
+    id: 'AT-B1',
+    title: 'Law Firm Digital Audit',
+    desc: 'Scores website authority, Google visibility, review reputation, content depth, and referral channels. Benchmarks against top 10 firms in the same city.',
+    appType: 'AT',
+    vertical: 'legal',
+    complexity: 'low',
+    metric: '35% convert to retainer',
+    startingFrom: 400,
+  },
+  {
     id: 'CB-B1',
     title: '24/7 Legal Inquiry Qualifier',
     desc: 'Qualifies inquiries by case type, urgency, and practice area fit\u201424/7. Routes qualified leads and schedules consultations automatically.',
@@ -190,7 +207,7 @@ export const catalogItems: CatalogItem[] = [
     startingFrom: 1200,
   },
 
-  // ─── Real Estate (C) ─── 2 LM, 1 SC, 1 DE, 1 AT, 1 CB, 1 PC ───
+  // --- Real Estate (C) --- 2 LM, 1 SC, 1 DE, 1 AP, 1 AT, 1 CB, 1 PC ---
   {
     id: 'LM-C1',
     title: 'Property Affordability Calculator',
@@ -232,6 +249,16 @@ export const catalogItems: CatalogItem[] = [
     startingFrom: 1200,
   },
   {
+    id: 'AP-C1',
+    title: 'Lead Nurture Pipeline',
+    desc: 'Multi-touch WhatsApp + email sequence from portal inquiry to viewing to offer. Day 1 property match, Day 3 neighborhood guide, Day 7 viewing invite. 25-40% conversion lift.',
+    appType: 'AP',
+    vertical: 'real-estate',
+    complexity: 'medium',
+    metric: '25-40% conversion lift',
+    startingFrom: 1200,
+  },
+  {
     id: 'AT-C1',
     title: 'Agency Digital Marketing Audit',
     desc: 'Audits website, marketplace profile, social presence, listing quality, and lead capture infrastructure. Converts at 40%\u2014highest of any vertical.',
@@ -262,151 +289,7 @@ export const catalogItems: CatalogItem[] = [
     startingFrom: 400,
   },
 
-  // ─── Education (D) ─── 1 LM, 1 SC, 1 AP, 1 AT, 1 CB, 1 PC, 1 DB ───
-  {
-    id: 'D-LM-01',
-    title: 'Enrollment Readiness Checker',
-    desc: 'Prospective students assess readiness with age, documents, schedule, and budget checks. Outputs personalized readiness score with clear next steps.',
-    appType: 'LM',
-    vertical: 'education',
-    complexity: 'low',
-    metric: '8-10% conversion',
-    startingFrom: 400,
-  },
-  {
-    id: 'D-SC-01',
-    title: 'Competitor Enrollment Monitor',
-    desc: 'Scrapes competitor websites, Facebook, and Google for pricing changes, new courses, review trends, and promotions. Weekly competitive intelligence digest.',
-    appType: 'SC',
-    vertical: 'education',
-    complexity: 'low',
-    metric: 'Prevents 5-10% revenue loss',
-    startingFrom: 400,
-  },
-  {
-    id: 'D-AP-01',
-    title: 'Enrollment Nurture Pipeline',
-    desc: 'Multi-touch WhatsApp + email sequence from lead capture to enrollment. Day 0 info pack, Day 3 social proof, Day 7 urgency trigger. 25-40% conversion lift.',
-    appType: 'AP',
-    vertical: 'education',
-    complexity: 'medium',
-    metric: '25-40% conversion lift',
-    startingFrom: 1200,
-  },
-  {
-    id: 'D-AT-01',
-    title: 'Education Digital Presence Audit',
-    desc: 'Automated audit of website SEO, Google Business Profile, review volume, social media, and mobile experience with branded PDF improvement roadmap.',
-    appType: 'AT',
-    vertical: 'education',
-    complexity: 'low',
-    metric: '18% close rate',
-    startingFrom: 400,
-  },
-  {
-    id: 'D-CB-01',
-    title: 'Enrollment Assistant Chatbot',
-    desc: 'Trained on course catalog, pricing, and FAQs. Handles 80% of pre-enrollment questions 24/7 and captures leads for human handoff when needed.',
-    appType: 'CB',
-    vertical: 'education',
-    complexity: 'medium',
-    metric: 'Recovers EUR 1,200/wk',
-    startingFrom: 1200,
-  },
-  {
-    id: 'D-PC-01',
-    title: 'City & Neighborhood Landing Pages',
-    desc: 'SEO-optimized pages targeting "scoala de soferi [oras]" keywords with local context, testimonials, and EducationalOrganization schema markup.',
-    appType: 'PC',
-    vertical: 'education',
-    complexity: 'low',
-    metric: '40-80 leads/month',
-    startingFrom: 400,
-  },
-  {
-    id: 'D-DB-01',
-    title: 'School Performance Dashboard',
-    desc: 'Real-time view of enrollment pipeline, revenue, instructor utilization, dropout risk heatmap, and marketing ROI. Clients with dashboards retain 3x longer.',
-    appType: 'DB',
-    vertical: 'education',
-    complexity: 'medium',
-    metric: '3x client retention',
-    startingFrom: 1200,
-  },
-
-  // ─── Wellness (E) ─── 1 LM, 1 DE, 2 AP, 1 CB, 1 PC, 1 DB ───
-  {
-    id: 'E-LM-01',
-    title: 'Personalized Wellness Assessment',
-    desc: 'Interactive quiz assessing stress, skin type, fitness, and sleep quality. Outputs wellness score with recommended services and visit frequency.',
-    appType: 'LM',
-    vertical: 'wellness',
-    complexity: 'low',
-    metric: '10-15% conversion',
-    startingFrom: 400,
-  },
-  {
-    id: 'E-DE-01',
-    title: 'Client Profile Enrichment Engine',
-    desc: 'Transforms basic booking data into actionable CRM profiles with visit predictions, churn risk scores, and referral network mapping.',
-    appType: 'DE',
-    vertical: 'wellness',
-    complexity: 'medium',
-    metric: 'Reactivates 8-15% clients',
-    startingFrom: 1200,
-  },
-  {
-    id: 'E-AP-01',
-    title: 'Time-Based Rebooking Engine',
-    desc: 'Sends automated WhatsApp reminders at optimal rebooking intervals\u2014haircut 6 weeks, massage 4 weeks, facial 8 weeks. Highest-ROI wellness automation.',
-    appType: 'AP',
-    vertical: 'wellness',
-    complexity: 'medium',
-    metric: '30-50% more rebookings',
-    startingFrom: 1200,
-  },
-  {
-    id: 'E-AP-02',
-    title: 'No-Show Prevention Pipeline',
-    desc: '48h WhatsApp confirmation, 2h SMS reminder, next-day rebooking for no-shows. Reduces no-show rate from 20% to 5-8% and enables smart overbooking.',
-    appType: 'AP',
-    vertical: 'wellness',
-    complexity: 'medium',
-    metric: '20% to 5% no-shows',
-    startingFrom: 1200,
-  },
-  {
-    id: 'E-CB-01',
-    title: 'Booking & Consultation Chatbot',
-    desc: 'Instagram DM and website chatbot that recommends services, checks real-time availability, and books via Booksy/Fresha. Converts 40-60% of DMs.',
-    appType: 'CB',
-    vertical: 'wellness',
-    complexity: 'medium',
-    metric: '40-60% DM conversion',
-    startingFrom: 1200,
-  },
-  {
-    id: 'E-PC-01',
-    title: 'Service Area Landing Pages',
-    desc: 'Local pages for every neighborhood with parking, transport, testimonials, and booking CTA. "Salon manichiura Drumul Taberei" converts at 6-10%.',
-    appType: 'PC',
-    vertical: 'wellness',
-    complexity: 'low',
-    metric: '6-10% local conversion',
-    startingFrom: 400,
-  },
-  {
-    id: 'E-DB-01',
-    title: 'Wellness Business Command Center',
-    desc: 'Single-screen dashboard: bookings, revenue, retention rates, no-show trends, Instagram metrics, and practitioner utilization. 85% client retention at 12 months.',
-    appType: 'DB',
-    vertical: 'wellness',
-    complexity: 'medium',
-    metric: '85% 12-month retention',
-    startingFrom: 1200,
-  },
-
-  // ─── Trades (F) ─── 2 LM, 1 SC, 1 DE, 1 AP, 1 CB, 1 PC ───
+  // --- Trades (F) --- 2 LM, 1 SC, 1 DE, 1 AP, 1 AT, 1 CB, 1 PC, 1 DB ---
   {
     id: 'F-LM-01',
     title: 'Instant Cost Estimator',
@@ -458,6 +341,16 @@ export const catalogItems: CatalogItem[] = [
     startingFrom: 1200,
   },
   {
+    id: 'F-AT-01',
+    title: 'Trades Digital Presence Audit',
+    desc: 'Scores Google profile, website, review volume, response rate, and local SEO across 10 dimensions. Branded PDF report with prioritized improvement roadmap.',
+    appType: 'AT',
+    vertical: 'trades',
+    complexity: 'low',
+    metric: '25% close rate',
+    startingFrom: 400,
+  },
+  {
     id: 'F-CB-01',
     title: 'First Response AI Agent',
     desc: 'AI first responder across website, WhatsApp, and Facebook. Qualifies leads, requests photos, classifies urgency, and schedules callbacks\u201424/7 in under 30 seconds.',
@@ -477,80 +370,18 @@ export const catalogItems: CatalogItem[] = [
     metric: '8-12% conversion rate',
     startingFrom: 400,
   },
-
-  // ─── Food & Hospitality (G) ─── 1 LM, 1 SC, 1 DE, 1 AP, 1 AT, 1 CB, 1 PC ───
   {
-    id: 'LM-G1',
-    title: 'Event Cost Estimator',
-    desc: 'Guests configure event type, guest count, menu, and drinks to see an instant cost breakdown across three tiers. Captures wedding and corporate leads.',
-    appType: 'LM',
-    vertical: 'food-hospitality',
-    complexity: 'low',
-    metric: '8.3% conversion',
-    startingFrom: 400,
-  },
-  {
-    id: 'SC-G1',
-    title: 'OTA Rate Parity Monitor',
-    desc: 'Scrapes Booking.com, TripAdvisor, and Google Hotels daily for competitor pricing and rate parity violations. Enables dynamic pricing that lifts RevPAR 5-12%.',
-    appType: 'SC',
-    vertical: 'food-hospitality',
+    id: 'F-DB-01',
+    title: 'Field Service Dashboard',
+    desc: 'Single-screen view of job pipeline, revenue, team utilization, seasonal demand trends, and customer satisfaction. Clients with dashboards retain 3x longer.',
+    appType: 'DB',
+    vertical: 'trades',
     complexity: 'medium',
-    metric: '5-12% RevPAR increase',
+    metric: '3x client retention',
     startingFrom: 1200,
-  },
-  {
-    id: 'DE-G1',
-    title: 'Guest Profile Enrichment Engine',
-    desc: 'Enriches reservation data with social profiles, company affiliation, dietary preferences, and lifetime value scoring. Personalized upsells lift revenue 12-18%.',
-    appType: 'DE',
-    vertical: 'food-hospitality',
-    complexity: 'medium',
-    metric: '12-18% revenue lift',
-    startingFrom: 1200,
-  },
-  {
-    id: 'AP-G1',
-    title: 'Post-Stay Review & Rebooking Pipeline',
-    desc: 'Post-checkout: thank you + review request, personalized rebooking offer, loyalty invitation. Negative sentiment triggers private recovery instead of public review.',
-    appType: 'AP',
-    vertical: 'food-hospitality',
-    complexity: 'medium',
-    metric: '200-400% more reviews',
-    startingFrom: 1200,
-  },
-  {
-    id: 'AT-G1',
-    title: 'HoReCa Digital Health Check',
-    desc: 'Scans entire digital footprint: GBP, website speed, social media, review scores, menu accessibility, and booking friction. Full report in 48 hours.',
-    appType: 'AT',
-    vertical: 'food-hospitality',
-    complexity: 'low',
-    metric: '25-35% close rate',
-    startingFrom: 400,
-  },
-  {
-    id: 'CB-G1',
-    title: 'AI Reservation Assistant',
-    desc: 'Handles natural language booking via website and Messenger: "Table for 4 Saturday 8pm." Checks availability, confirms, answers FAQs\u201424/7.',
-    appType: 'CB',
-    vertical: 'food-hospitality',
-    complexity: 'medium',
-    metric: '30 more bookings/month',
-    startingFrom: 1200,
-  },
-  {
-    id: 'PC-G1',
-    title: 'Local SEO City Landing Pages',
-    desc: 'Optimized pages for every neighborhood with localized content, menu highlights, reviews, and reservation widget. Targets "restaurant near me" searches.',
-    appType: 'PC',
-    vertical: 'food-hospitality',
-    complexity: 'low',
-    metric: '60 bookings/month',
-    startingFrom: 400,
   },
 
-  // ─── Professional Services (H) ─── 1 LM, 2 SC, 1 DE, 1 AT, 1 PC, 1 DB ───
+  // --- Professional Services (H) --- 1 LM, 2 SC, 1 DE, 1 AT, 1 CB, 1 PC, 1 DB ---
   {
     id: 'LM-H1',
     title: 'Professional Services ROI Calculator',
@@ -602,6 +433,16 @@ export const catalogItems: CatalogItem[] = [
     startingFrom: 400,
   },
   {
+    id: 'CB-H1',
+    title: '24/7 Inquiry Qualifier',
+    desc: 'Qualifies inbound inquiries by service need, company size, and budget fit. Routes qualified leads and schedules consultations automatically\u201424/7.',
+    appType: 'CB',
+    vertical: 'professional-services',
+    complexity: 'medium',
+    metric: '35% more qualified leads',
+    startingFrom: 1200,
+  },
+  {
     id: 'PC-H1',
     title: 'Service + City Landing Pages',
     desc: 'Generates "Contabil Cluj-Napoca" and "IT Consulting Timisoara" pages with localized content, team bios, and ProfessionalService schema markup.',
@@ -622,7 +463,7 @@ export const catalogItems: CatalogItem[] = [
     startingFrom: 1200,
   },
 
-  // ─── Retail / E-commerce (I) ─── 2 LM, 1 SC, 1 DE, 1 AP, 1 AT, 1 PC ───
+  // --- Retail / E-commerce (I) --- 2 LM, 1 SC, 1 DE, 1 AP, 1 AT, 1 CB, 1 PC, 1 DB ---
   {
     id: 'LM-I1',
     title: 'Product Compatibility Checker',
@@ -688,6 +529,16 @@ export const catalogItems: CatalogItem[] = [
     startingFrom: 400,
   },
   {
+    id: 'CB-I1',
+    title: 'AI Shopping Assistant',
+    desc: 'Guides customers through product selection with natural conversation. Handles sizing, compatibility, and comparison questions\u2014converts 40% of engaged visitors.',
+    appType: 'CB',
+    vertical: 'retail-ecommerce',
+    complexity: 'medium',
+    metric: '40% engaged conversion',
+    startingFrom: 1200,
+  },
+  {
     id: 'PC-I1',
     title: 'City + Category Landing Pages',
     desc: 'Generates "Piese Auto Brasov" and "Hrana Caini Cluj" pages with local delivery info, product highlights, and Product schema markup. 100 pages = 9,600+ visits/month.',
@@ -696,5 +547,15 @@ export const catalogItems: CatalogItem[] = [
     complexity: 'low',
     metric: '9,600 visits/month',
     startingFrom: 400,
+  },
+  {
+    id: 'DB-I1',
+    title: 'E-commerce Performance Dashboard',
+    desc: 'Unified view of sales, inventory turnover, marketing ROI, customer cohorts, and margin analysis. Identifies which products, channels, and campaigns drive profit.',
+    appType: 'DB',
+    vertical: 'retail-ecommerce',
+    complexity: 'medium',
+    metric: '12-18% margin visibility',
+    startingFrom: 1200,
   },
 ];

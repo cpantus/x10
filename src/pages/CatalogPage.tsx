@@ -13,10 +13,7 @@ import {
   Heart,
   Scale,
   Home,
-  GraduationCap,
-  Sparkles,
   Wrench,
-  UtensilsCrossed,
   Briefcase,
   ShoppingCart,
   CheckCircle2,
@@ -46,10 +43,7 @@ const iconMap: Record<string, LucideIcon> = {
   Heart,
   Scale,
   Home,
-  GraduationCap,
-  Sparkles,
   Wrench,
-  UtensilsCrossed,
   Briefcase,
   ShoppingCart,
 };
@@ -129,7 +123,7 @@ const CatalogPage: React.FC = () => {
       "@context": "https://schema.org",
       "@type": "ItemList",
       "name": "x10 Automation AI Solutions Catalog",
-      "description": `${totalItems} AI-powered solutions across 9 industries and 8 capability types.`,
+      "description": `${totalItems} AI-powered solutions across 6 industries and 8 capability types.`,
       "numberOfItems": totalItems,
       "itemListElement": [
         ...appTypeKeys.map((t, i) => ({
@@ -159,8 +153,8 @@ const CatalogPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[var(--color-bg-primary)] text-white font-sans">
       <SEOMeta
-        title="AI Solutions Catalog | 9 Industries, 8 App Types | x10 Automation"
-        description={`Browse ${totalItems} AI-powered solutions across 9 industries and 8 capability types: lead magnets, scrapers, data enrichment, automation pipelines, audit tools, AI chatbots, programmatic content, and dashboards.`}
+        title="AI Solutions Catalog | 6 Industries, 8 App Types | x10 Automation"
+        description={`Browse ${totalItems} AI-powered solutions across 6 industries and 8 capability types: lead magnets, scrapers, data enrichment, automation pipelines, audit tools, AI chatbots, programmatic content, and dashboards.`}
         canonical="https://x10.ro/catalog"
         schemas={catalogSchemas}
       />
@@ -209,10 +203,10 @@ const CatalogPage: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto"
           >
-            {totalItems} AI-powered solutions across 9 industries and 8 capability types.
+            {totalItems} AI-powered solutions across 6 industries and 8 capability types.
             <br />
             <span className="text-white/30 text-base">
-              9 Industries | 8 App Types | {provenCount} Proven in Production
+              6 Industries | 8 App Types | {provenCount} Proven in Production
             </span>
           </motion.p>
         </div>
@@ -367,7 +361,7 @@ const CatalogPage: React.FC = () => {
               <button onClick={() => window.dispatchEvent(new Event('reopenCookieConsent'))} className="hover:text-white/60 transition-colors">Cookie Settings</button>
             </div>
             <p className="text-white/20 text-xs font-mono">
-              {totalItems} solutions | 9 industries | 8 app types | 153 total specs
+              {totalItems} solutions | 6 industries | 8 app types
             </p>
           </div>
         </div>
