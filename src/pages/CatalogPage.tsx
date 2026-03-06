@@ -1,149 +1,150 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Search, FileText, Bell, Edit2, Target, Eye, BarChart3, type LucideIcon } from 'lucide-react';
+import {
+  ArrowLeft,
+  Magnet,
+  Radar,
+  Database,
+  Zap,
+  ClipboardCheck,
+  MessageSquare,
+  FileText,
+  BarChart3,
+  Heart,
+  Scale,
+  Home,
+  GraduationCap,
+  Sparkles,
+  Wrench,
+  UtensilsCrossed,
+  Briefcase,
+  ShoppingCart,
+  CheckCircle2,
+  type LucideIcon,
+} from 'lucide-react';
 import SEOMeta from '../components/SEOMeta';
 import LogoIcon from '../components/logos/LogoIcon';
+import {
+  catalogItems,
+  APP_TYPE_META,
+  VERTICAL_META,
+  COMPLEXITY_META,
+  type AppType,
+  type Vertical,
+  type CatalogItem,
+} from '../data/catalogItems';
 
 const iconMap: Record<string, LucideIcon> = {
-  Search,
+  Magnet,
+  Radar,
+  Database,
+  Zap,
+  ClipboardCheck,
+  MessageSquare,
   FileText,
-  Bell,
-  Edit2,
-  Target,
-  Eye,
   BarChart3,
+  Heart,
+  Scale,
+  Home,
+  GraduationCap,
+  Sparkles,
+  Wrench,
+  UtensilsCrossed,
+  Briefcase,
+  ShoppingCart,
 };
 
-const categories = [
-  {
-    name: 'Strategic Research',
-    icon: 'Search',
-    deliverables: [
-      { title: 'Market Research Report', client: 'Pet Supplies E-commerce', desc: '18KB comprehensive market analysis covering competitive landscape, customer segments, and growth opportunities', type: 'Research', metric: '18KB report' },
-      { title: '90-Day Growth Strategy', client: 'Pet Supplies E-commerce', desc: 'Full strategic roadmap with 3 phases: Fix & Launch, Optimize & Scale, Authority Building', type: 'Strategy', metric: '3 phases' },
-      { title: 'Market Landscape Analysis', client: 'Automotive Parts Retailer', desc: 'Complete competitive positioning and market opportunity assessment for auto parts e-commerce', type: 'Research', metric: '12 competitors mapped' },
-    ],
-  },
-  {
-    name: 'Pitch Decks',
-    icon: 'FileText',
-    deliverables: [
-      { title: 'Investment Pitch Deck', client: 'Pet Supplies E-commerce', desc: 'Professional PPTX presentation with market data, projections, and competitive analysis', type: 'Presentation', metric: 'PPTX' },
-      { title: 'Interactive Sales Pitch', client: 'Pet Supplies E-commerce', desc: 'Full HTML interactive pitch with animations, data visualizations, and responsive design', type: 'Interactive', metric: 'HTML' },
-      { title: 'Technical Capability Pitch', client: 'Automotive Parts Retailer', desc: 'Interactive HTML showcase of AI capabilities with live demos and ROI projections', type: 'Interactive', metric: 'HTML' },
-    ],
-  },
-  {
-    name: 'Email & Campaigns',
-    icon: 'Bell',
-    deliverables: [
-      { title: 'Q1 Campaign Strategy', client: 'Automotive Parts Retailer', desc: 'Complete campaign strategy targeting \u20AC280K revenue with 6 automation flows', type: 'Strategy', metric: '\u20AC280K target' },
-      { title: 'Email Marketing PRD', client: 'Pet Supplies E-commerce', desc: 'Full product requirements for email automation: welcome, cart recovery, post-purchase, win-back', type: 'PRD', metric: '6 flows' },
-      { title: 'Abandoned Cart Recovery', client: 'Automotive Parts Retailer', desc: 'Multi-step automation with dynamic content, timing optimization, and A/B test framework', type: 'Automation', metric: '3-5% recovery' },
-    ],
-  },
-  {
-    name: 'Content Strategy',
-    icon: 'Edit2',
-    deliverables: [
-      { title: 'LinkedIn Authority Campaign', client: 'Pet Supplies E-commerce', desc: '15 LinkedIn posts across 5 audience segments with engagement hooks and CTA optimization', type: 'Social', metric: '15 posts' },
-      { title: 'Programmatic Blog Content', client: 'Automotive Parts Retailer', desc: '80 SEO-optimized articles covering product categories, buying guides, and technical specs', type: 'Content', metric: '80 articles' },
-      { title: 'Product Description Templates', client: 'Pet Supplies E-commerce', desc: 'Scalable templates for 500+ product descriptions with SEO metadata', type: 'Templates', metric: '500+ products' },
-    ],
-  },
-  {
-    name: 'Lead Generation',
-    icon: 'Target',
-    deliverables: [
-      { title: 'Vehicle Compatibility Checker', client: 'Automotive Parts Retailer', desc: 'Interactive tool matching parts to vehicle models with real-time inventory data', type: 'Lead Magnet', metric: '40%+ conversion' },
-      { title: 'Towing Capacity Calculator', client: 'Automotive Parts Retailer', desc: 'Calculator with legal compliance data for Romanian towing regulations', type: 'Lead Magnet', metric: 'Legal compliant' },
-      { title: 'Cost Savings Calculator', client: 'Automotive Parts Retailer', desc: 'ROI calculator comparing OEM vs aftermarket parts with warranty analysis', type: 'Lead Magnet', metric: '2x industry avg' },
-    ],
-  },
-  {
-    name: 'SEO & AI Search',
-    icon: 'Search',
-    deliverables: [
-      { title: 'LLM SEO Audit', client: 'Professional Services Client', desc: 'Complete audit of visibility in AI search engines: ChatGPT, Perplexity, Gemini, Claude', type: 'Audit', metric: '4 AI engines' },
-      { title: 'GEO Readiness Assessment', client: 'Automotive Parts Retailer', desc: 'Generative Engine Optimization score with actionable improvement roadmap', type: 'Audit', metric: '3.5\u21927.5 score' },
-      { title: 'Technical SEO Fix Package', client: 'Automotive Parts Retailer', desc: 'Critical technical fixes: schema markup, Core Web Vitals, crawlability, indexation', type: 'Technical', metric: '30-min deploy' },
-    ],
-  },
-  {
-    name: 'Competitive Intelligence',
-    icon: 'Eye',
-    deliverables: [
-      { title: 'Competitive Analysis Package', client: 'Pet Supplies E-commerce', desc: 'Full analysis: executive summary, competitive matrix, strategic playbook, and threat assessment', type: 'Analysis', metric: '12 competitors' },
-      { title: 'Pricing Intelligence Report', client: 'Automotive Parts Retailer', desc: 'Automated pricing comparison across 5 competitors with dynamic monitoring setup', type: 'Intelligence', metric: '5 competitors' },
-      { title: 'Market Entry Assessment', client: 'Energy Sector Client', desc: 'Market viability analysis with regulatory landscape and competitive positioning', type: 'Research', metric: '3 markets' },
-    ],
-  },
-  {
-    name: 'Data Visualization',
-    icon: 'BarChart3',
-    deliverables: [
-      { title: 'Energy Sector Infographic', client: 'Energy Sector Client', desc: 'Interactive data visualization for energy consumption patterns and savings projections', type: 'Infographic', metric: 'Interactive' },
-      { title: 'Marketing Effort Dashboard', client: 'Automotive Parts Retailer', desc: 'Visual breakdown of campaign performance, channel attribution, and ROI tracking', type: 'Dashboard', metric: 'Real-time' },
-      { title: 'Agent Performance Visualization', client: 'Pet Supplies E-commerce', desc: 'Live dashboard showing AI agent activity, task completion, and efficiency metrics', type: 'Dashboard', metric: 'Live data' },
-    ],
-  },
-];
-
-const typeColors: Record<string, string> = {
-  Research: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-  Strategy: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-  Presentation: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-  Interactive: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-  PRD: 'bg-rose-500/20 text-rose-300 border-rose-500/30',
-  Automation: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
-  Social: 'bg-pink-500/20 text-pink-300 border-pink-500/30',
-  Content: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
-  Templates: 'bg-teal-500/20 text-teal-300 border-teal-500/30',
-  'Lead Magnet': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
-  Audit: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
-  Technical: 'bg-slate-500/20 text-slate-300 border-slate-500/30',
-  Analysis: 'bg-violet-500/20 text-violet-300 border-violet-500/30',
-  Intelligence: 'bg-sky-500/20 text-sky-300 border-sky-500/30',
-  Infographic: 'bg-lime-500/20 text-lime-300 border-lime-500/30',
-  Dashboard: 'bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/30',
-};
-
-const totalDeliverables = categories.reduce((sum, c) => sum + c.deliverables.length, 0);
+const appTypeKeys = Object.keys(APP_TYPE_META) as AppType[];
+const verticalKeys = Object.keys(VERTICAL_META) as Vertical[];
+const totalItems = catalogItems.length;
+const provenCount = catalogItems.filter((i) => i.proven).length;
 
 const CatalogPage: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState('All');
-  const filterRef = useRef<HTMLDivElement>(null);
+  const [activeType, setActiveType] = useState<AppType | 'all'>('all');
+  const [activeVertical, setActiveVertical] = useState<Vertical | 'all'>('all');
+  const typeFilterRef = useRef<HTMLDivElement>(null);
+  const verticalFilterRef = useRef<HTMLDivElement>(null);
 
-  const handleCategoryClick = useCallback((category: string) => {
-    setActiveCategory(category);
-    // Scroll the clicked pill into view
+  const scrollPillIntoView = useCallback((ref: React.RefObject<HTMLDivElement | null>, key: string) => {
     requestAnimationFrame(() => {
-      const container = filterRef.current;
+      const container = ref.current;
       if (!container) return;
-      const activeBtn = container.querySelector(`[data-category="${category}"]`) as HTMLElement;
-      if (activeBtn) {
-        activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }
+      const btn = container.querySelector(`[data-filter="${key}"]`) as HTMLElement;
+      if (btn) btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     });
   }, []);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const handleTypeClick = useCallback((t: AppType | 'all') => {
+    setActiveType(t);
+    scrollPillIntoView(typeFilterRef, t);
+  }, [scrollPillIntoView]);
+
+  const handleVerticalClick = useCallback((v: Vertical | 'all') => {
+    setActiveVertical(v);
+    scrollPillIntoView(verticalFilterRef, v);
+  }, [scrollPillIntoView]);
+
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  const filteredItems = useMemo(() =>
+    catalogItems.filter((item) =>
+      (activeType === 'all' || item.appType === activeType) &&
+      (activeVertical === 'all' || item.vertical === activeVertical)
+    ), [activeType, activeVertical]);
+
+  // Cross-filtered counts for pills
+  const typeCounts = useMemo(() => {
+    const counts: Record<string, number> = { all: 0 };
+    for (const t of appTypeKeys) counts[t] = 0;
+    for (const item of catalogItems) {
+      if (activeVertical === 'all' || item.vertical === activeVertical) {
+        counts.all++;
+        counts[item.appType]++;
+      }
+    }
+    return counts;
+  }, [activeVertical]);
+
+  const verticalCounts = useMemo(() => {
+    const counts: Record<string, number> = { all: 0 };
+    for (const v of verticalKeys) counts[v] = 0;
+    for (const item of catalogItems) {
+      if (activeType === 'all' || item.appType === activeType) {
+        counts.all++;
+        counts[item.vertical]++;
+      }
+    }
+    return counts;
+  }, [activeType]);
+
+  const summaryText = useMemo(() => {
+    if (activeType === 'all' && activeVertical === 'all') return `Showing ${totalItems} solutions`;
+    const typePart = activeType !== 'all' ? APP_TYPE_META[activeType].label : 'solutions';
+    const vertPart = activeVertical !== 'all' ? VERTICAL_META[activeVertical].label : 'all industries';
+    return `Showing ${filteredItems.length} ${typePart} in ${vertPart}`;
+  }, [activeType, activeVertical, filteredItems.length]);
 
   const catalogSchemas = useMemo(() => [
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      "name": "X10 Automation AI Deliverables Catalog",
-      "description": "153 production-ready AI deliverable specifications across 8 categories from real client engagements.",
-      "numberOfItems": 153,
-      "itemListElement": categories.map((cat, i) => ({
-        "@type": "ListItem",
-        "position": i + 1,
-        "name": cat.name,
-        "description": `${cat.deliverables.length} deliverables in ${cat.name}`,
-      })),
+      "name": "x10 Automation AI Solutions Catalog",
+      "description": `${totalItems} AI-powered solutions across 9 industries and 8 capability types.`,
+      "numberOfItems": totalItems,
+      "itemListElement": [
+        ...appTypeKeys.map((t, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "name": APP_TYPE_META[t].label,
+          "description": `${catalogItems.filter((it) => it.appType === t).length} solutions`,
+        })),
+        ...verticalKeys.map((v, i) => ({
+          "@type": "ListItem",
+          "position": appTypeKeys.length + i + 1,
+          "name": VERTICAL_META[v].label,
+          "description": `${catalogItems.filter((it) => it.vertical === v).length} solutions`,
+        })),
+      ],
     },
     {
       "@context": "https://schema.org",
@@ -155,27 +156,15 @@ const CatalogPage: React.FC = () => {
     },
   ], []);
 
-  const filteredDeliverables =
-    activeCategory === 'All'
-      ? categories.flatMap((c) =>
-          c.deliverables.map((d) => ({ ...d, category: c.name, icon: c.icon }))
-        )
-      : (categories
-          .find((c) => c.name === activeCategory)
-          ?.deliverables.map((d) => ({
-            ...d,
-            category: activeCategory,
-            icon: categories.find((c) => c.name === activeCategory)?.icon || 'Search',
-          })) || []);
-
   return (
     <div className="min-h-screen bg-[var(--color-bg-primary)] text-white font-sans">
       <SEOMeta
-        title="AI Deliverables Catalog | 153 Specs Across 9 Industries | X10 Automation"
-        description="Browse 153 production-ready AI deliverable specifications across 8 categories: strategic research, pitch decks, email campaigns, content strategy, lead generation, SEO, competitive intelligence, and data visualization."
+        title="AI Solutions Catalog | 9 Industries, 8 App Types | x10 Automation"
+        description={`Browse ${totalItems} AI-powered solutions across 9 industries and 8 capability types: lead magnets, scrapers, data enrichment, automation pipelines, audit tools, AI chatbots, programmatic content, and dashboards.`}
         canonical="https://x10.ro/catalog"
         schemas={catalogSchemas}
       />
+
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-white/5" style={{ backgroundColor: 'color-mix(in srgb, var(--color-bg-primary) 80%, transparent)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -186,10 +175,7 @@ const CatalogPage: React.FC = () => {
               <span className="text-[10px] tracking-[0.2em] uppercase font-bold leading-tight" style={{ color: 'var(--color-accent-primary)' }}>Automation</span>
             </div>
           </a>
-          <a
-            href="/"
-            className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm"
-          >
+          <a href="/" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </a>
@@ -207,7 +193,7 @@ const CatalogPage: React.FC = () => {
             className="text-xs tracking-[0.3em] uppercase block mb-4 font-mono"
             style={{ color: 'var(--color-accent-primary)' }}
           >
-            Production-Ready Deliverables
+            AI Transformation Partner
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -223,47 +209,89 @@ const CatalogPage: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto"
           >
-            153 production-ready specifications across {categories.length} categories.
+            {totalItems} AI-powered solutions across 9 industries and 8 capability types.
             <br />
             <span className="text-white/30 text-base">
-              Showing {totalDeliverables} representative deliverables from real client engagements.
+              9 Industries | 8 App Types | {provenCount} Proven in Production
             </span>
           </motion.p>
         </div>
       </section>
 
-      {/* Category Filter */}
-      <section className="pb-12 sticky top-16 z-40 backdrop-blur-xl" style={{ backgroundColor: 'color-mix(in srgb, var(--color-bg-primary) 90%, transparent)' }}>
-        <div className="max-w-7xl mx-auto relative">
-          {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[var(--color-bg-primary)] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[var(--color-bg-primary)] to-transparent z-10 pointer-events-none" />
-          <div
-            ref={filterRef}
-            className="flex gap-2 overflow-x-auto pb-2 px-6"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            <FilterButton
-              label="All"
-              count={totalDeliverables}
-              active={activeCategory === 'All'}
-              onClick={() => handleCategoryClick('All')}
-              data-category="All"
-            />
-            {categories.map((cat) => {
-              const Icon = iconMap[cat.icon] || Search;
-              return (
-                <FilterButton
-                  key={cat.name}
-                  label={cat.name}
-                  count={cat.deliverables.length}
-                  active={activeCategory === cat.name}
-                  onClick={() => handleCategoryClick(cat.name)}
-                  icon={<Icon className="w-3.5 h-3.5" />}
-                  data-category={cat.name}
-                />
-              );
-            })}
+      {/* Dual Filter Bar */}
+      <section className="pb-4 sticky top-16 z-40 backdrop-blur-xl" style={{ backgroundColor: 'color-mix(in srgb, var(--color-bg-primary) 90%, transparent)' }}>
+        <div className="max-w-7xl mx-auto">
+          {/* Row 1: App Type */}
+          <div className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[var(--color-bg-primary)] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[var(--color-bg-primary)] to-transparent z-10 pointer-events-none" />
+            <div
+              ref={typeFilterRef}
+              className="flex gap-2 overflow-x-auto pb-2 px-6"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              <FilterButton
+                label="All Types"
+                count={typeCounts.all}
+                active={activeType === 'all'}
+                onClick={() => handleTypeClick('all')}
+                data-filter="all"
+              />
+              {appTypeKeys.map((t) => {
+                const meta = APP_TYPE_META[t];
+                const Icon = iconMap[meta.icon];
+                return (
+                  <FilterButton
+                    key={t}
+                    label={meta.label}
+                    count={typeCounts[t]}
+                    active={activeType === t}
+                    onClick={() => handleTypeClick(t)}
+                    icon={Icon ? <Icon className="w-3.5 h-3.5" /> : undefined}
+                    data-filter={t}
+                  />
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Row 2: Industry */}
+          <div className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[var(--color-bg-primary)] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[var(--color-bg-primary)] to-transparent z-10 pointer-events-none" />
+            <div
+              ref={verticalFilterRef}
+              className="flex gap-2 overflow-x-auto pb-2 px-6"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              <FilterButton
+                label="All Industries"
+                count={verticalCounts.all}
+                active={activeVertical === 'all'}
+                onClick={() => handleVerticalClick('all')}
+                data-filter="all"
+              />
+              {verticalKeys.map((v) => {
+                const meta = VERTICAL_META[v];
+                const Icon = iconMap[meta.icon];
+                return (
+                  <FilterButton
+                    key={v}
+                    label={meta.label}
+                    count={verticalCounts[v]}
+                    active={activeVertical === v}
+                    onClick={() => handleVerticalClick(v)}
+                    icon={Icon ? <Icon className="w-3.5 h-3.5" /> : undefined}
+                    data-filter={v}
+                  />
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Summary */}
+          <div className="px-6 pt-1 pb-2">
+            <p className="text-xs text-white/30 font-mono">{summaryText}</p>
           </div>
         </div>
       </section>
@@ -272,25 +300,52 @@ const CatalogPage: React.FC = () => {
       <section className="px-6 pb-32">
         <div className="max-w-7xl mx-auto">
           <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-            >
-              {filteredDeliverables.map((item, idx) => (
-                <motion.div
-                  key={`${item.category}-${item.title}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: idx * 0.05 }}
-                >
-                  <DeliverableCard item={item} />
-                </motion.div>
-              ))}
-            </motion.div>
+            {filteredItems.length > 0 ? (
+              <motion.div
+                key={`${activeType}-${activeVertical}`}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+              >
+                {filteredItems.map((item, idx) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: Math.min(idx * 0.03, 0.5) }}
+                  >
+                    <CatalogCard item={item} />
+                  </motion.div>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="empty"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="text-center py-24"
+              >
+                <p className="text-white/40 text-lg mb-4">No solutions in this exact combination yet.</p>
+                <p className="text-white/25 text-sm mb-6">Try broadening your filters.</p>
+                <div className="flex gap-3 justify-center">
+                  <button
+                    onClick={() => setActiveType('all')}
+                    className="text-sm px-4 py-2 rounded-full border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-colors"
+                  >
+                    Reset App Type
+                  </button>
+                  <button
+                    onClick={() => setActiveVertical('all')}
+                    className="text-sm px-4 py-2 rounded-full border border-white/10 text-white/50 hover:text-white hover:border-white/30 transition-colors"
+                  >
+                    Reset Industry
+                  </button>
+                </div>
+              </motion.div>
+            )}
           </AnimatePresence>
         </div>
       </section>
@@ -299,16 +354,11 @@ const CatalogPage: React.FC = () => {
       <footer className="border-t border-white/5 py-12 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
-            <span
-              className="text-sm font-bold tracking-widest font-heading"
-              style={{ color: 'var(--color-accent-primary)' }}
-            >
+            <span className="text-sm font-bold tracking-widest font-heading" style={{ color: 'var(--color-accent-primary)' }}>
               X10 AUTOMATION
             </span>
             <span className="text-white/20 text-xs">|</span>
-            <span className="text-white/30 text-xs font-mono">
-              AI-Powered Marketing Teams
-            </span>
+            <span className="text-white/30 text-xs font-mono">AI Transformation Partner</span>
           </div>
           <div className="flex flex-col items-center md:items-end gap-2">
             <div className="flex gap-4 text-xs text-white/30">
@@ -317,7 +367,7 @@ const CatalogPage: React.FC = () => {
               <button onClick={() => window.dispatchEvent(new Event('reopenCookieConsent'))} className="hover:text-white/60 transition-colors">Cookie Settings</button>
             </div>
             <p className="text-white/20 text-xs font-mono">
-              {totalDeliverables} deliverables shown &middot; 153 total specifications &middot; 9 industries
+              {totalItems} solutions | 9 industries | 8 app types | 153 total specs
             </p>
           </div>
         </div>
@@ -334,7 +384,7 @@ interface FilterButtonProps {
   active: boolean;
   onClick: () => void;
   icon?: React.ReactNode;
-  'data-category'?: string;
+  'data-filter'?: string;
 }
 
 const FilterButton: React.FC<FilterButtonProps> = ({ label, count, active, onClick, icon, ...rest }) => (
@@ -350,64 +400,82 @@ const FilterButton: React.FC<FilterButtonProps> = ({ label, count, active, onCli
   >
     {icon}
     <span>{label}</span>
-    <span
-      className={`text-xs px-1.5 py-0.5 rounded-full ${
-        active ? 'bg-white/10 text-white/80' : 'bg-white/5 text-white/30'
-      }`}
-    >
+    <span className={`text-xs px-1.5 py-0.5 rounded-full ${active ? 'bg-white/10 text-white/80' : 'bg-white/5 text-white/30'}`}>
       {count}
     </span>
   </button>
 );
 
-interface DeliverableItem {
-  title: string;
-  client: string;
-  desc: string;
-  type: string;
-  metric: string;
-  category: string;
-  icon: string;
-}
+const typeColorMap: Record<string, string> = {
+  orange: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+  cyan: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+  violet: 'bg-violet-500/20 text-violet-300 border-violet-500/30',
+  emerald: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+  amber: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+  blue: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+  indigo: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
+  fuchsia: 'bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/30',
+};
 
-const DeliverableCard: React.FC<{ item: DeliverableItem }> = ({ item }) => {
-  const Icon = iconMap[item.icon] || Search;
-  const colorClass = typeColors[item.type] || 'bg-white/10 text-white/60 border-white/20';
+const complexityDotColor: Record<string, string> = {
+  low: 'bg-emerald-500',
+  medium: 'bg-amber-500',
+  high: 'bg-orange-500',
+};
+
+const CatalogCard: React.FC<{ item: CatalogItem }> = ({ item }) => {
+  const typeMeta = APP_TYPE_META[item.appType];
+  const verticalMeta = VERTICAL_META[item.vertical];
+  const TypeIcon = iconMap[typeMeta.icon];
+  const colorClass = typeColorMap[typeMeta.color] || 'bg-white/10 text-white/60 border-white/20';
+  const complexMeta = COMPLEXITY_META[item.complexity];
 
   return (
     <div className="group bg-[#111] border border-white/10 rounded-xl p-6 hover:border-white/20 hover:bg-[#151515] transition-all duration-300 flex flex-col h-full">
-      {/* Header */}
+      {/* Header: type icon+label left, vertical pill right */}
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex items-center gap-2">
           <div
             className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/5 group-hover:bg-white/10 transition-colors"
             style={{ color: 'var(--color-accent-primary)' }}
           >
-            <Icon className="w-4 h-4" />
+            {TypeIcon && <TypeIcon className="w-4 h-4" />}
           </div>
           <span className="text-[10px] tracking-wider uppercase text-white/25 font-mono">
-            {item.category}
+            {typeMeta.label}
           </span>
         </div>
         <span className="text-[10px] px-2 py-1 rounded-full bg-white/5 text-white/40 whitespace-nowrap border border-white/5">
-          {item.client}
+          {verticalMeta.label}
         </span>
       </div>
 
       {/* Title & Description */}
-      <h3
-        className="text-base font-semibold text-white mb-2 group-hover:text-white transition-colors font-heading"
-      >
+      <h3 className="text-base font-semibold text-white mb-2 group-hover:text-white transition-colors font-heading">
         {item.title}
       </h3>
-      <p className="text-sm text-white/40 leading-relaxed mb-4 flex-grow">{item.desc}</p>
+      <p className="text-sm text-white/40 leading-relaxed mb-4 flex-grow line-clamp-2">{item.desc}</p>
 
       {/* Bottom Row */}
       <div className="flex items-center justify-between pt-3 border-t border-white/5">
-        <span className={`text-[11px] px-2.5 py-1 rounded-full border ${colorClass}`}>{item.type}</span>
-        <span className="text-xs text-white/30 font-mono">
-          {item.metric}
-        </span>
+        <div className="flex items-center gap-3">
+          <span className={`text-[11px] px-2.5 py-1 rounded-full border ${colorClass}`}>
+            {typeMeta.label}
+          </span>
+          <span className="flex items-center gap-1 text-[11px] text-white/30">
+            <span className={`w-2 h-2 rounded-full ${complexityDotColor[item.complexity]}`} />
+            {complexMeta.label}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-white/30 font-mono">{item.metric}</span>
+          {item.proven && (
+            <span className="flex items-center gap-1 text-[10px] font-medium" style={{ color: 'var(--color-accent-primary)' }}>
+              <CheckCircle2 className="w-3 h-3" />
+              Proven
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
