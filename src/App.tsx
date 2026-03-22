@@ -54,7 +54,7 @@ const BackgroundWatermark: React.FC<WatermarkProps> = ({ className }) => (
 // --- UI Components ---
 
 const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
-  const navItems = ['Solutions', 'Industries', 'Case Studies', 'Results'];
+  const navItems = ['Solutions', 'Industries', 'Case Studies', 'Results', 'Blog'];
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -75,11 +75,11 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
 
         <div className="hidden md:flex gap-10 items-center">
           {navItems.map((item, i) => {
-            const isSolutions = item === 'Solutions';
+            const href = item === 'Solutions' ? '/solutions' : item === 'Blog' ? '/blog' : `#${item.toLowerCase().replaceAll(' ', '-')}`;
             return (
               <motion.a
                 key={item}
-                href={isSolutions ? '/solutions' : `#${item.toLowerCase().replaceAll(' ', '-')}`}
+                href={href}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + (i * 0.1) }}
@@ -149,11 +149,11 @@ const Navbar = ({ logoVariant }: { logoVariant: LogoVariant }) => {
 
               <nav className="flex flex-col gap-6">
                 {navItems.map((item, i) => {
-                  const isSolutions = item === 'Solutions';
+                  const href = item === 'Solutions' ? '/solutions' : item === 'Blog' ? '/blog' : `#${item.toLowerCase().replaceAll(' ', '-')}`;
                   return (
                     <motion.a
                       key={item}
-                      href={isSolutions ? '/solutions' : `#${item.toLowerCase().replaceAll(' ', '-')}`}
+                      href={href}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + i * 0.05 }}
@@ -1244,6 +1244,7 @@ const Footer = () => (
             </div>
             <div className="text-center md:text-right">
                 <div className="flex gap-4 text-xs text-gray-500 mb-2 justify-center md:justify-end">
+                    <a href="/blog" className="hover:text-gray-300 transition-colors">Blog</a>
                     <a href="/privacy" className="hover:text-gray-300 transition-colors">Privacy Policy</a>
                     <a href="/terms" className="hover:text-gray-300 transition-colors">Terms & Conditions</a>
                     <button onClick={() => window.dispatchEvent(new Event('reopenCookieConsent'))} className="hover:text-gray-300 transition-colors">Cookie Settings</button>

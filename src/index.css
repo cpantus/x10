@@ -391,3 +391,175 @@ html {
   .terminal-cursor { animation: none; opacity: 1; }
   .shimmer-bar { animation: none; }
 }
+
+/* ==========================================================================
+   PROSE TYPOGRAPHY — Long-form article styles (.prose-x10)
+   Uses site CSS custom properties for design-variant consistency.
+   ========================================================================== */
+
+.prose-x10 {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prose-x10 h2 {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.prose-x10 h3 {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.prose-x10 p {
+  margin-bottom: 1.5rem;
+}
+
+.prose-x10 strong {
+  color: #fff;
+}
+
+.prose-x10 a {
+  color: var(--color-accent-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 200ms ease;
+}
+
+.prose-x10 a:hover {
+  color: var(--color-accent-secondary);
+}
+
+.prose-x10 code {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875em;
+  color: var(--color-accent-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+}
+
+.prose-x10 pre {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.prose-x10 pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 0;
+}
+
+.prose-x10 blockquote {
+  border-left: 3px solid var(--color-accent-primary);
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.prose-x10 blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.prose-x10 ul,
+.prose-x10 ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose-x10 ul {
+  list-style: disc;
+}
+
+.prose-x10 ul li::marker {
+  color: var(--color-accent-primary);
+}
+
+.prose-x10 ol {
+  list-style: decimal;
+}
+
+.prose-x10 li {
+  margin-bottom: 0.5rem;
+}
+
+.prose-x10 hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-accent-primary) 50%,
+    transparent 100%
+  );
+  opacity: 0.3;
+  margin: 3rem 0;
+}
+
+.prose-x10 table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.prose-x10 thead {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.prose-x10 th {
+  text-align: left;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+}
+
+.prose-x10 td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9375rem;
+}
+
+.prose-x10 tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Prose — reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .prose-x10 * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
