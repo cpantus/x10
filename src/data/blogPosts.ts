@@ -14,7 +14,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: 'opus-46-ghostty-fix-strategy',
-    title: 'Opus 4.6 Found the Same Ghostty Fix Strategy — 2 Different Ways',
+    title: 'The Scaffold Was the Variable, Not the Model',
     date: '2026-03-22',
     excerpt: 'A case study in workflow scaffolding: how structured investigation prompts steered Claude Opus 4.6 to independently reproduce a shipped Ghostty bug fix across three experimental runs.',
     readingTimeMinutes: 12,
