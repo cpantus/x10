@@ -349,7 +349,7 @@ const CatalogPage: React.FC = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
             <span className="text-sm font-bold tracking-widest font-heading" style={{ color: 'var(--color-accent-primary)' }}>
-              X10 AUTOMATION
+              x10 AUTOMATION
             </span>
             <span className="text-white/20 text-xs">|</span>
             <span className="text-white/30 text-xs font-mono">AI Transformation Partner</span>
@@ -451,18 +451,18 @@ const CatalogCard: React.FC<{ item: CatalogItem }> = ({ item }) => {
       <p className="text-sm text-white/40 leading-relaxed mb-4 flex-grow line-clamp-2">{item.desc}</p>
 
       {/* Bottom Row */}
-      <div className="flex items-center justify-between pt-3 border-t border-white/5">
+      <div className="flex items-center justify-between pt-3 border-t border-white/5 gap-x-2 gap-y-1 flex-wrap">
         <div className="flex items-center gap-3">
-          <span className={`text-[11px] px-2.5 py-1 rounded-full border ${colorClass}`}>
+          <span className={`text-[11px] px-2.5 py-1 rounded-full border whitespace-nowrap ${colorClass}`}>
             {typeMeta.label}
           </span>
-          <span className="flex items-center gap-1 text-[11px] text-white/30">
-            <span className={`w-2 h-2 rounded-full ${complexityDotColor[item.complexity]}`} />
+          <span className="flex items-center gap-1 text-[11px] text-white/30 whitespace-nowrap">
+            <span className={`w-2 h-2 rounded-full shrink-0 ${complexityDotColor[item.complexity]}`} />
             {complexMeta.label}
           </span>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-white/30 font-mono">{item.metric}</span>
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="text-xs text-white/30 font-mono truncate">{item.metric}</span>
           {item.proven && (
             <span className="flex items-center gap-1 text-[10px] font-medium" style={{ color: 'var(--color-accent-primary)' }}>
               <CheckCircle2 className="w-3 h-3" />

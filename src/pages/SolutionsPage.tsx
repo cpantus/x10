@@ -71,7 +71,7 @@ const ComparisonSection = () => {
                     <div className="relative">
                         <div className="absolute -inset-4 bg-gradient-to-r from-accent-900/20 to-transparent blur-2xl rounded-full opacity-50" />
                         <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3 font-mono">
-                            <span className="text-accent-400">02</span> THE X10 WAY
+                            <span className="text-accent-400">02</span> THE x10 WAY
                         </h3>
                         <div className="relative h-[500px] border border-accent-400/30 bg-gradient-to-b from-accent-950/10 to-black rounded-xl p-8 flex flex-col overflow-hidden">
                             {/* Header */}
@@ -220,7 +220,7 @@ const SwarmGraph = () => {
     };
 
     const nodes = [
-        { id: 'center', x: '50%', y: '50%', icon: Settings, label: 'X10', isCenter: true },
+        { id: 'center', x: '50%', y: '50%', icon: Settings, label: 'x10', isCenter: true },
         ...satelliteAgents.map((agent, i) => ({
              id: `agent-${i}`,
              ...getPos(i),
@@ -921,7 +921,7 @@ const SolutionsFooter = () => (
   <footer className="py-12 border-t border-white/10 bg-black px-6">
     <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
       <div className="text-center md:text-left">
-        <div className="text-2xl font-bold text-white mb-2 font-heading">X10 Automation</div>
+        <div className="text-2xl font-bold text-white mb-2 font-heading">x10 Automation</div>
         <p className="text-gray-500 text-sm">Architecting the autonomous future.</p>
       </div>
       <div className="text-center md:text-right">
@@ -931,7 +931,7 @@ const SolutionsFooter = () => (
           <button onClick={() => window.dispatchEvent(new Event('reopenCookieConsent'))} className="hover:text-gray-300 transition-colors">Cookie Settings</button>
         </div>
         <div className="text-gray-600 text-xs">
-          &copy; 2026 X10 Automation. All rights reserved.<span className="text-gray-700 text-xs ml-2">&middot; Built with AI</span>
+          &copy; 2026 x10 Automation. All rights reserved.<span className="text-gray-700 text-xs ml-2">&middot; Built with AI</span>
         </div>
       </div>
     </div>
@@ -944,7 +944,7 @@ const SolutionsPage: React.FC = () => {
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "AI Marketing Team",
-      "provider": { "@type": "Organization", "name": "X10 Automation", "url": "https://x10.ro" },
+      "provider": { "@type": "Organization", "name": "x10 Automation", "url": "https://x10.ro" },
       "description": "15-25 specialized AI agents delivering SEO, GEO optimization, content creation, email automation, competitive intelligence, and lead magnets for SMEs.",
       "offers": { "@type": "Offer", "priceSpecification": { "@type": "PriceSpecification", "price": "3000-6500", "priceCurrency": "EUR", "unitText": "per month" }, "description": "Plus one-time implementation fee" },
     },
@@ -952,7 +952,7 @@ const SolutionsPage: React.FC = () => {
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "Praetor Legal AI",
-      "provider": { "@type": "Organization", "name": "X10 Automation", "url": "https://x10.ro" },
+      "provider": { "@type": "Organization", "name": "x10 Automation", "url": "https://x10.ro" },
       "description": "8 specialized legal AI agents searching 35M Romanian court decisions with 92.7% accuracy. Contract analysis, case research, and compliance verification.",
     },
     {
@@ -968,8 +968,8 @@ const SolutionsPage: React.FC = () => {
   return (
     <div className="relative w-full min-h-screen bg-[var(--color-bg-primary)] text-white selection:bg-accent-400 selection:text-white font-sans">
       <SEOMeta
-        title="AI Marketing & Legal Agent Teams | X10 Automation Solutions"
-        description="Explore X10 Automation's AI agent teams: 15-25 marketing specialists delivering SEO, GEO, email automation, and lead magnets, plus Praetor Legal AI searching 35M court decisions. 90-day pilot from €3K/mo + implementation fee."
+        title="AI Marketing & Legal Agent Teams | x10 Automation Solutions"
+        description="Explore x10 Automation's AI agent teams: 15-25 marketing specialists delivering SEO, GEO, email automation, and lead magnets, plus Praetor Legal AI searching 35M court decisions. 90-day pilot from €3K/mo + implementation fee."
         canonical="https://x10.ro/solutions"
         schemas={solutionsSchemas}
       />

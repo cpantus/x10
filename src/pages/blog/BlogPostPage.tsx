@@ -28,7 +28,7 @@ const BlogPostPage: React.FC = () => {
         },
         publisher: {
           '@type': 'Organization',
-          name: 'X10 Automation',
+          name: 'x10 Automation',
           url: 'https://x10.ro',
         },
         description: post.excerpt,
@@ -71,7 +71,7 @@ const BlogPostPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[var(--color-bg-primary)] text-white font-sans">
       <SEOMeta
-        title={`${post.title} | X10 Automation Blog`}
+        title={`${post.title} | x10 Automation Blog`}
         description={post.excerpt}
         canonical={`https://x10.ro/blog/${post.slug}`}
         schemas={schemas}

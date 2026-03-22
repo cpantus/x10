@@ -18,7 +18,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-03-22',
     excerpt: 'A case study in workflow scaffolding: how structured investigation prompts steered Claude Opus 4.6 to independently reproduce a shipped Ghostty bug fix across three experimental runs.',
     readingTimeMinutes: 12,
-    author: { name: 'Cristi', role: 'Founder, X10 Automation' },
+    author: { name: 'Cristi', role: 'Founder, x10 Automation' },
     tags: ['ai', 'debugging', 'claude', 'workflow-engineering'],
     component: () => import('../pages/blog/posts/ghostty-opus-fix'),
   },

@@ -9,7 +9,7 @@ import { ArrowLeft } from 'lucide-react';
 
 const PrivacyPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Privacy Policy — X10 Automation';
+    document.title = 'Privacy Policy — x10 Automation';
     window.scrollTo(0, 0);
   }, []);
 

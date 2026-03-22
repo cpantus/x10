@@ -428,7 +428,7 @@ const TransformationSection = () => {
   ];
 
   return (
-    <section id="how-it-works" aria-label="The X10 Advantage — Why AI Agent Teams Outperform Traditional Agencies" className="relative py-32 px-6 max-w-[1600px] mx-auto z-40 overflow-hidden dot-grid">
+    <section id="how-it-works" aria-label="The x10 Advantage — Why AI Agent Teams Outperform Traditional Agencies" className="relative py-32 px-6 max-w-[1600px] mx-auto z-40 overflow-hidden dot-grid">
       <BackgroundWatermark />
       <SectionHeader title="What You Actually Get" subtitle="The Honest Comparison" gradient />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
@@ -1234,7 +1234,7 @@ const Footer = () => (
     <footer className="py-20 border-t border-white/10 bg-black px-6">
         <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="text-center md:text-left">
-                <div className="text-2xl font-bold text-white mb-2 font-heading">X10 Automation</div>
+                <div className="text-2xl font-bold text-white mb-2 font-heading">x10 Automation</div>
                 <p className="text-gray-500 text-sm">Dedicated AI agent teams for European SMEs.</p>
             </div>
             <div className="flex gap-8 text-sm text-gray-400">
@@ -1250,7 +1250,7 @@ const Footer = () => (
                     <button onClick={() => window.dispatchEvent(new Event('reopenCookieConsent'))} className="hover:text-gray-300 transition-colors">Cookie Settings</button>
                 </div>
                 <div className="text-gray-600 text-xs">
-                    © 2026 X10 Automation. All rights reserved.<span className="text-gray-700 text-xs ml-2">&middot; Built with AI</span>
+                    © 2026 x10 Automation. All rights reserved.<span className="text-gray-700 text-xs ml-2">&middot; Built with AI</span>
                 </div>
             </div>
         </div>
@@ -1299,7 +1299,7 @@ const App: React.FC = () => {
     {
       "@context": "https://schema.org",
       "@type": "HowTo",
-      "name": "How X10 Automation's 90-Day AI Marketing Pilot Works",
+      "name": "How x10 Automation's 90-Day AI Marketing Pilot Works",
       "step": [
         { "@type": "HowToStep", "position": 1, "name": "Parallel Audits", "text": "Days 1-2: Simultaneous SEO, GEO readiness, email, competitive landscape, and content audits run by 15-25 AI agents." },
         { "@type": "HowToStep", "position": 2, "name": "Strategic Roadmap", "text": "Days 2-3: 90-day roadmap with specific deliverables, timelines, and ROI calculations." },
@@ -1312,10 +1312,10 @@ const App: React.FC = () => {
   return (
     <div className="relative w-full min-h-screen bg-[var(--color-bg-primary)] text-white selection:bg-accent-400 selection:text-white font-sans">
       <SEOMeta
-        title="X10 Automation | AI Agent Teams for SMEs — 10x Output in 90 Days"
+        title="x10 Automation | AI Agent Teams for SMEs — 10x Output in 90 Days"
         description="Custom AI agent teams (15-25 specialists) for SMEs. 90-day pilots delivering SEO, GEO optimization, email automation, and lead magnets in days — not months. From €3K/mo + implementation fee. Romania & EU."
         canonical="https://x10.ro/"
-        ogTitle="X10 Automation | Dedicated AI Teams for Business"
+        ogTitle="x10 Automation | Dedicated AI Teams for Business"
         ogDescription="We build custom AI agent teams that deliver months of work in days. 15-25 specialists per team. 90-day pilot from €3K/mo + implementation fee."
         schemas={homepageSchemas}
       />

@@ -17,12 +17,12 @@ const BlogListPage: React.FC = () => {
     {
       "@context": "https://schema.org",
       "@type": "Blog",
-      "name": "X10 Automation Engineering Blog",
+      "name": "x10 Automation Engineering Blog",
       "description": "Technical deep-dives, case studies, and lessons from building AI agent teams.",
       "url": "https://x10.ro/blog",
       "publisher": {
         "@type": "Organization",
-        "name": "X10 Automation",
+        "name": "x10 Automation",
         "url": "https://x10.ro",
       },
       "blogPost": sortedPosts.map((p) => ({
@@ -47,7 +47,7 @@ const BlogListPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[var(--color-bg-primary)] text-white font-sans">
       <SEOMeta
-        title="Blog | X10 Automation"
+        title="Blog | x10 Automation"
         description="Technical deep-dives, case studies, and lessons from building AI agent teams."
         canonical="https://x10.ro/blog"
         schemas={schemas}
@@ -116,7 +116,7 @@ const BlogListPage: React.FC = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
             <span className="text-sm font-bold tracking-widest font-heading" style={{ color: 'var(--color-accent-primary)' }}>
-              X10 AUTOMATION
+              x10 AUTOMATION
             </span>
             <span className="text-white/20 text-xs">|</span>
             <span className="text-white/30 text-xs font-mono">Engineering Blog</span>

@@ -8,7 +8,7 @@ import { ArrowLeft } from 'lucide-react';
 
 const TermsPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Terms & Conditions — X10 Automation';
+    document.title = 'Terms & Conditions — x10 Automation';
     window.scrollTo(0, 0);
   }, []);
 
