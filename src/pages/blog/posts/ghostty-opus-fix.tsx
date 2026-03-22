@@ -18,6 +18,12 @@ const GhosttyOpusFix = () => (
       <strong>The issue was half-diagnosed already.</strong> Mitchell's code comments and issue description lay out the root cause in unusual detail. The model wasn't discovering a hidden cause from scratch — it was following breadcrumbs left by the maintainer. That's still useful work, but it's not the same as blind diagnosis.
     </p>
 
+    <blockquote>
+      <p>
+        Worth noting: both models had access to Mitchell's detailed diagnosis in the issue comments — "we rebuild the entire widget tree and reparent it." That significantly narrows the solution space. Neither model was diagnosing from scratch; both were finding a fix for a well-characterized problem. The diagnosis was the hard part, and Mitchell had already done it.
+      </p>
+    </blockquote>
+
     <p>
       <strong>This is not a controlled model comparison.</strong> I did not run Codex with my structured prompt, or Opus in Mitchell's exact environment and tooling. My experiment shows that workflow scaffolding changes outcomes for Opus. It does not show that model differences are irrelevant.
     </p>
