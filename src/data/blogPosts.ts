@@ -13,6 +13,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'transcription-local-vs-teams-copilot',
+    title: 'Your AI Meeting Assistant is Lying to You: How a $0 Local Setup Outscored Microsoft Teams Copilot 2:1 on Romanian Transcription',
+    date: '2026-03-28',
+    excerpt: 'We benchmarked a fully local whisper.cpp pipeline against Microsoft Teams Copilot on a 4-hour Romanian business meeting. Manual grading: 42/45 vs 21/45. The open-source stack won on text accuracy, number parsing, and technical vocabulary — at zero recurring cost.',
+    readingTimeMinutes: 15,
+    author: { name: 'Cristi', role: 'Founder, x10 Automation' },
+    tags: ['ai', 'transcription', 'whisper', 'benchmark', 'local-ai', 'privacy'],
+    component: () => import('../pages/blog/posts/transcription-vs-teams'),
+  },
+  {
     slug: 'opus-46-ghostty-fix-strategy',
     title: 'The Scaffold Was the Variable, Not the Model',
     date: '2026-03-22',
