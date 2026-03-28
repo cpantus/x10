@@ -14,7 +14,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: 'transcription-local-vs-teams-copilot',
-    title: '42 vs 21: A $0 Local Whisper Pipeline Crushed Teams Copilot on a 4-Hour Romanian Meeting',
+    title: 'Local Whisper vs Teams Copilot: 42/45 to 21/45 on a 4-Hour Romanian Meeting',
     date: '2026-03-28',
     excerpt: 'We benchmarked a fully local whisper.cpp pipeline against Microsoft Teams Copilot on a 4-hour Romanian business meeting. Manual grading: 42/45 vs 21/45. The open-source stack won on text accuracy, number parsing, and technical vocabulary — at zero recurring cost.',
     readingTimeMinutes: 15,
