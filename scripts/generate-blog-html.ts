@@ -20,6 +20,11 @@ const distDir = resolve(__dirname, '..', 'dist');
 // Blog posts metadata — keep in sync with src/data/blogPosts.ts
 const posts = [
   {
+    slug: 'voice-cloning-amd-eval',
+    title: 'Voice Cloning on AMD Consumer Hardware: 4 Models, 425 Audio Files, Zero Cloud',
+    description: 'We evaluated 4 open-source voice cloning models on AMD Ryzen AI Max+ 395 for English language education. Optimized Fish S2 Pro from RTF 17→3.8, Chatterbox to sub-real-time RTF 0.87, Qwen3-TTS 2.6x faster with 0.6B model. Human eval: Qwen 0.6B rated closest to natural voice. 6 AMD-specific bugs found and fixed.',
+  },
+  {
     slug: 'apex-quantization-amd-strix-halo',
     title: 'APEX Quantization on AMD Consumer Hardware: 3 Models, 34% Smaller, Better Than F16',
     description: 'We benchmarked APEX and REAP quantization across three Qwen3.5 models — 35B, 97B, and 122B — on an AMD Ryzen AI Max+ 395. The 35B agent dropped from 34.4 GB to 22.8 GB with perplexity below F16. Q4_0 KV cache promoted to production. TurboQuant blocked on Vulkan — ROCm is the unlock path.',

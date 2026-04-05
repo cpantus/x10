@@ -13,6 +13,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'voice-cloning-amd-eval',
+    title: 'Voice Cloning on AMD Consumer Hardware: 4 Models, 425 Audio Files, Zero Cloud',
+    date: '2026-04-05',
+    excerpt: 'We evaluated 4 open-source voice cloning models on AMD Ryzen AI Max+ 395 for English language education. Optimized Fish S2 Pro from RTF 17→3.8, Chatterbox to sub-real-time RTF 0.87, Qwen3-TTS 2.6x faster with 0.6B model. Human eval: Qwen 0.6B rated closest to natural voice. 6 AMD-specific bugs found and fixed.',
+    readingTimeMinutes: 15,
+    author: { name: 'Cristi', role: 'Founder, x10 Automation' },
+    tags: ['ai', 'voice-cloning', 'tts', 'benchmark', 'local-ai', 'amd', 'privacy'],
+    component: () => import('../pages/blog/posts/voice-cloning-amd-eval'),
+  },
+  {
     slug: 'apex-quantization-amd-strix-halo',
     title: 'APEX Quantization on AMD Consumer Hardware: 3 Models, 34% Smaller, Better Than F16',
     date: '2026-04-05',
