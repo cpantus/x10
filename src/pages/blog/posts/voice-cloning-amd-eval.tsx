@@ -25,8 +25,8 @@ const VoiceCloningAmdEval = () => (
         <strong>F5-TTS-RO</strong> by RACAI achieves WER 5.27% — half the error rate.
       </li>
       <li>
-        <strong>Human eval</strong>: the voice owner rated <strong>Qwen3-TTS 0.6B as closest to natural voice</strong>{' '}
-        — the smallest, fastest, cheapest model won on voice match.
+        <strong>Human eval</strong>: the voice owner rated <strong>both Qwen3-TTS models as closest to natural voice</strong>{' '}
+        — 0.6B and 1.7B nearly identical in quality, with 0.6B running 2.6x faster.
       </li>
       <li>
         <strong>pip dependency hell</strong>: every TTS package overwrites ROCm PyTorch with CUDA PyTorch. 3 failed
@@ -299,8 +299,8 @@ const VoiceCloningAmdEval = () => (
     </p>
 
     <p>
-      <strong>Result: Qwen3-TTS 0.6B was rated closest to the natural voice by the voice owner.</strong> This was
-      unexpected — the 0.6B is the smallest model, the fastest, and the cheapest to run. Chatterbox produced the
+      <strong>Result: Both Qwen3-TTS models — 0.6B and 1.7B — were rated closest to the natural voice by the voice owner.</strong> The
+      quality difference between the two Qwen sizes is minimal. The 0.6B produces nearly identical voice timbre to the 1.7B at 2.6x the speed. Chatterbox produced the
       most expressive output (the <code>exaggeration</code> parameter gives direct control over prosody range), but
       the voice timbre matched less consistently. Fish S2 Pro had the best benchmark numbers on paper but voice
       cloning was blocked by the torchaudio/torchcodec issue, limiting evaluation to default-voice output.
@@ -312,6 +312,7 @@ const VoiceCloningAmdEval = () => (
           <tr>
             <th>Criterion</th>
             <th>Chatterbox</th>
+            <th>Qwen3-TTS 1.7B</th>
             <th>Qwen3-TTS 0.6B</th>
             <th>Fish S2 Pro</th>
           </tr>
@@ -321,17 +322,20 @@ const VoiceCloningAmdEval = () => (
             <td>Voice match</td>
             <td>Good</td>
             <td><strong>Best</strong></td>
-            <td>Blocked (default voice)</td>
+            <td><strong>Best</strong> (near-identical to 1.7B)</td>
+            <td>Blocked</td>
           </tr>
           <tr>
             <td>Naturalness</td>
-            <td>Good (with exaggeration tuning)</td>
-            <td>Good</td>
+            <td>Good (with tuning)</td>
+            <td><strong>Best</strong></td>
+            <td><strong>Best</strong></td>
             <td>—</td>
           </tr>
           <tr>
             <td>Expressiveness</td>
             <td><strong>Best</strong> (exaggeration=0.6–0.7)</td>
+            <td>Neutral</td>
             <td>Neutral</td>
             <td>—</td>
           </tr>
@@ -339,12 +343,14 @@ const VoiceCloningAmdEval = () => (
             <td>Punctuation following</td>
             <td>Weak</td>
             <td>Weak</td>
+            <td>Weak</td>
             <td>—</td>
           </tr>
           <tr>
             <td>Speed (RTF)</td>
             <td><strong>0.87</strong></td>
-            <td>2.14</td>
+            <td>5.5</td>
+            <td><strong>2.14</strong></td>
             <td>3.8 (default voice)</td>
           </tr>
         </tbody>
