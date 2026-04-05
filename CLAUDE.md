@@ -41,9 +41,21 @@ x10.ro — marketing site for x10 Automation, AI agent teams for European SMEs.
 
 ## Blog
 - **Data**: `src/data/blogPosts.ts` — metadata registry with lazy component imports
-- **Articles**: `src/pages/blog/posts/<slug>.tsx` — JSX components, no runtime markdown
+- **Articles**: `src/pages/blog/posts/<slug>.tsx` �� JSX components, no runtime markdown
 - **Typography**: `.prose-x10` in `src/index.css` (no `@tailwindcss/typography`)
-- **Adding a post**: Create JSX in `posts/`, add entry to `blogPosts` array
+- **OG meta**: `scripts/generate-blog-html.ts` — post-build script generates per-route HTML with correct OG tags for social crawlers (LinkedIn, Twitter, Facebook). SPA `SEOMeta.tsx` handles client-side.
+
+### Adding a Blog Post (3 mandatory steps)
+1. **Create JSX**: `src/pages/blog/posts/<slug>.tsx` — arrow function returning `<> ... </>`. All tables wrapped in `<div style={{ overflowX: 'auto' }}>` for mobile.
+2. **Register in blogPosts.ts**: Add entry with `slug`, `title`, `date`, `excerpt`, `readingTimeMinutes`, `author`, `tags`, `component` (lazy import). Newest first.
+3. **Add to OG script**: Add post metadata (slug, title, description) to `scripts/generate-blog-html.ts` posts array. Without this, LinkedIn will show company defaults instead of the blog post.
+
+### Blog Rules
+- `pnpm build` runs `tsc -b && vite build && bun scripts/generate-blog-html.ts` — always verify OG generation succeeds
+- Tables use CSS `overflow-x: auto` globally (`.prose-x10 table` in index.css) — no manual wrapper divs needed, but wrapping in `<div style={{ overflowX: 'auto' }}>` is still safe
+- `.prose-x10` has `overflow-x: clip` — wide content cannot break mobile layout
+- `BlogPostPage.tsx` passes `ogType="article"` to `SEOMeta` — do not remove
+- Voice/style: follow `~/.claude/skills/CTO-content/SKILL.md` for tone, formatting, banned words
 
 ## Key Data Files
 - `src/data/catalogItems.ts` — 63 AI solutions across 6 verticals

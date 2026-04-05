@@ -74,6 +74,7 @@ const BlogPostPage: React.FC = () => {
         title={`${post.title} | x10 Automation Blog`}
         description={post.excerpt}
         canonical={`https://x10.ro/blog/${post.slug}`}
+        ogType="article"
         schemas={schemas}
       />
 

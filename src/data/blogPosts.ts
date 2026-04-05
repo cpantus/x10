@@ -13,6 +13,16 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'apex-quantization-amd-strix-halo',
+    title: 'APEX Quantization on AMD Consumer Hardware: 3 Models, 34% Smaller, Better Than F16',
+    date: '2026-04-05',
+    excerpt: 'We benchmarked APEX and REAP quantization across three Qwen3.5 models — 35B, 97B, and 122B — on an AMD Ryzen AI Max+ 395. The 35B agent dropped from 34.4 GB to 22.8 GB with perplexity below F16. Q4_0 KV cache promoted to production. TurboQuant blocked on Vulkan — ROCm is the unlock path.',
+    readingTimeMinutes: 12,
+    author: { name: 'Cristi', role: 'Founder, x10 Automation' },
+    tags: ['ai', 'quantization', 'apex', 'local-ai', 'amd', 'privacy', 'benchmark'],
+    component: () => import('../pages/blog/posts/apex-quantization-amd-strix-halo'),
+  },
+  {
     slug: 'transcription-local-vs-teams-copilot',
     title: 'Local Whisper vs Teams Copilot: 42/45 to 21/45 on a 4-Hour Romanian Meeting',
     date: '2026-03-28',

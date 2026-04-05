@@ -7,6 +7,7 @@ interface SEOMetaProps {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  ogType?: string;
   schemas?: object[];
 }
 
@@ -17,6 +18,7 @@ const SEOMeta: React.FC<SEOMetaProps> = ({
   ogTitle,
   ogDescription,
   ogImage = 'https://x10.ro/og-image.jpg',
+  ogType = 'website',
   schemas = [],
 }) => {
   useEffect(() => {
@@ -38,6 +40,7 @@ const SEOMeta: React.FC<SEOMetaProps> = ({
     setMeta('og:description', ogDescription || description, true);
     setMeta('og:url', canonical, true);
     setMeta('og:image', ogImage, true);
+    setMeta('og:type', ogType, true);
     setMeta('twitter:title', ogTitle || title);
     setMeta('twitter:description', ogDescription || description);
 
