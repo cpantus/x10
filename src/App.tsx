@@ -330,6 +330,16 @@ const HeroContent = () => {
         . Interactive tools, automation pipelines, market intelligence — engineered specifically for your business.
       </motion.p>
 
+      {/* Tagline */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.8, duration: 1 }}
+        className="text-sm md:text-base text-white/40 font-mono tracking-wider mb-12 italic"
+      >
+        The agents are stochastic; the framework around them isn't.
+      </motion.p>
+
       {/* CTA Buttons */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
